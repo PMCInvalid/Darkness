@@ -18,5 +18,40 @@ import java.io.InputStream;
 
 public class dive_choise extends AppCompatActivity
 {
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.level_choice);
+    }
 
+    public void surfaceWalk(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("difficulty","easy");
+        editor.apply();
+
+        Intent pip = new Intent(this, gameplay.class);
+        startActivity(pip);
+    }
+
+    public void deepDive(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("difficulty","hard");
+        editor.apply();
+
+        Intent pip = new Intent(this, gameplay.class);
+        startActivity(pip);
+    }
+
+    public void gotoMainMenu(View v)
+    {
+        Intent pip = new Intent(this, main_menu.class);
+        startActivity(pip);
+    }
 }

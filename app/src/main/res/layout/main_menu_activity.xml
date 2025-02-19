@@ -25,6 +25,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
         android:text="Dive"
+        android:onClick="dive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -35,6 +36,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
         android:text="Rules"
+        android:onClick="rules"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dive" />
@@ -45,6 +47,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
         android:text="Authors"
+        android:onClick="authors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rules" />

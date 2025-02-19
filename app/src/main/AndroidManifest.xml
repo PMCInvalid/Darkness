@@ -24,5 +24,17 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".dive_choise"
+            android:exported="true"
+            android:theme="@style/Theme.Darkness">
+        </activity>
+
+        <activity
+            android:name=".gameplay"
+            android:exported="true"
+            android:theme="@style/Theme.Darkness">
+        </activity>
+
     </application>
 </manifest>

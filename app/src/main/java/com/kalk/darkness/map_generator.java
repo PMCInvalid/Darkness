@@ -278,7 +278,7 @@ public class map_generator
         }
         helper = 1;
 
-        while (helper == 1)
+        /*while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -390,7 +390,7 @@ public class map_generator
                 helper = 0;
             }
         }
-        helper = 1;
+        helper = 1;*/
     }
 
     public static void extrGen()

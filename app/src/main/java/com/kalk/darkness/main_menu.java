@@ -27,7 +27,7 @@ public class main_menu extends AppCompatActivity
 
     public void dive(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, dive_choise.class);
         startActivity(pip);
     }
 
