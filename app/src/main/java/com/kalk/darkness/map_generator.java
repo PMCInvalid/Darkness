@@ -8,39 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
-public class map_generator extends AppCompatActivity
+public class map_generator extends mob
 {
     static Random rand = new Random();
 
 
     static public int[][] map = new int[32][32];
 
-    static public int playerX = -1;
-    static public int playerY = -1;
+    static mob player = new mob();
+    static mob extr = new mob();
+    static mob lever = new mob();
+    static mob peshka = new mob();
 
-    static public int peshkaX = -1;
-    static public int peshkaY = -1;
-
-    static public int slonX = -1;
-    static public int slonY = -1;
-
-    static public int sKorolX = -1;
-    static public int sKorolY = -1;
-
-    static public int bratX = -1;
-    static public int bratY = -1;
-
-    static public int krotX = -1;
-    static public int krotY = -1;
-
-    static public int medvedX = -1;
-    static public int medvedY = -1;
-
-    static public int extrX = -1;
-    static public int extrY = -1;
-
-    static public int leverX = -1;
-    static public int leverY = -1;
+    public void setMob(mob peshka)
+    {
+        this.peshka = peshka;
+    }
 
     public static void main(String args[])
     {
@@ -65,8 +48,18 @@ public class map_generator extends AppCompatActivity
     {
         int[] a = new int[2];
 
-        a[0] = playerY;
-        a[1] = playerX;
+        a[0] = player.corY;
+        a[1] = player.corX;
+
+        return a;
+    }
+
+    public static int[] peshkaCorThrower()
+    {
+        int[] a = new int[2];
+
+        a[0] = peshka.corY;
+        a[1] = peshka.corX;
 
         return a;
     }
@@ -296,17 +289,17 @@ public class map_generator extends AppCompatActivity
 
             if (solution == 1)
             {
-                playerX = a;
-                playerY = b;
+                player.corX = a;
+                player.corY = b;
 
-                map[playerY][playerX] = 21;
+                map[player.corY][player.corX] = 21;
 
                 helper = 0;
             }
         }
         helper = 1;
 
-        /*while (helper == 1)
+        while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -315,17 +308,17 @@ public class map_generator extends AppCompatActivity
 
             if (solution == 1)
             {
-                peshkaX = a;
-                peshkaY = b;
+                peshka.corY = a;
+                peshka.corX = b;
 
-                map[peshkaY][peshkaY] = 22;
+                map[peshka.corY][peshka.corX] = 22;
 
                 helper = 0;
             }
         }
         helper = 1;
 
-        while (helper == 1)
+        /*while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -434,10 +427,10 @@ public class map_generator extends AppCompatActivity
 
             if (solution == 1)
             {
-                extrY = a;
-                extrX = b;
+                extr.corY = a;
+                extr.corX = b;
 
-                map[extrY][extrY] = 31;
+                map[extr.corY][extr.corX] = 31;
 
                 helper = 0;
             }
@@ -452,17 +445,17 @@ public class map_generator extends AppCompatActivity
             int solution = check(a, b);
             int solution2 = 1;
 
-            if (abs(extrY - a) < 10 || abs(extrX - b) < 10)
+            if (abs(extr.corY - a) < 10 || abs(extr.corX - b) < 10)
             {
                 solution2 = 0;
             }
 
             if (solution == 1 && solution2 == 1)
             {
-                leverY = a;
-                leverX = b;
+                lever.corY = a;
+                lever.corX = b;
 
-                map[leverY][leverX] = 32;
+                map[lever.corY][lever.corX] = 32;
 
                 helper = 0;
             }
@@ -470,6 +463,55 @@ public class map_generator extends AppCompatActivity
             solution2 = 1;
         }
         helper = 1;
+
+        while (helper == 1)
+        {
+            int a  = rand.nextInt(5);
+
+            if (a == 1)
+            {
+                a = rand.nextInt(17) + 2;
+
+                if (map[2][a] < 11)
+                {
+                    map[1][a] = 33;
+                    helper = 0;
+                }
+            }
+
+            else if (a == 2)
+            {
+                a = rand.nextInt(17) + 2;
+
+                if (map[a][2] < 11)
+                {
+                    map[a][1] = 33;
+                    helper = 0;
+                }
+            }
+
+            else if (a == 3)
+            {
+                a = rand.nextInt(17) + 2;
+
+                if (map[29][a] < 11)
+                {
+                    map[30][a] = 33;
+                    helper = 0;
+                }
+            }
+
+            if (a == 4)
+            {
+                a = rand.nextInt(17) + 2;
+
+                if (map[a][29] < 11)
+                {
+                    map[a][30] = 33;
+                    helper = 0;
+                }
+            }
+        }
     }
 
     public static void testDraw(int[][] a)

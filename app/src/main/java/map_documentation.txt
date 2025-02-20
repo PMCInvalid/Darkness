@@ -11,8 +11,22 @@ map values:
 29 - F.korol
 31 - extraction
 32 - lever
+33 - door
 
+move patterns:
+1 - up
+2 - up + right
+3 - right
+4 - down + right
+5 - down
+6 - down + left
+7 - left
+8 - up + left
+9 - stay
 
+move exceptions:
+1 - ignore walls
+2 - step 2 cells
 
 wall seeds:
 

@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class gameplay extends map_generator
 {
@@ -15,9 +17,10 @@ public class gameplay extends map_generator
         gameplayInit();
     }
 
+    ExecutorService executor = Executors.newSingleThreadExecutor();
+
     int[] locPlayerCor;
-    int helper1 = 0;
-    int helper2 = 0;
+    int[] locPeshkaCor;
     int opengate = 0;
     int score = 0;
     public static int gameIn = 0;
@@ -27,10 +30,13 @@ public class gameplay extends map_generator
     {
         if (gameIn == 0)
         {
-            helper1 = 0;
-            helper2 = 0;
+            player.helper1 = 0;
+            player.helper2 = 0;
+            peshka.helper1 = 0;
+            peshka.helper2 = 0;
             map = map_generator.mapThrower();
             locPlayerCor = map_generator.playerCorThrower();
+            locPeshkaCor = map_generator.peshkaCorThrower();
             gameIn = 1;
             opengate = 0;
             score++;
@@ -47,6 +53,21 @@ public class gameplay extends map_generator
                 gameplayInit();
                 mapDrawEmptyScreen();
             }
+        }
+
+        if ( a == 33)
+        {
+            gameIn = 0;
+            gameplayInit();
+            mapDrawEmptyScreen();
+        }
+
+        if (peshka.corX == player.corX && peshka.corY == player.corY)
+        {
+            gameIn = 0;
+            score = 0;
+            gameplayInit();
+            mapDrawEmptyScreen();
         }
     }
 
@@ -99,6 +120,11 @@ public class gameplay extends map_generator
             im1_1.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 2] == 22)
+        {
+            im1_1.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 2] == 31)
         {
             im1_1.setImageResource(R.drawable.extraction_tile);
@@ -107,6 +133,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 2] == 32)
         {
             im1_1.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 2] == 33)
+        {
+            im1_1.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 2][locPlayerCor[1] - 1] < 11)
@@ -124,6 +155,11 @@ public class gameplay extends map_generator
             im1_2.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 1] == 22)
+        {
+            im1_2.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 1] == 31)
         {
             im1_2.setImageResource(R.drawable.extraction_tile);
@@ -132,6 +168,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 1] == 32)
         {
             im1_2.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] - 1] == 33)
+        {
+            im1_2.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 2][locPlayerCor[1]] < 11)
@@ -149,6 +190,11 @@ public class gameplay extends map_generator
             im1_3.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1]] == 22)
+        {
+            im1_3.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1]] == 31)
         {
             im1_3.setImageResource(R.drawable.extraction_tile);
@@ -157,6 +203,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1]] == 32)
         {
             im1_3.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1]] == 33)
+        {
+            im1_3.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 2][locPlayerCor[1] + 1] < 11)
@@ -174,6 +225,11 @@ public class gameplay extends map_generator
             im1_4.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 1] == 22)
+        {
+            im1_4.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 1] == 31)
         {
             im1_4.setImageResource(R.drawable.extraction_tile);
@@ -182,6 +238,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 1] == 32)
         {
             im1_4.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 1] == 33)
+        {
+            im1_4.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 2][locPlayerCor[1] + 2] < 11)
@@ -199,6 +260,11 @@ public class gameplay extends map_generator
             im1_5.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 2] == 22)
+        {
+            im1_5.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 2] == 31)
         {
             im1_5.setImageResource(R.drawable.extraction_tile);
@@ -207,6 +273,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 2] == 32)
         {
             im1_5.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 2][locPlayerCor[1] + 2] == 33)
+        {
+            im1_5.setImageResource(R.drawable.door_tile);
         }
 
         //-------------------------------------------------------------------------Second layer
@@ -226,6 +297,11 @@ public class gameplay extends map_generator
             im2_1.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 2] == 22)
+        {
+            im2_1.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 2] == 31)
         {
             im2_1.setImageResource(R.drawable.extraction_tile);
@@ -234,6 +310,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 2] == 32)
         {
             im2_1.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 2] == 33)
+        {
+            im2_1.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] < 11)
@@ -251,6 +332,11 @@ public class gameplay extends map_generator
             im2_2.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 22)
+        {
+            im2_2.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 31)
         {
             im2_2.setImageResource(R.drawable.extraction_tile);
@@ -259,6 +345,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 32)
         {
             im2_2.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 33)
+        {
+            im2_2.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 1][locPlayerCor[1]] < 11)
@@ -276,6 +367,11 @@ public class gameplay extends map_generator
             im2_3.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1]] == 22)
+        {
+            im2_3.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1]] == 31)
         {
             im2_3.setImageResource(R.drawable.extraction_tile);
@@ -284,6 +380,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1]] == 32)
         {
             im2_3.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1]] == 33)
+        {
+            im2_3.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] < 11)
@@ -301,6 +402,11 @@ public class gameplay extends map_generator
             im2_4.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 22)
+        {
+            im2_4.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 31)
         {
             im2_4.setImageResource(R.drawable.extraction_tile);
@@ -309,6 +415,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 32)
         {
             im2_4.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 33)
+        {
+            im2_4.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] - 1][locPlayerCor[1] + 2] < 11)
@@ -326,6 +437,11 @@ public class gameplay extends map_generator
             im2_5.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 2] == 22)
+        {
+            im2_5.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 2] == 31)
         {
             im2_5.setImageResource(R.drawable.extraction_tile);
@@ -334,6 +450,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 2] == 32)
         {
             im2_5.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 2] == 33)
+        {
+            im2_5.setImageResource(R.drawable.door_tile);
         }
 
         //-------------------------------------------------------------------------Third layer
@@ -353,6 +474,11 @@ public class gameplay extends map_generator
             im3_1.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0]][locPlayerCor[1] - 2] == 22)
+        {
+            im3_1.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0]][locPlayerCor[1] - 2] == 31)
         {
             im3_1.setImageResource(R.drawable.extraction_tile);
@@ -361,6 +487,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0]][locPlayerCor[1] - 2] == 32)
         {
             im3_1.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0]][locPlayerCor[1] - 2] == 33)
+        {
+            im3_1.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0]][locPlayerCor[1] - 1] < 11)
@@ -378,6 +509,11 @@ public class gameplay extends map_generator
             im3_2.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0]][locPlayerCor[1] - 1] == 22)
+        {
+            im3_2.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0]][locPlayerCor[1] - 1] == 31)
         {
             im3_2.setImageResource(R.drawable.extraction_tile);
@@ -386,6 +522,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0]][locPlayerCor[1] - 1] == 32)
         {
             im3_2.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0]][locPlayerCor[1] - 1] == 33)
+        {
+            im3_2.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0]][locPlayerCor[1]] < 11)
@@ -403,6 +544,11 @@ public class gameplay extends map_generator
             im3_3.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0]][locPlayerCor[1]] == 22)
+        {
+            im3_3.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0]][locPlayerCor[1]] == 31)
         {
             im3_3.setImageResource(R.drawable.extraction_tile);
@@ -411,6 +557,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0]][locPlayerCor[1]] == 32)
         {
             im3_3.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0]][locPlayerCor[1]] == 33)
+        {
+            im3_3.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0]][locPlayerCor[1] + 1] < 11)
@@ -428,6 +579,11 @@ public class gameplay extends map_generator
             im3_4.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0]][locPlayerCor[1] + 1] == 22)
+        {
+            im3_4.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0]][locPlayerCor[1] + 1] == 31)
         {
             im3_4.setImageResource(R.drawable.extraction_tile);
@@ -436,6 +592,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0]][locPlayerCor[1] + 1] == 32)
         {
             im3_4.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0]][locPlayerCor[1] + 1] == 33)
+        {
+            im3_4.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0]][locPlayerCor[1] + 2] < 11)
@@ -453,6 +614,11 @@ public class gameplay extends map_generator
             im3_5.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0]][locPlayerCor[1] + 2] == 22)
+        {
+            im3_5.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0]][locPlayerCor[1] + 2] == 31)
         {
             im3_5.setImageResource(R.drawable.extraction_tile);
@@ -461,6 +627,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0]][locPlayerCor[1] + 2] == 32)
         {
             im3_5.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0]][locPlayerCor[1] + 2] == 33)
+        {
+            im3_5.setImageResource(R.drawable.door_tile);
         }
 
         //-------------------------------------------------------------------------Fourth layer
@@ -480,6 +651,11 @@ public class gameplay extends map_generator
             im4_1.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 2] == 22)
+        {
+            im4_1.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 2] == 31)
         {
             im4_1.setImageResource(R.drawable.extraction_tile);
@@ -488,6 +664,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 2] == 32)
         {
             im4_1.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 2] == 33)
+        {
+            im4_1.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] < 11)
@@ -505,6 +686,11 @@ public class gameplay extends map_generator
             im4_2.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 22)
+        {
+            im4_2.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 31)
         {
             im4_2.setImageResource(R.drawable.extraction_tile);
@@ -513,6 +699,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 32)
         {
             im4_2.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 33)
+        {
+            im4_2.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 1][locPlayerCor[1]] < 11)
@@ -530,6 +721,11 @@ public class gameplay extends map_generator
             im4_3.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1]] == 22)
+        {
+            im4_3.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1]] == 31)
         {
             im4_3.setImageResource(R.drawable.extraction_tile);
@@ -538,6 +734,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1]] == 32)
         {
             im4_3.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1]] == 33)
+        {
+            im4_3.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] < 11)
@@ -555,6 +756,11 @@ public class gameplay extends map_generator
             im4_4.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 22)
+        {
+            im4_4.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 31)
         {
             im4_4.setImageResource(R.drawable.extraction_tile);
@@ -563,6 +769,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 32)
         {
             im4_4.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 33)
+        {
+            im4_4.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 1][locPlayerCor[1] + 2] < 11)
@@ -580,6 +791,11 @@ public class gameplay extends map_generator
             im4_5.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 2] == 22)
+        {
+            im4_5.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 2] == 31)
         {
             im4_5.setImageResource(R.drawable.extraction_tile);
@@ -588,6 +804,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 2] == 32)
         {
             im4_5.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 2] == 33)
+        {
+            im4_5.setImageResource(R.drawable.door_tile);
         }
 
         //-------------------------------------------------------------------------Fifth layer
@@ -607,6 +828,11 @@ public class gameplay extends map_generator
             im5_1.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 2] == 22)
+        {
+            im5_1.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 2] == 31)
         {
             im5_1.setImageResource(R.drawable.extraction_tile);
@@ -615,6 +841,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 2] == 32)
         {
             im5_1.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 2] == 33)
+        {
+            im5_1.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 2][locPlayerCor[1] - 1] < 11)
@@ -632,6 +863,11 @@ public class gameplay extends map_generator
             im5_2.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 1] == 22)
+        {
+            im5_2.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 1] == 31)
         {
             im5_2.setImageResource(R.drawable.extraction_tile);
@@ -640,6 +876,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 1] == 32)
         {
             im5_2.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] - 1] == 33)
+        {
+            im5_2.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 2][locPlayerCor[1]] < 11)
@@ -657,6 +898,11 @@ public class gameplay extends map_generator
             im5_3.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1]] == 22)
+        {
+            im5_3.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1]] == 31)
         {
             im5_3.setImageResource(R.drawable.extraction_tile);
@@ -665,6 +911,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1]] == 32)
         {
             im5_3.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1]] == 33)
+        {
+            im5_3.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 2][locPlayerCor[1] + 1] < 11)
@@ -682,6 +933,11 @@ public class gameplay extends map_generator
             im5_4.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 1] == 22)
+        {
+            im5_4.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 1] == 31)
         {
             im5_4.setImageResource(R.drawable.extraction_tile);
@@ -690,6 +946,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 1] == 32)
         {
             im5_4.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 1] == 33)
+        {
+            im5_4.setImageResource(R.drawable.door_tile);
         }
 
         if (map[locPlayerCor[0] + 2][locPlayerCor[1] + 2] < 11)
@@ -707,6 +968,11 @@ public class gameplay extends map_generator
             im5_5.setImageResource(R.drawable.player_tile);
         }
 
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 2] == 22)
+        {
+            im5_5.setImageResource(R.drawable.peshka_tile);
+        }
+
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 2] == 31)
         {
             im5_5.setImageResource(R.drawable.extraction_tile);
@@ -715,6 +981,11 @@ public class gameplay extends map_generator
         else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 2] == 32)
         {
             im5_5.setImageResource(R.drawable.lever_tile);
+        }
+
+        else if(map[locPlayerCor[0] + 2][locPlayerCor[1] + 2] == 33)
+        {
+            im5_5.setImageResource(R.drawable.door_tile);
         }
     }
 
@@ -781,68 +1052,238 @@ public class gameplay extends map_generator
         im5_5.setImageResource(R.drawable.empty_tile);
     }
 
+    public void peshkaSukaMove()
+    {
+        computeFlowField(map, player.corX, player.corY, 1);
+
+        int negr = getDirection(peshka.corX, peshka.corY);
+
+        if (negr == 1)
+        {
+            peshka.helper1 = peshka.helper2;
+            peshka.helper2 = map[locPeshkaCor[0] - 1][locPeshkaCor[1]];
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = peshka.helper1;
+            locPeshkaCor[0] -= 1;
+            peshka.corY -= 1;
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = 22;
+        }
+
+        else if (negr == 3)
+        {
+            peshka.helper1 = peshka.helper2;
+            peshka.helper2 = map[locPeshkaCor[0]][locPeshkaCor[1] + 1];
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = peshka.helper1;
+            locPeshkaCor[1] += 1;
+            peshka.corX += 1;
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = 22;
+        }
+
+        else if (negr == 5)
+        {
+            peshka.helper1 = peshka.helper2;
+            peshka.helper2 = map[locPeshkaCor[0] + 1][locPeshkaCor[1]];
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = peshka.helper1;
+            locPeshkaCor[0] += 1;
+            peshka.corY += 1;
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = 22;
+        }
+
+        else if (negr == 7)
+        {
+            peshka.helper1 = peshka.helper2;
+            peshka.helper2 = map[locPeshkaCor[0]][locPeshkaCor[1] - 1];
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = peshka.helper1;
+            locPeshkaCor[1] -= 1;
+            peshka.corX -= 1;
+            map[locPeshkaCor[0]][locPeshkaCor[1]] = 22;
+        }
+
+        else if (negr == 9)
+        {
+
+        }
+
+        gameLifeCheck(opengate);
+    }
+
+    public void playerMove (int a)
+    {
+        if (a == 1)
+        {
+            if (map[locPlayerCor[0] - 1][locPlayerCor[1]] < 11 || map[locPlayerCor[0] - 1][locPlayerCor[1]] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1]] == 31 || map[locPlayerCor[0] - 1][locPlayerCor[1]] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1]];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] -= 1;
+                player.corY -= 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+
+        else if (a == 2)
+        {
+            if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] < 11 || map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 31 || map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1] + 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] -= 1;
+                locPlayerCor[1] += 1;
+                player.corY -= 1;
+                player.corX += 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+
+        else if (a == 3)
+        {
+            if(map[locPlayerCor[0]][locPlayerCor[1] + 1] < 11  || map[locPlayerCor[0]][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0]][locPlayerCor[1] + 1] == 31 || map[locPlayerCor[0]][locPlayerCor[1] + 1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0]][locPlayerCor[1] + 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[1] += 1;
+                player.corX += 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+
+        else if (a == 4)
+        {
+            if(map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 31 || map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1] + 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] += 1;
+                locPlayerCor[1] += 1;
+                player.corY += 1;
+                player.corX += 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+                /**/
+            }
+        }
+
+        else if (a == 5)
+        {
+            if (map[locPlayerCor[0] + 1][locPlayerCor[1]] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1]] == 32 || map[locPlayerCor[0]][locPlayerCor[1]] == 31 || map[locPlayerCor[0] + 1][locPlayerCor[1]] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1]];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] += 1;
+                player.corY += 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+
+                /**/
+            }
+        }
+
+        else if (a == 6)
+        {
+            if (map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 31 || map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1] - 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] += 1;
+                locPlayerCor[1] -= 1;
+                player.corY += 1;
+                player.corX -= 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+
+        else if (a == 7)
+        {
+            if (map[locPlayerCor[0]][locPlayerCor[1] - 1] < 11 || map[locPlayerCor[0]][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0]][locPlayerCor[1] - 1] == 31 || map[locPlayerCor[0]][locPlayerCor[1] - 1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0]][locPlayerCor[1] - 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[1] -= 1;
+                player.corX -= 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+
+        else if (a == 8)
+        {
+            if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] < 10 || map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1] -1] == 31 || map[locPlayerCor[0] - 1][locPlayerCor[1] -1] == 33)
+            {
+                player.helper1 = player.helper2;
+                player.helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1] - 1];
+                map[locPlayerCor[0]][locPlayerCor[1]] = player.helper1;
+                locPlayerCor[0] -= 1;
+                locPlayerCor[1] -= 1;
+                player.corY -= 1;
+                player.corX -= 1;
+                map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+
+                if (player.helper2 == 32)
+                    opengate = 1;
+
+                gameLifeCheck(helper2);
+            }
+        }
+    }
+
     public void buttonUpAction(View v)
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        String a = settings.getString("difficulty", "");
+        String b = settings.getString("difficulty", "");
 
-        if (map[locPlayerCor[0] - 1][locPlayerCor[1]] < 11 || map[locPlayerCor[0] - 1][locPlayerCor[1]] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1]] == 31)
+        playerMove(1);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1]];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] -= 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawScreen();
         }
-    }
 
-    public void buttonUpLeftAction(View v)
-    {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String a = settings.getString("difficulty", "");
-
-        if(map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] < 10 || map[locPlayerCor[0] - 1][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1] -1] == 31)
+        else
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1] - 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] -= 1;
-            locPlayerCor[1] -= 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawEmptyScreen();
         }
     }
 
@@ -851,31 +1292,19 @@ public class gameplay extends map_generator
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        String a = settings.getString("difficulty", "");
+        String b = settings.getString("difficulty", "");
 
-        if(map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] < 11 || map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0] - 1][locPlayerCor[1] + 1] == 31)
+        playerMove(2);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] - 1][locPlayerCor[1] + 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] -= 1;
-            locPlayerCor[1] += 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+            mapDrawScreen();
+        }
 
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+        else
+        {
+            mapDrawEmptyScreen();
         }
     }
 
@@ -884,62 +1313,19 @@ public class gameplay extends map_generator
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        String a = settings.getString("difficulty", "");
+        String b = settings.getString("difficulty", "");
 
-        if(map[locPlayerCor[0]][locPlayerCor[1] + 1] < 11  || map[locPlayerCor[0]][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0]][locPlayerCor[1] + 1] == 31)
+        playerMove(3);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0]][locPlayerCor[1] + 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[1] += 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawScreen();
         }
-    }
 
-    public void buttonLeftAction(View v)
-    {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String a = settings.getString("difficulty", "");
-
-        if(map[locPlayerCor[0]][locPlayerCor[1] - 1] < 11 || map[locPlayerCor[0]][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0]][locPlayerCor[1] - 1] == 31)
+        else
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0]][locPlayerCor[1] - 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[1] -= 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawEmptyScreen();
         }
     }
 
@@ -948,64 +1334,19 @@ public class gameplay extends map_generator
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        String a = settings.getString("difficulty", "");
+        String b = settings.getString("difficulty", "");
 
-        if (map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 32 || map[locPlayerCor[0] + 1][locPlayerCor[1] + 1] == 31)
+        playerMove(4);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1] + 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] += 1;
-            locPlayerCor[1] += 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawScreen();
         }
-    }
 
-    public void buttonDownLeftAction(View v)
-    {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String a = settings.getString("difficulty", "");
-
-        if (map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 32 || map[locPlayerCor[0] + 1][locPlayerCor[1] - 1] == 31)
+        else
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1] - 1];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] += 1;
-            locPlayerCor[1] -= 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
-
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+            mapDrawEmptyScreen();
         }
     }
 
@@ -1014,32 +1355,85 @@ public class gameplay extends map_generator
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        String a = settings.getString("difficulty", "");
+        String b = settings.getString("difficulty", "");
 
-        if (map[locPlayerCor[0] + 1][locPlayerCor[1]] < 11 || map[locPlayerCor[0] + 1][locPlayerCor[1]] == 32 || map[locPlayerCor[0] + 1][locPlayerCor[1]] == 31)
+        playerMove(5);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
         {
-            helper1 = helper2;
-            helper2 = map[locPlayerCor[0] + 1][locPlayerCor[1]];
-            map[locPlayerCor[0]][locPlayerCor[1]] = helper1;
-            locPlayerCor[0] += 1;
-            map[locPlayerCor[0]][locPlayerCor[1]] = 21;
+            mapDrawScreen();
+        }
 
-            if (a.equals("easy"))
-            {
-                mapDrawScreen();
-            }
-
-            else
-            {
-                mapDrawEmptyScreen();
-            }
-
-            if (helper2 == 32)
-                opengate = 1;
-
-            gameLifeCheck(helper2);
+        else
+        {
+            mapDrawEmptyScreen();
         }
     }
+
+    public void buttonDownLeftAction(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String b = settings.getString("difficulty", "");
+
+        playerMove(6);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
+        {
+            mapDrawScreen();
+        }
+
+        else
+        {
+            mapDrawEmptyScreen();
+        }
+    }
+
+    public void buttonLeftAction(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String b = settings.getString("difficulty", "");
+
+        playerMove(7);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
+        {
+            mapDrawScreen();
+        }
+
+        else
+        {
+            mapDrawEmptyScreen();
+        }
+    }
+
+    public void buttonUpLeftAction(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String b = settings.getString("difficulty", "");
+
+        playerMove(8);
+        peshkaSukaMove();
+
+        if (b.equals("easy"))
+        {
+            mapDrawScreen();
+        }
+
+        else
+        {
+            mapDrawEmptyScreen();
+        }
+    }
+
 
     public void midButtonAction(View v)
     {
@@ -1048,6 +1442,8 @@ public class gameplay extends map_generator
 
     public void test(View v)
     {
+        peshkaSukaMove();
+        mapDrawScreen();
         for(int i = 0; i < 32; i++)
         {
             for (int j = 0; j < 32; j++)
@@ -1070,6 +1466,11 @@ public class gameplay extends map_generator
 
             System.out.println();
         }
+        
         System.out.println(score);
+        System.out.println(player.corY);
+        System.out.println(player.corX);
+        System.out.println(peshka.corY);
+        System.out.println(peshka.corX);
     }
 }
