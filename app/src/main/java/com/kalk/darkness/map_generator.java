@@ -2,9 +2,13 @@ package com.kalk.darkness;
 
 import static java.lang.Math.abs;
 
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
-public class map_generator
+public class map_generator extends AppCompatActivity
 {
     static Random rand = new Random();
 
@@ -40,11 +44,31 @@ public class map_generator
 
     public static void main(String args[])
     {
+        /*emptySetter();
+        wallGen();
+        mobGen();
+        extrGen();
+        testDraw(map);*/
+    }
+
+    public static int[][] mapThrower()
+    {
         emptySetter();
         wallGen();
         mobGen();
         extrGen();
-        testDraw(map);
+
+        return map;
+    }
+
+    public static int[] playerCorThrower()
+    {
+        int[] a = new int[2];
+
+        a[0] = playerY;
+        a[1] = playerX;
+
+        return a;
     }
 
     public static void emptySetter()
@@ -52,14 +76,18 @@ public class map_generator
         for (int i = 0; i < 32; i++)
         {
             map[0][i] = 11;
+            map[1][i] = 11;
             map[31][i] = 11;
+            map[30][i] = 11;
             map[i][0] = 11;
+            map[i][1] = 11;
             map[i][31] = 11;
+            map[i][30] = 11;
         }
 
-        for(int i = 1; i < 31; i++)
+        for(int i = 2; i < 30; i++)
         {
-            for(int j = 1; j < 31; j++)
+            for(int j = 2; j < 30; j++)
             {
                 map[i][j] = 0;
             }
@@ -70,8 +98,8 @@ public class map_generator
     {
         for (int i = 0; i <= 25;)
         {
-            int xCor = (rand.nextInt(28) + 2);
-            int yCor = (rand.nextInt(28) + 2);
+            int xCor = (rand.nextInt(27) + 2);
+            int yCor = (rand.nextInt(27) + 2);
             int a = rand.nextInt(11);
 
             if (a == 1 && yCor + 2 < 32 && xCor + 2 < 32)
@@ -261,8 +289,8 @@ public class map_generator
 
         while (helper == 1)
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
+            int a = (rand.nextInt(27) + 2);
+            int b = (rand.nextInt(27) + 2);
 
             int solution = check(a, b);
 
@@ -399,8 +427,8 @@ public class map_generator
 
         while (helper == 1)
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
+            int a = (rand.nextInt(27) + 2);
+            int b = (rand.nextInt(27) + 2);
 
             int solution = check(a, b);
 
