@@ -49,6 +49,7 @@ public class gameplay extends map_generator
             if (a == 31)
             {
                 gameIn = 0;
+                opengate = 0;
                 gameplayInit();
                 mapDrawEmptyScreen();
             }
@@ -57,6 +58,7 @@ public class gameplay extends map_generator
         if (a == 33)
         {
             gameIn = 0;
+            opengate = 0;
             gameplayInit();
             mapDrawEmptyScreen();
         }
@@ -1066,8 +1068,8 @@ public class gameplay extends map_generator
             slon.helper1 = slon.helper2;
             slon.helper2 = map[slon.corY + 1][slon.corX - 1];
             map[slon.corY][slon.corX] = slon.helper1;
-            player.corY += 1;
-            player.corX -= 1;
+            slon.corY += 1;
+            slon.corX -= 1;
             map[slon.corY][slon.corX] = 23;
         }
 
@@ -1084,6 +1086,8 @@ public class gameplay extends map_generator
 
     public void playerMove (int a)
     {
+        int moveCheck = 0;
+
         if (a == 1)
         {
             if (map[player.corY - 1][player.corX] < 11 || map[player.corY - 1][player.corX] == 32 || map[player.corY - 1][player.corX] == 31 || map[player.corY - 1][player.corX] == 33)
@@ -1100,6 +1104,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1118,6 +1124,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1135,6 +1143,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1153,6 +1163,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1170,6 +1182,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1188,6 +1202,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1205,6 +1221,8 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
         }
 
@@ -1223,7 +1241,15 @@ public class gameplay extends map_generator
                     opengate = 1;
 
                 gameLifeCheck(player.helper2);
+
+                moveCheck = 1;
             }
+        }
+
+        if (moveCheck == 1)
+        {
+            peshkaSukaMove();
+            slonMove();
         }
     }
 
@@ -1235,8 +1261,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(1);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1257,8 +1281,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(2);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1279,8 +1301,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(3);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1301,8 +1321,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(4);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1323,8 +1341,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(5);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1345,8 +1361,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(6);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1367,8 +1381,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(7);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
@@ -1389,8 +1401,6 @@ public class gameplay extends map_generator
         String b = settings.getString("difficulty", "");
 
         playerMove(8);
-        slonMove();
-        peshkaSukaMove();
 
         if (b.equals("easy"))
         {
