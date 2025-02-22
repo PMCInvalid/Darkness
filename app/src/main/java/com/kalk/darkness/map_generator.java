@@ -19,19 +19,11 @@ public class map_generator extends mob
     static mob extr = new mob();
     static mob lever = new mob();
     static mob peshka = new mob();
+    static mob slon = new mob();
 
     public void setMob(mob peshka)
     {
         this.peshka = peshka;
-    }
-
-    public static void main(String args[])
-    {
-        /*emptySetter();
-        wallGen();
-        mobGen();
-        extrGen();
-        testDraw(map);*/
     }
 
     public static int[][] mapThrower()
@@ -42,26 +34,6 @@ public class map_generator extends mob
         extrGen();
 
         return map;
-    }
-
-    public static int[] playerCorThrower()
-    {
-        int[] a = new int[2];
-
-        a[0] = player.corY;
-        a[1] = player.corX;
-
-        return a;
-    }
-
-    public static int[] peshkaCorThrower()
-    {
-        int[] a = new int[2];
-
-        a[0] = peshka.corY;
-        a[1] = peshka.corX;
-
-        return a;
     }
 
     public static void emptySetter()
@@ -318,7 +290,7 @@ public class map_generator extends mob
         }
         helper = 1;
 
-        /*while (helper == 1)
+        while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -327,17 +299,17 @@ public class map_generator extends mob
 
             if (solution == 1)
             {
-                slonX = a;
-                slonY = b;
+                slon.corY = a;
+                slon.corX = b;
 
-                map[slonY][slonY] = 23;
+                map[slon.corY][slon.corX] = 23;
 
                 helper = 0;
             }
         }
         helper = 1;
 
-        while (helper == 1)
+        /*while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -472,9 +444,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[3][a] < 11)
+                if (map[2][a] < 11)
                 {
-                    map[2][a] = 33;
+                    map[1][a] = 33;
                     helper = 0;
                 }
             }
@@ -483,9 +455,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[a][3] < 11)
+                if (map[a][2] < 11)
                 {
-                    map[a][2] = 33;
+                    map[a][1] = 33;
                     helper = 0;
                 }
             }
@@ -494,9 +466,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[28][a] < 11)
+                if (map[29][a] < 11)
                 {
-                    map[29][a] = 33;
+                    map[30][a] = 33;
                     helper = 0;
                 }
             }
@@ -505,9 +477,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[a][28] < 11)
+                if (map[a][29] < 11)
                 {
-                    map[a][29] = 33;
+                    map[a][30] = 33;
                     helper = 0;
                 }
             }
