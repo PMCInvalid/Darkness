@@ -31,6 +31,12 @@
         </activity>
 
         <activity
+            android:name=".death_screen"
+            android:exported="true"
+            android:theme="@style/Theme.Darkness">
+        </activity>
+
+        <activity
             android:name=".gameplay"
             android:exported="true"
             android:theme="@style/Theme.Darkness">

@@ -1,5 +1,6 @@
 package com.kalk.darkness;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +56,7 @@ public class gameplay extends map_generator
             }
         }
 
-        if ( a == 33)
+        if (a == 33)
         {
             gameIn = 0;
             gameplayInit();
@@ -66,8 +67,8 @@ public class gameplay extends map_generator
         {
             gameIn = 0;
             score = 0;
-            gameplayInit();
-            mapDrawEmptyScreen();
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
         }
     }
 
@@ -1121,10 +1122,10 @@ public class gameplay extends map_generator
 
 
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
 
@@ -1141,10 +1142,10 @@ public class gameplay extends map_generator
                 player.corX += 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
 
@@ -1159,10 +1160,10 @@ public class gameplay extends map_generator
                 player.corX += 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
 
@@ -1179,10 +1180,10 @@ public class gameplay extends map_generator
                 player.corX += 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
                 /**/
             }
         }
@@ -1198,10 +1199,10 @@ public class gameplay extends map_generator
                 player.corY += 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
 
                 /**/
             }
@@ -1220,10 +1221,10 @@ public class gameplay extends map_generator
                 player.corX -= 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
 
@@ -1238,10 +1239,10 @@ public class gameplay extends map_generator
                 player.corX -= 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
 
@@ -1258,10 +1259,10 @@ public class gameplay extends map_generator
                 player.corX -= 1;
                 map[locPlayerCor[0]][locPlayerCor[1]] = 21;
 
-                if (player.helper2 == 32)
+                if (player.corY == extr.corY && player.corX == extr.corX)
                     opengate = 1;
 
-                gameLifeCheck(helper2);
+                gameLifeCheck(player.helper2);
             }
         }
     }
