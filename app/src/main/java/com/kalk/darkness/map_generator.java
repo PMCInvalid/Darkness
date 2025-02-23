@@ -1,6 +1,6 @@
 package com.kalk.darkness;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 import android.os.Bundle;
 
@@ -20,11 +20,7 @@ public class map_generator extends mob
     static mob lever = new mob();
     static mob peshka = new mob();
     static mob slon = new mob();
-
-    public void setMob(mob peshka)
-    {
-        this.peshka = peshka;
-    }
+    static mob sKorol = new mob();
 
     public static int[][] mapThrower()
     {
@@ -309,7 +305,7 @@ public class map_generator extends mob
         }
         helper = 1;
 
-        /*while (helper == 1)
+        while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -318,17 +314,17 @@ public class map_generator extends mob
 
             if (solution == 1)
             {
-                sKorolX = a;
-                sKorolY = b;
+                sKorol.corY = a;
+                sKorol.corX = b;
 
-                map[sKorolY][sKorolX] = 24;
+                map[sKorol.corY][sKorol.corX] = 24;
 
                 helper = 0;
             }
         }
         helper = 1;
 
-        while (helper == 1)
+        /*while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
