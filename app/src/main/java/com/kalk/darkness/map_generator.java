@@ -2,6 +2,7 @@ package com.kalk.darkness;
 
 import static java.lang.Math.*;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;

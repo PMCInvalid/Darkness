@@ -1,5 +1,7 @@
 package com.kalk.darkness;
 
+import static java.lang.Integer.parseInt;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -49,6 +51,9 @@ public class gameplay extends map_generator
 
     public void gameLifeCheck(int a)
     {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
         if(opengate == 1)
         {
             if (a == 31)
@@ -72,6 +77,10 @@ public class gameplay extends map_generator
 
         if (peshka.corX == player.corX && peshka.corY == player.corY)
         {
+            editor.putString("score", String.valueOf(score));
+            System.out.println("Score live - " + String.valueOf(score));
+            editor.apply();
+
             gameIn = 0;
             score = 0;
             Intent pip = new Intent(this, death_screen.class);
@@ -80,6 +89,9 @@ public class gameplay extends map_generator
 
         if (slon.corX == player.corX && slon.corY == player.corY)
         {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
             gameIn = 0;
             score = 0;
             Intent pip = new Intent(this, death_screen.class);
@@ -88,6 +100,9 @@ public class gameplay extends map_generator
 
         if (sKorol.corX == player.corX && sKorol.corY == player.corY)
         {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
             gameIn = 0;
             score = 0;
             Intent pip = new Intent(this, death_screen.class);
@@ -1183,8 +1198,6 @@ public class gameplay extends map_generator
             }
 
         }
-
-        gameLifeCheck(opengate);
     }
 
     public void slonMove()
@@ -1192,8 +1205,6 @@ public class gameplay extends map_generator
         computeFlowField(map, player.corX, player.corY, 2);
 
         int negr = getDirection(slon.corX, slon.corY);
-
-        System.out.println(negr);
 
         if (negr == 2)
         {
@@ -1412,6 +1423,11 @@ public class gameplay extends map_generator
 
     public void playerMove (int a)
     {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        String b = settings.getString("difficulty", "");
+
         int moveCheck = 0;
 
         if (a == 1)
@@ -1530,6 +1546,11 @@ public class gameplay extends map_generator
             }
         }
 
+        else if (a == 9)
+        {
+            moveCheck = 1;
+        }
+
         if (player.corY == extr.corY && player.corX == extr.corX)
             opengate = 1;
 
@@ -1545,181 +1566,62 @@ public class gameplay extends map_generator
                 sKorolMove();
 
             gameLifeCheck(player.helper2);
+
+            if (b.equals("easy"))
+            {
+                mapDrawScreen();
+            }
+
+            else
+            {
+                mapDrawEmptyScreen();
+            }
         }
     }
 
     public void buttonUpAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(1);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonUpRightAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(2);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonRightAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(3);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonDownRightAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(4);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonDownAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(5);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonDownLeftAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(6);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonLeftAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(7);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void buttonUpLeftAction(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
-        String b = settings.getString("difficulty", "");
-
         playerMove(8);
-
-        if (b.equals("easy"))
-        {
-            mapDrawScreen();
-        }
-
-        else
-        {
-            mapDrawEmptyScreen();
-        }
     }
 
     public void midButtonAction(View v)
     {
-        if (peshka.isHere)
-            peshkaSukaMove();
-
-        if (slon.isHere)
-            slonMove();
-
-        if (sKorol.isHere)
-            sKorolMove();
-
-        mapDrawScreen();
+        playerMove(9);
     }
 
     public void test(View v)
@@ -1756,8 +1658,7 @@ public class gameplay extends map_generator
 
             System.out.println();
         }
-        
-        System.out.println(score);
+
         System.out.println(player.corY);
         System.out.println(player.corX);
         System.out.println("-----");
