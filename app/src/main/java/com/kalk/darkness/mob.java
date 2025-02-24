@@ -11,6 +11,7 @@ public class mob extends AppCompatActivity
     public int corY = -1;
     public int helper1 = 0;
     public int helper2 = 0;
+    public boolean isHere = false;
 
     private static final int[][] DIRECTIONS =
             {

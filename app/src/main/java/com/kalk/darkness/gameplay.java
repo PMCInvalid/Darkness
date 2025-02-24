@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import java.util.Random;
 
 public class gameplay extends map_generator
@@ -18,12 +20,14 @@ public class gameplay extends map_generator
     }
 
     int opengate = 0;
-    int score = 0;
+    double score = 1;
     public static int gameIn = 0;
     static public int[][] map = new int[32][32];
 
     public void gameplayInit()
     {
+        TextView scores = (TextView) findViewById(R.id.scoreText);
+
         if (gameIn == 0)
         {
             player.helper1 = 0;
@@ -32,10 +36,14 @@ public class gameplay extends map_generator
             peshka.helper2 = 0;
             slon.helper1 = 0;
             slon.helper2 = 0;
-            map = map_generator.mapThrower();
+            sKorol.helper1 = 0;
+            sKorol.helper2 = 0;
             gameIn = 1;
             opengate = 0;
-            score++;
+
+            map = map_generator.mapThrower(score);
+
+            scores.setText("Score: " + score);
         }
     }
 
@@ -47,6 +55,7 @@ public class gameplay extends map_generator
             {
                 gameIn = 0;
                 opengate = 0;
+                score++;
                 gameplayInit();
                 mapDrawEmptyScreen();
             }
@@ -56,6 +65,7 @@ public class gameplay extends map_generator
         {
             gameIn = 0;
             opengate = 0;
+            score += 0.25;
             gameplayInit();
             mapDrawEmptyScreen();
         }
@@ -1525,9 +1535,14 @@ public class gameplay extends map_generator
 
         if (moveCheck == 1)
         {
-            peshkaSukaMove();
-            slonMove();
-            sKorolMove();
+            if (peshka.isHere)
+                peshkaSukaMove();
+
+            if (slon.isHere)
+                slonMove();
+
+            if (sKorol.isHere)
+                sKorolMove();
 
             gameLifeCheck(player.helper2);
         }
@@ -1695,18 +1710,29 @@ public class gameplay extends map_generator
 
     public void midButtonAction(View v)
     {
-        peshkaSukaMove();
-        slonMove();
-        sKorolMove();
+        if (peshka.isHere)
+            peshkaSukaMove();
+
+        if (slon.isHere)
+            slonMove();
+
+        if (sKorol.isHere)
+            sKorolMove();
 
         mapDrawScreen();
     }
 
     public void test(View v)
     {
-        peshkaSukaMove();
-        slonMove();
-        sKorolMove();
+        if (peshka.isHere)
+            peshkaSukaMove();
+
+        if (slon.isHere)
+            slonMove();
+
+        if (sKorol.isHere)
+            sKorolMove();
+
         mapDrawScreen();
         for(int i = 0; i < 32; i++)
         {

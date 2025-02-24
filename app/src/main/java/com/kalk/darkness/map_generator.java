@@ -22,11 +22,11 @@ public class map_generator extends mob
     static mob slon = new mob();
     static mob sKorol = new mob();
 
-    public static int[][] mapThrower()
+    public static int[][] mapThrower(double points)
     {
         emptySetter();
         wallGen();
-        mobGen();
+        mobGen(points);
         extrGen();
 
         return map;
@@ -244,11 +244,11 @@ public class map_generator extends mob
         return result;
     }
 
-    public static void mobGen()
+    public static void mobGen(double points)
     {
         int helper = 1;
 
-        while (helper == 1)
+        while (helper == 1) // Player
         {
             int a = (rand.nextInt(27) + 2);
             int b = (rand.nextInt(27) + 2);
@@ -262,67 +262,84 @@ public class map_generator extends mob
 
                 map[player.corY][player.corX] = 21;
 
+                player.isHere = true;
+
                 helper = 0;
             }
         }
         helper = 1;
 
-        while (helper == 1)
+        if (points >= 1) // Peshka
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
+            while (helper == 1)
             {
-                peshka.corY = a;
-                peshka.corX = b;
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
 
-                map[peshka.corY][peshka.corX] = 22;
+                int solution = check(a, b);
 
-                helper = 0;
+                if (solution == 1)
+                {
+                    peshka.corY = a;
+                    peshka.corX = b;
+
+                    map[peshka.corY][peshka.corX] = 22;
+
+                    peshka.isHere = true;
+
+                    helper = 0;
+                }
             }
+            helper = 1;
         }
-        helper = 1;
 
-        while (helper == 1)
+        if (points >= 2) // Slon
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
+            while (helper == 1)
             {
-                slon.corY = a;
-                slon.corX = b;
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
 
-                map[slon.corY][slon.corX] = 23;
+                int solution = check(a, b);
 
-                helper = 0;
+                if (solution == 1)
+                {
+                    slon.corY = a;
+                    slon.corX = b;
+
+                    map[slon.corY][slon.corX] = 23;
+
+                    slon.isHere = true;
+
+                    helper = 0;
+                }
             }
+            helper = 1;
         }
-        helper = 1;
 
-        while (helper == 1)
+        if (points >= 3) // Skorol
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
+            while (helper == 1)
             {
-                sKorol.corY = a;
-                sKorol.corX = b;
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
 
-                map[sKorol.corY][sKorol.corX] = 24;
+                int solution = check(a, b);
 
-                helper = 0;
+                if (solution == 1)
+                {
+                    sKorol.corY = a;
+                    sKorol.corX = b;
+
+                    map[sKorol.corY][sKorol.corX] = 24;
+
+                    sKorol.isHere = true;
+
+                    helper = 0;
+                }
             }
+            helper = 1;
         }
-        helper = 1;
 
         /*while (helper == 1)
         {
