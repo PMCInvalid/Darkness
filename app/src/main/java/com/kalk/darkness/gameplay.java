@@ -172,6 +172,10 @@ public class gameplay extends map_generator
             im1_1.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 2][player.corX - 2] == 25) {
+            im1_1.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 2][player.corX - 2] == 31) {
             im1_1.setImageResource(R.drawable.extraction_tile);
         }
@@ -206,6 +210,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY - 2][player.corX - 1] == 24) {
             im1_2.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY - 2][player.corX - 1] == 25) {
+            im1_2.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY - 2][player.corX - 1] == 31) {
@@ -244,6 +252,10 @@ public class gameplay extends map_generator
             im1_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 2][player.corX] == 25) {
+            im1_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 2][player.corX] == 31) {
             im1_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -280,6 +292,10 @@ public class gameplay extends map_generator
             im1_4.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 2][player.corX + 1] == 25) {
+            im1_4.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 2][player.corX + 1] == 31) {
             im1_4.setImageResource(R.drawable.extraction_tile);
         }
@@ -314,6 +330,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY - 2][player.corX + 2] == 24) {
             im1_5.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY - 2][player.corX + 2] == 25) {
+            im1_5.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY - 2][player.corX + 2] == 31) {
@@ -354,6 +374,10 @@ public class gameplay extends map_generator
             im2_1.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 1][player.corX - 2] == 25) {
+            im2_1.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 1][player.corX - 2] == 31) {
             im2_1.setImageResource(R.drawable.extraction_tile);
         }
@@ -388,6 +412,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY - 1][player.corX - 1] == 24) {
             im2_2.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY - 1][player.corX - 1] == 25) {
+            im2_2.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY - 1][player.corX - 1] == 31) {
@@ -426,6 +454,10 @@ public class gameplay extends map_generator
             im2_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 1][player.corX] == 25) {
+            im2_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 1][player.corX] == 31) {
             im2_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -462,6 +494,10 @@ public class gameplay extends map_generator
             im2_4.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 1][player.corX + 1] == 25) {
+            im2_4.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 1][player.corX + 1] == 31) {
             im2_4.setImageResource(R.drawable.extraction_tile);
         }
@@ -496,6 +532,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY - 1][player.corX + 2] == 24) {
             im2_5.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY - 1][player.corX + 2] == 25) {
+            im2_5.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY - 1][player.corX + 2] == 31) {
@@ -536,6 +576,10 @@ public class gameplay extends map_generator
             im3_1.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY][player.corX - 2] == 25) {
+            im3_1.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY][player.corX - 2] == 31) {
             im3_1.setImageResource(R.drawable.extraction_tile);
         }
@@ -570,6 +614,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY][player.corX - 1] == 24) {
             im3_2.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY][player.corX - 1] == 25) {
+            im3_2.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY][player.corX - 1] == 31) {
@@ -608,6 +656,10 @@ public class gameplay extends map_generator
             im3_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY][player.corX] == 25) {
+            im3_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY][player.corX] == 31) {
             im3_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -644,6 +696,10 @@ public class gameplay extends map_generator
             im3_4.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY][player.corX + 1] == 25) {
+            im3_4.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY][player.corX + 1] == 31) {
             im3_4.setImageResource(R.drawable.extraction_tile);
         }
@@ -678,6 +734,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY][player.corX + 2] == 24) {
             im3_5.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY][player.corX + 2] == 25) {
+            im3_5.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY][player.corX + 2] == 31) {
@@ -718,6 +778,10 @@ public class gameplay extends map_generator
             im4_1.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 1][player.corX - 2] == 25) {
+            im4_1.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 1][player.corX - 2] == 31) {
             im4_1.setImageResource(R.drawable.extraction_tile);
         }
@@ -752,6 +816,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY + 1][player.corX - 1] == 24) {
             im4_2.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY + 1][player.corX - 1] == 25) {
+            im4_2.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY + 1][player.corX - 1] == 31) {
@@ -790,6 +858,10 @@ public class gameplay extends map_generator
             im4_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 1][player.corX] == 25) {
+            im4_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 1][player.corX] == 31) {
             im4_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -826,6 +898,10 @@ public class gameplay extends map_generator
             im4_4.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 1][player.corX + 1] == 25) {
+            im4_4.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 1][player.corX + 1] == 31) {
             im4_4.setImageResource(R.drawable.extraction_tile);
         }
@@ -860,6 +936,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY + 1][player.corX + 2] == 24) {
             im4_5.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY + 1][player.corX + 2] == 25) {
+            im4_5.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY + 1][player.corX + 2] == 31) {
@@ -900,6 +980,10 @@ public class gameplay extends map_generator
             im5_1.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 2][player.corX - 2] == 25) {
+            im5_1.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 2][player.corX - 2] == 31) {
             im5_1.setImageResource(R.drawable.extraction_tile);
         }
@@ -934,6 +1018,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY + 2][player.corX - 1] == 24) {
             im5_2.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY + 2][player.corX - 1] == 25) {
+            im5_2.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY + 2][player.corX - 1] == 31) {
@@ -972,6 +1060,10 @@ public class gameplay extends map_generator
             im5_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 2][player.corX] == 25) {
+            im5_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 2][player.corX] == 31) {
             im5_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -1008,6 +1100,10 @@ public class gameplay extends map_generator
             im5_4.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 2][player.corX + 1] == 25) {
+            im5_4.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 2][player.corX + 1] == 31) {
             im5_4.setImageResource(R.drawable.extraction_tile);
         }
@@ -1042,6 +1138,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY + 2][player.corX + 2] == 24) {
             im5_5.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY + 2][player.corX + 2] == 25) {
+            im5_5.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY + 2][player.corX + 2] == 31) {
@@ -1134,6 +1234,10 @@ public class gameplay extends map_generator
             im2_2.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 1][player.corX - 1] == 25) {
+            im2_2.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 1][player.corX - 1] == 31) {
             im2_2.setImageResource(R.drawable.extraction_tile);
         }
@@ -1170,6 +1274,10 @@ public class gameplay extends map_generator
             im2_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY - 1][player.corX] == 25) {
+            im2_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY - 1][player.corX] == 31) {
             im2_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -1204,6 +1312,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY - 1][player.corX + 1] == 24) {
             im2_4.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY - 1][player.corX + 1] == 25) {
+            im2_4.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY - 1][player.corX + 1] == 31) {
@@ -1244,6 +1356,10 @@ public class gameplay extends map_generator
             im3_2.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY][player.corX - 1] == 25) {
+            im3_2.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY][player.corX - 1] == 31) {
             im3_2.setImageResource(R.drawable.extraction_tile);
         }
@@ -1280,6 +1396,10 @@ public class gameplay extends map_generator
             im3_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY][player.corX] == 25) {
+            im3_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY][player.corX] == 31) {
             im3_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -1314,6 +1434,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY][player.corX + 1] == 24) {
             im3_4.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY][player.corX + 1] == 25) {
+            im3_4.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY][player.corX + 1] == 31) {
@@ -1354,6 +1478,10 @@ public class gameplay extends map_generator
             im4_2.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 1][player.corX - 1] == 25) {
+            im4_2.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 1][player.corX - 1] == 31) {
             im4_2.setImageResource(R.drawable.extraction_tile);
         }
@@ -1390,6 +1518,10 @@ public class gameplay extends map_generator
             im4_3.setImageResource(R.drawable.sking_tile);
         }
 
+        else if (map[player.corY + 1][player.corX] == 25) {
+            im4_3.setImageResource(R.drawable.medved_tile);
+        }
+
         else if (map[player.corY + 1][player.corX] == 31) {
             im4_3.setImageResource(R.drawable.extraction_tile);
         }
@@ -1424,6 +1556,10 @@ public class gameplay extends map_generator
 
         else if (map[player.corY + 1][player.corX + 1] == 24) {
             im4_4.setImageResource(R.drawable.sking_tile);
+        }
+
+        else if (map[player.corY + 1][player.corX + 1] == 25) {
+            im4_4.setImageResource(R.drawable.medved_tile);
         }
 
         else if (map[player.corY + 1][player.corX + 1] == 31) {
@@ -1986,7 +2122,7 @@ public class gameplay extends map_generator
         System.out.println(player.corY);
         System.out.println(player.corX);
         System.out.println("-----");
-        System.out.println(sKorol.corY);
-        System.out.println(sKorol.corX);
+        System.out.println(medved.corY);
+        System.out.println(medved.corX);
     }
 }

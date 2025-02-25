@@ -22,6 +22,7 @@ public class map_generator extends mob
     static mob peshka = new mob();
     static mob slon = new mob();
     static mob sKorol = new mob();
+    static mob medved = new mob();
 
     public static int[][] mapThrower(double points, String hard)
     {
@@ -337,26 +338,27 @@ public class map_generator extends mob
                 helper = 1;
             }
 
-        /*while (helper == 1)
-        {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
+            if (points >= 4)
             {
-                bratX = a;
-                bratY = b;
+                while (helper == 1) {
+                    int a = (rand.nextInt(28) + 2);
+                    int b = (rand.nextInt(28) + 2);
 
-                map[bratY][bratX] = 25;
+                    int solution = check(a, b);
 
-                helper = 0;
+                    if (solution == 1) {
+                        medved.corY = a;
+                        medved.corX = b;
+
+                        map[medved.corY][medved.corX] = 25;
+
+                        helper = 0;
+                    }
+                }
+                helper = 1;
             }
-        }
-        helper = 1;
 
-        while (helper == 1)
+        /*while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -475,6 +477,24 @@ public class map_generator extends mob
                     map[sKorol.corY][sKorol.corX] = 24;
 
                     sKorol.isHere = true;
+
+                    helper = 0;
+                }
+            }
+            helper = 1;
+
+            while (helper == 1) //Medved
+            {
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
+
+                int solution = check(a, b);
+
+                if (solution == 1) {
+                    medved.corY = a;
+                    medved.corX = b;
+
+                    map[medved.corY][medved.corX] = 25;
 
                     helper = 0;
                 }
