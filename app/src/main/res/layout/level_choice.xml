@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,34 +8,46 @@
 
     <Button
         android:id="@+id/surfaceWalkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="Surface walk"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="100dp"
         android:onClick="surfaceWalk"
+        android:text="Surface walk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/deepDiveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
         android:layout_marginTop="75dp"
-        android:text="Deep dive"
         android:onClick="deepDive"
+        android:text="Deep dive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/surfaceWalkButton" />
 
     <Button
-        android:id="@+id/toMenuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:text="Menu"
-        android:onClick="gotoMainMenu"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/blackoutButton"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="75dp"
+        android:text="Blackout"
+        android:onClick="blackout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deepDiveButton" />
+
+    <Button
+        android:id="@+id/toMenuButton"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="75dp"
+        android:onClick="gotoMainMenu"
+        android:text="Menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blackoutButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

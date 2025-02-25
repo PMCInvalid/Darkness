@@ -49,6 +49,18 @@ public class dive_choise extends AppCompatActivity
         startActivity(pip);
     }
 
+    public void blackout(View v)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        editor.putString("difficulty","insane");
+        editor.apply();
+
+        Intent pip = new Intent(this, gameplay.class);
+        startActivity(pip);
+    }
+
     public void gotoMainMenu(View v)
     {
         Intent pip = new Intent(this, main_menu.class);
