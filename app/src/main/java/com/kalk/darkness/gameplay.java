@@ -22,6 +22,7 @@ public class gameplay extends map_generator
     }
 
     int opengate = 0;
+    int playerMoveRem = 9;
     double score = 1;
     public static int gameIn = 0;
     static public String[][] map = new String[32][32];
@@ -234,31 +235,31 @@ public class gameplay extends map_generator
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX - 1], "drawable", getPackageName());
             im1_4.setImageResource(resId);
         }
-        if (player.corY - 4 < 1)
+        if (player.corY - 4 < 0)
             im1_5.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX], "drawable", getPackageName());
             im1_5.setImageResource(resId);
         }
-        if (player.corY - 4 < 1 || player.corX + 1 >= map[0].length)
+        if (player.corY - 4 < 0 || player.corX + 1 >= map[0].length)
             im1_6.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX + 1], "drawable", getPackageName());
             im1_6.setImageResource(resId);
         }
-        if (player.corY - 4 < 1 || player.corX + 2 >= map[0].length)
+        if (player.corY - 4 < 0 || player.corX + 2 >= map[0].length)
             im1_7.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX + 2], "drawable", getPackageName());
             im1_7.setImageResource(resId);
         }
-        if (player.corY - 4 < 1 || player.corX + 3 >= map[0].length)
+        if (player.corY - 4 < 0 || player.corX + 3 >= map[0].length)
             im1_8.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX + 3], "drawable", getPackageName());
             im1_8.setImageResource(resId);
         }
-        if (player.corY - 4 < 1 || player.corX + 4 >= map[0].length)
+        if (player.corY - 4 < 0 || player.corX + 4 >= map[0].length)
             im1_9.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 4][player.corX + 4], "drawable", getPackageName());
@@ -291,31 +292,31 @@ public class gameplay extends map_generator
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX - 1], "drawable", getPackageName());
             im2_4.setImageResource(resId);
         }
-        if (player.corY - 3 < 1)
+        if (player.corY - 3 < 0)
             im2_5.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX], "drawable", getPackageName());
             im2_5.setImageResource(resId);
         }
-        if (player.corY - 3 < 1 || player.corX + 1 >= map[0].length)
+        if (player.corY - 3 < 0 || player.corX + 1 >= map[0].length)
             im2_6.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX + 1], "drawable", getPackageName());
             im2_6.setImageResource(resId);
         }
-        if (player.corY - 3 < 1 || player.corX + 2 >= map[0].length)
+        if (player.corY - 3 < 0 || player.corX + 2 >= map[0].length)
             im2_7.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX + 2], "drawable", getPackageName());
             im2_7.setImageResource(resId);
         }
-        if (player.corY - 3 < 1 || player.corX + 3 >= map[0].length)
+        if (player.corY - 3 < 0 || player.corX + 3 >= map[0].length)
             im2_8.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX + 3], "drawable", getPackageName());
             im2_8.setImageResource(resId);
         }
-        if (player.corY - 3 < 1 || player.corX + 4 >= map[0].length)
+        if (player.corY - 3 < 0 || player.corX + 4 >= map[0].length)
             im2_9.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY - 3][player.corX + 4], "drawable", getPackageName());
@@ -591,25 +592,25 @@ public class gameplay extends map_generator
 
 
 
-        if (player.corY + 4 > 31 || player.corX - 4 < 1)
+        if (player.corY + 4 > 31 || player.corX - 4 < 0)
             im9_1.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY + 4][player.corX - 4], "drawable", getPackageName());
             im9_1.setImageResource(resId);
         }
-        if (player.corY + 4 > 31 || player.corX - 3 < 1)
+        if (player.corY + 4 > 31 || player.corX - 3 < 0)
             im9_2.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY + 4][player.corX - 3], "drawable", getPackageName());
             im9_2.setImageResource(resId);
         }
-        if (player.corY + 4 > 31 || player.corX - 2 < 1)
+        if (player.corY + 4 > 31 || player.corX - 2 < 0)
             im9_3.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY + 4][player.corX - 2], "drawable", getPackageName());
             im9_3.setImageResource(resId);
         }
-        if (player.corY + 4 > 31 || player.corX - 1 < 1)
+        if (player.corY + 4 > 31 || player.corX - 1 < 0)
             im9_4.setImageResource(R.drawable.empty_tile);
         else {
             resId = getResources().getIdentifier(map[player.corY + 4][player.corX - 1], "drawable", getPackageName());
@@ -1049,6 +1050,133 @@ public class gameplay extends map_generator
         }
     }
 
+    public void medvedMove()
+    {
+        if (playerMoveRem == 1)
+        {
+            System.out.println("Medved is moving 1");
+            if (!map[medved.corY - 1][medved.corX].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY - 1][medved.corX];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY -= 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 2)
+        {
+            System.out.println("Medved is moving 1");
+            if(!map[medved.corY - 1][medved.corX + 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY - 1][medved.corX + 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY -= 1;
+                medved.corX += 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 3)
+        {
+            System.out.println("Medved is moving 1");
+            if(!map[medved.corY][medved.corX + 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY][medved.corX + 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corX += 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 4)
+        {
+            System.out.println("Medved is moving 1");
+            if(!map[medved.corY + 1][medved.corX + 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY + 1][medved.corX + 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY += 1;
+                medved.corX += 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 5)
+        {
+            System.out.println("Medved is moving 1");
+            if (!map[medved.corY + 1][medved.corX].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY + 1][medved.corX];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY += 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 6)
+        {
+            System.out.println("Medved is moving 1");
+            if (!map[medved.corY + 1][medved.corX - 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY + 1][medved.corX - 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY += 1;
+                medved.corX -= 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 7)
+        {
+            System.out.println("Medved is moving 1");
+            if (!map[medved.corY][medved.corX - 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY][medved.corX - 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corX -= 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+
+        else if (playerMoveRem == 8)
+        {
+            System.out.println("Medved is moving 1");
+            if(!map[medved.corY - 1][medved.corX - 1].equals("wall_tile"))
+            {
+                System.out.println("Medved is moving 2");
+
+                medved.helper1 = medved.helper2;
+                medved.helper2 = map[medved.corY - 1][medved.corX - 1];
+                map[medved.corY][medved.corX] = medved.helper1;
+                medved.corY -= 1;
+                medved.corX -= 1;
+                map[medved.corY][medved.corX] = "medved_tile";
+            }
+        }
+    }
+
     public void playerMove (int a)
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
@@ -1069,6 +1197,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 1;
             }
         }
 
@@ -1084,6 +1214,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 2;
             }
         }
 
@@ -1098,6 +1230,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 3;
             }
         }
 
@@ -1113,6 +1247,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 4;
             }
         }
 
@@ -1127,6 +1263,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 5;
             }
         }
 
@@ -1142,6 +1280,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 6;
             }
         }
 
@@ -1156,6 +1296,8 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 7;
             }
         }
 
@@ -1171,12 +1313,16 @@ public class gameplay extends map_generator
                 map[player.corY][player.corX] = "player_tile";
 
                 moveCheck = 1;
+
+                playerMoveRem = 8;
             }
         }
 
         else if (a == 9)
         {
             moveCheck = 1;
+
+            playerMoveRem = 9;
         }
 
         if (player.corY == lever.corY && player.corX == lever.corX)
@@ -1192,6 +1338,9 @@ public class gameplay extends map_generator
 
             if (sKorol.isHere)
                 sKorolMove();
+
+            if(medved.isHere)
+                medvedMove();
 
             gameLifeCheck(player.helper2);
 
@@ -1264,7 +1413,7 @@ public class gameplay extends map_generator
             sKorolMove();
 
         if (medved.isHere)
-            System.out.println("Medved");
+            medvedMove();
 
         mapDrawScreen();
         System.out.println(map[player.corY][player.corX]);
