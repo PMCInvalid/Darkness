@@ -14,7 +14,7 @@ public class map_generator extends mob
     static Random rand = new Random();
 
 
-    static public int[][] map = new int[32][32];
+    static public String[][] map = new String[32][32];
 
     static mob player = new mob();
     static mob extr = new mob();
@@ -24,7 +24,7 @@ public class map_generator extends mob
     static mob sKorol = new mob();
     static mob medved = new mob();
 
-    public static int[][] mapThrower(double points, String hard)
+    public static String[][] mapThrower(double points, String hard)
     {
         emptySetter();
         wallGen();
@@ -38,21 +38,21 @@ public class map_generator extends mob
     {
         for (int i = 0; i < 32; i++)
         {
-            map[0][i] = 11;
-            map[1][i] = 11;
-            map[31][i] = 11;
-            map[30][i] = 11;
-            map[i][0] = 11;
-            map[i][1] = 11;
-            map[i][31] = 11;
-            map[i][30] = 11;
+            map[0][i] = "wall_tile";
+            map[1][i] = "wall_tile";
+            map[31][i] = "wall_tile";
+            map[30][i] = "wall_tile";
+            map[i][0] = "wall_tile";
+            map[i][1] = "wall_tile";
+            map[i][31] = "wall_tile";
+            map[i][30] = "wall_tile";
         }
 
         for(int i = 2; i < 30; i++)
         {
             for(int j = 2; j < 30; j++)
             {
-                map[i][j] = 0;
+                map[i][j] = "empty_tile";
             }
         }
     }
@@ -67,128 +67,128 @@ public class map_generator extends mob
 
             if (a == 1 && yCor + 2 < 32 && xCor + 2 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor + 1][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor + 1][xCor + 1] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor + 1][xCor + 1] = "wall_tile";
 
                 i++;
             }
 
             if (a == 2 && yCor + 3 < 32 && xCor + 3 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor + 1][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor + 1][xCor + 1] = 11;
-                map[yCor + 2][xCor] = 11;
-                map[yCor][xCor + 2] = 11;
-                map[yCor + 1][xCor + 2] = 11;
-                map[yCor + 2][xCor + 1] = 11;
-                map[yCor + 2][xCor + 2] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor + 1][xCor + 1] = "wall_tile";
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor][xCor + 2] = "wall_tile";
+                map[yCor + 1][xCor + 2] = "wall_tile";
+                map[yCor + 2][xCor + 1] = "wall_tile";
+                map[yCor + 2][xCor + 2] = "wall_tile";
 
                 i++;
             }
 
             if (a == 3 && yCor + 4 < 32 && xCor + 3 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor + 1][xCor] = 11;
-                map[yCor + 2][xCor] = 11;
-                map[yCor + 3][xCor] = 11;
-                map[yCor + 4][xCor] = 11;
-                map[yCor + 2][xCor + 1] = 11;
-                map[yCor + 3][xCor + 1] = 11;
-                map[yCor + 3][xCor + 2] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor + 3][xCor] = "wall_tile";
+                map[yCor + 4][xCor] = "wall_tile";
+                map[yCor + 2][xCor + 1] = "wall_tile";
+                map[yCor + 3][xCor + 1] = "wall_tile";
+                map[yCor + 3][xCor + 2] = "wall_tile";
 
                 i++;
             }
 
             if (a == 4 && yCor + 3 < 32 && xCor + 3 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor + 2][xCor] = 11;
-                map[yCor + 3][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor + 2][xCor + 1] = 11;
-                map[yCor + 3][xCor + 1] = 11;
-                map[yCor][xCor + 2] = 11;
-                map[yCor + 2][xCor + 2] = 11;
-                map[yCor + 3][xCor + 2] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor + 3][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor + 2][xCor + 1] = "wall_tile";
+                map[yCor + 3][xCor + 1] = "wall_tile";
+                map[yCor][xCor + 2] = "wall_tile";
+                map[yCor + 2][xCor + 2] = "wall_tile";
+                map[yCor + 3][xCor + 2] = "wall_tile";
 
                 i++;
             }
 
             if (a == 5 && yCor + 1 < 32 && xCor + 2 < 32)
             {
-                map[yCor][xCor + 1] = 11;
+                map[yCor][xCor + 1] = "wall_tile";
 
-                map[yCor + 1][xCor] = 11;
-                map[yCor + 1][xCor + 1] = 11;
-                map[yCor + 1][xCor + 2] = 11;
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor + 1][xCor + 1] = "wall_tile";
+                map[yCor + 1][xCor + 2] = "wall_tile";
                 i++;
             }
 
             if (a == 6 && yCor + 4 < 32 && xCor + 4 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor][xCor + 3] = 11;
-                map[yCor][xCor + 4] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor][xCor + 3] = "wall_tile";
+                map[yCor][xCor + 4] = "wall_tile";
 
-                map[yCor + 1][xCor] = 11;
-                map[yCor + 1][xCor + 4] = 11;
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor + 1][xCor + 4] = "wall_tile";
 
-                map[yCor + 3][xCor] = 11;
-                map[yCor + 3][xCor + 4] = 11;
+                map[yCor + 3][xCor] = "wall_tile";
+                map[yCor + 3][xCor + 4] = "wall_tile";
 
-                map[yCor  + 4][xCor] = 11;
-                map[yCor  + 4][xCor + 1] = 11;
-                map[yCor  + 4][xCor + 3] = 11;
-                map[yCor  + 4][xCor + 4] = 11;
+                map[yCor  + 4][xCor] = "wall_tile";
+                map[yCor  + 4][xCor + 1] = "wall_tile";
+                map[yCor  + 4][xCor + 3] = "wall_tile";
+                map[yCor  + 4][xCor + 4] = "wall_tile";
                 i++;
             }
 
             if (a == 7 && yCor + 4 < 32 && xCor + 4 < 32)
             {
-                map[yCor][xCor + 2] = 11;
+                map[yCor][xCor + 2] = "wall_tile";
 
-                map[yCor + 1][xCor + 1] = 11;
-                map[yCor + 1][xCor + 2] = 11;
-                map[yCor + 1][xCor + 3] = 11;
+                map[yCor + 1][xCor + 1] = "wall_tile";
+                map[yCor + 1][xCor + 2] = "wall_tile";
+                map[yCor + 1][xCor + 3] = "wall_tile";
 
-                map[yCor + 2][xCor] = 11;
-                map[yCor + 2][xCor + 1] = 11;
-                map[yCor + 2][xCor + 2] = 11;
-                map[yCor + 2][xCor + 3] = 11;
-                map[yCor + 2][xCor + 4] = 11;
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor + 2][xCor + 1] = "wall_tile";
+                map[yCor + 2][xCor + 2] = "wall_tile";
+                map[yCor + 2][xCor + 3] = "wall_tile";
+                map[yCor + 2][xCor + 4] = "wall_tile";
 
-                map[yCor + 3][xCor + 1] = 11;
-                map[yCor + 3][xCor + 2] = 11;
-                map[yCor + 3][xCor + 3] = 11;
-                map[yCor + 4][xCor + 2] = 11;
+                map[yCor + 3][xCor + 1] = "wall_tile";
+                map[yCor + 3][xCor + 2] = "wall_tile";
+                map[yCor + 3][xCor + 3] = "wall_tile";
+                map[yCor + 4][xCor + 2] = "wall_tile";
 
                 i++;
             }
 
             if (a == 8&& yCor + 4 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor + 1][xCor] = 11;
-                map[yCor + 2][xCor] = 11;
-                map[yCor + 3][xCor] = 11;
-                map[yCor + 4][xCor] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor + 1][xCor] = "wall_tile";
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor + 3][xCor] = "wall_tile";
+                map[yCor + 4][xCor] = "wall_tile";
 
                 i++;
             }
 
             if (a == 9 && xCor + 4 < 32)
             {
-                map[yCor][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor][xCor + 2] = 11;
-                map[yCor][xCor + 3] = 11;
-                map[yCor][xCor + 4] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor][xCor + 2] = "wall_tile";
+                map[yCor][xCor + 3] = "wall_tile";
+                map[yCor][xCor + 4] = "wall_tile";
 
                 i++;
             }
@@ -197,32 +197,32 @@ public class map_generator extends mob
             {
                 i++;
 
-                map[yCor][xCor] = 11;
-                map[yCor][xCor + 1] = 11;
-                map[yCor][xCor + 2] = 11;
-                map[yCor][xCor + 3] = 11;
-                map[yCor][xCor + 6] = 11;
-                map[yCor][xCor + 7] = 11;
+                map[yCor][xCor] = "wall_tile";
+                map[yCor][xCor + 1] = "wall_tile";
+                map[yCor][xCor + 2] = "wall_tile";
+                map[yCor][xCor + 3] = "wall_tile";
+                map[yCor][xCor + 6] = "wall_tile";
+                map[yCor][xCor + 7] = "wall_tile";
 
-                map[yCor + 1][xCor + 2] = 11;
-                map[yCor + 1][xCor + 3] = 11;
-                map[yCor + 1][xCor + 4] = 11;
-                map[yCor + 1][xCor + 5] = 11;
-                map[yCor + 1][xCor + 7] = 11;
+                map[yCor + 1][xCor + 2] = "wall_tile";
+                map[yCor + 1][xCor + 3] = "wall_tile";
+                map[yCor + 1][xCor + 4] = "wall_tile";
+                map[yCor + 1][xCor + 5] = "wall_tile";
+                map[yCor + 1][xCor + 7] = "wall_tile";
 
-                map[yCor + 2][xCor] = 11;
-                map[yCor + 2][xCor + 1] = 11;
-                map[yCor + 2][xCor + 2] = 11;
-                map[yCor + 2][xCor + 3] = 11;
-                map[yCor + 2][xCor + 4] = 11;
-                map[yCor + 2][xCor + 5] = 11;
+                map[yCor + 2][xCor] = "wall_tile";
+                map[yCor + 2][xCor + 1] = "wall_tile";
+                map[yCor + 2][xCor + 2] = "wall_tile";
+                map[yCor + 2][xCor + 3] = "wall_tile";
+                map[yCor + 2][xCor + 4] = "wall_tile";
+                map[yCor + 2][xCor + 5] = "wall_tile";
 
-                map[yCor + 3][xCor] = 11;
-                map[yCor + 3][xCor + 3] = 11;
-                map[yCor + 3][xCor + 4] = 11;
-                map[yCor + 3][xCor + 5] = 11;
-                map[yCor + 3][xCor + 6] = 11;
-                map[yCor + 3][xCor + 7] = 11;
+                map[yCor + 3][xCor] = "wall_tile";
+                map[yCor + 3][xCor + 3] = "wall_tile";
+                map[yCor + 3][xCor + 4] = "wall_tile";
+                map[yCor + 3][xCor + 5] = "wall_tile";
+                map[yCor + 3][xCor + 6] = "wall_tile";
+                map[yCor + 3][xCor + 7] = "wall_tile";
             }
         }
     }
@@ -231,14 +231,14 @@ public class map_generator extends mob
     {
         int result = 1;
 
-        if (map[a - 1][b - 1] > 10 && map[a - 1][b - 1] < 20 &&
-            map[a - 1][b] > 10 && map[a - 1][b] < 20 &&
-            map[a - 1][b + 1] > 10 && map[a - 1][b + 1] < 20 &&
-            map[a][b - 1] > 10 && map[a][b - 1] < 20 &&
-            map[a][b + 1] > 10 && map[a][b + 1] < 20 &&
-            map[a + 1][b - 1] > 10 && map[a + 1][b - 1] < 20 &&
-            map[a + 1][b] > 10 && map[a + 1][b] < 20 &&
-            map[a + 1][b + 1] > 10 && map[a + 1][b + 1] < 20)
+        if (map[a - 1][b - 1].equals("wall_tile") && map[a - 1][b - 1].equals("wall_tile") &&
+            map[a - 1][b].equals("wall_tile") && map[a - 1][b].equals("wall_tile") &&
+            map[a - 1][b + 1].equals("wall_tile") && map[a - 1][b + 1].equals("wall_tile") &&
+            map[a][b - 1].equals("wall_tile") && map[a][b - 1].equals("wall_tile") &&
+            map[a][b + 1].equals("wall_tile") && map[a][b + 1].equals("wall_tile") &&
+            map[a + 1][b - 1].equals("wall_tile") && map[a + 1][b - 1].equals("wall_tile") &&
+            map[a + 1][b].equals("wall_tile") && map[a + 1][b].equals("wall_tile") &&
+            map[a + 1][b + 1].equals("wall_tile") && map[a + 1][b + 1].equals("wall_tile"))
         {
             result = 0;
         }
@@ -263,7 +263,7 @@ public class map_generator extends mob
                     player.corX = a;
                     player.corY = b;
 
-                    map[player.corY][player.corX] = 21;
+                    map[player.corY][player.corX] = "player_tile";
 
                     player.isHere = true;
 
@@ -284,7 +284,7 @@ public class map_generator extends mob
                         peshka.corY = a;
                         peshka.corX = b;
 
-                        map[peshka.corY][peshka.corX] = 22;
+                        map[peshka.corY][peshka.corX] = "peshka_tile";
 
                         peshka.isHere = true;
 
@@ -306,7 +306,7 @@ public class map_generator extends mob
                         slon.corY = a;
                         slon.corX = b;
 
-                        map[slon.corY][slon.corX] = 23;
+                        map[slon.corY][slon.corX] = "slon_tile";
 
                         slon.isHere = true;
 
@@ -328,7 +328,7 @@ public class map_generator extends mob
                         sKorol.corY = a;
                         sKorol.corX = b;
 
-                        map[sKorol.corY][sKorol.corX] = 24;
+                        map[sKorol.corY][sKorol.corX] = "sking_tile";
 
                         sKorol.isHere = true;
 
@@ -350,7 +350,7 @@ public class map_generator extends mob
                         medved.corY = a;
                         medved.corX = b;
 
-                        map[medved.corY][medved.corX] = 25;
+                        map[medved.corY][medved.corX] = "medved_tile";
 
                         helper = 0;
                     }
@@ -410,7 +410,7 @@ public class map_generator extends mob
                     player.corX = a;
                     player.corY = b;
 
-                    map[player.corY][player.corX] = 21;
+                    map[player.corY][player.corX] = "player_tile";
 
                     player.isHere = true;
 
@@ -431,7 +431,7 @@ public class map_generator extends mob
                     peshka.corY = a;
                     peshka.corX = b;
 
-                    map[peshka.corY][peshka.corX] = 22;
+                    map[peshka.corY][peshka.corX] = "peshka_tile";
 
                     peshka.isHere = true;
 
@@ -452,7 +452,7 @@ public class map_generator extends mob
                     slon.corY = a;
                     slon.corX = b;
 
-                    map[slon.corY][slon.corX] = 23;
+                    map[slon.corY][slon.corX] = "slon_tile";
 
                     slon.isHere = true;
 
@@ -474,7 +474,7 @@ public class map_generator extends mob
                     sKorol.corY = a;
                     sKorol.corX = b;
 
-                    map[sKorol.corY][sKorol.corX] = 24;
+                    map[sKorol.corY][sKorol.corX] = "sking_tile";
 
                     sKorol.isHere = true;
 
@@ -494,7 +494,7 @@ public class map_generator extends mob
                     medved.corY = a;
                     medved.corX = b;
 
-                    map[medved.corY][medved.corX] = 25;
+                    map[medved.corY][medved.corX] = "medved_tile";
 
                     helper = 0;
                 }
@@ -520,7 +520,7 @@ public class map_generator extends mob
                 extr.corY = a;
                 extr.corX = b;
 
-                map[extr.corY][extr.corX] = 31;
+                map[extr.corY][extr.corX] = "extraction_tile";
 
                 helper = 0;
             }
@@ -545,7 +545,7 @@ public class map_generator extends mob
                 lever.corY = a;
                 lever.corX = b;
 
-                map[lever.corY][lever.corX] = 32;
+                map[lever.corY][lever.corX] = "lever_tile";
 
                 helper = 0;
             }
@@ -562,9 +562,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[2][a] < 11)
+                if (map[2][a].equals("empty_tile"))
                 {
-                    map[1][a] = 33;
+                    map[1][a] = "door_tile";
                     helper = 0;
                 }
             }
@@ -573,9 +573,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[a][2] < 11)
+                if (map[a][2].equals("empty_tile"))
                 {
-                    map[a][1] = 33;
+                    map[a][1] = "door_tile";
                     helper = 0;
                 }
             }
@@ -584,9 +584,9 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[29][a] < 11)
+                if (map[29][a].equals("empty_tile"))
                 {
-                    map[30][a] = 33;
+                    map[30][a] = "door_tile";
                     helper = 0;
                 }
             }
@@ -595,32 +595,12 @@ public class map_generator extends mob
             {
                 a = rand.nextInt(17) + 2;
 
-                if (map[a][29] < 11)
+                if (map[a][29].equals("empty_tile"))
                 {
-                    map[a][30] = 33;
+                    map[a][30] = "door_tile";
                     helper = 0;
                 }
             }
-        }
-    }
-
-    public static void testDraw(int[][] a)
-    {
-        for(int i = 0; i < 32; i++)
-        {
-            for (int j = 0; j < 32; j++)
-            {
-                if (a[i][j] == 0)
-                {
-                    System.out.print(a[i][j] + "0");
-                }
-
-                else
-                {
-                    System.out.print(a[i][j]);
-                }
-            }
-            System.out.println();
         }
     }
 }

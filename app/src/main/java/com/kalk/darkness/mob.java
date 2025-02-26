@@ -9,8 +9,8 @@ public class mob extends AppCompatActivity
 {
     public int corX = -1;
     public int corY = -1;
-    public int helper1 = 0;
-    public int helper2 = 0;
+    public String helper1 = "empty_tile";
+    public String helper2 = "empty_tile";
     public boolean isHere = false;
 
     private static final int[][] DIRECTIONS =
@@ -28,7 +28,7 @@ public class mob extends AppCompatActivity
     private int[][] distanceMap;
     private int[][] directionMap;
 
-    public void computeFlowField(int[][] map, int endX, int endY, int mobType)
+    public void computeFlowField(String[][] map, int endX, int endY, int mobType)
     {
         int width = map.length;
         int height = map[0].length;
@@ -100,18 +100,18 @@ public class mob extends AppCompatActivity
         return directionMap[x][y];
     }
 
-    private boolean isWalkable(int[][] map, int x, int y)
+    private boolean isWalkable(String[][] map, int x, int y)
     {
         if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
         {
             return false;
         }
 
-        int cell = map[y][x];
+        String cell = map[y][x];
 
         boolean helperCell = false;
 
-        if (cell < 11 || cell == 21)
+        if (cell.equals("empty_tile"))
         {
             helperCell = true;
         }

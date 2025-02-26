@@ -10,200 +10,532 @@
         android:id="@+id/tableLayoutMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- _______________________________________________________________________1 -->
         <TableRow>
 
             <ImageView
                 android:id="@+id/mapDrawImage1_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage1_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage1_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage1_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage1_5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage1_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage1_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage1_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage1_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
         </TableRow>
 
+        <!-- _______________________________________________________________________2 -->
         <TableRow>
 
             <ImageView
                 android:id="@+id/mapDrawImage2_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage2_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage2_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage2_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage2_5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage2_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage2_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage2_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage2_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
         </TableRow>
 
+        <!-- _______________________________________________________________________3 -->
         <TableRow>
 
             <ImageView
                 android:id="@+id/mapDrawImage3_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage3_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage3_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage3_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage3_5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage3_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage3_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage3_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage3_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
         </TableRow>
 
+        <!-- _______________________________________________________________________4 -->
         <TableRow>
 
             <ImageView
                 android:id="@+id/mapDrawImage4_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage4_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage4_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage4_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage4_5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage4_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage4_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage4_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage4_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
         </TableRow>
 
+        <!-- _______________________________________________________________________5 -->
         <TableRow>
 
             <ImageView
                 android:id="@+id/mapDrawImage5_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage5_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage5_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage5_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageView
                 android:id="@+id/mapDrawImage5_5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage5_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage5_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage5_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage5_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <!-- _______________________________________________________________________6 -->
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage6_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <!-- _______________________________________________________________________7 -->
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage7_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <!-- _______________________________________________________________________8 -->
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage8_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <!-- _______________________________________________________________________9 -->
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_4"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/mapDrawImage9_9"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 tools:srcCompat="@tools:sample/avatars" />
         </TableRow>
     </TableLayout>
@@ -212,10 +544,10 @@
         android:id="@+id/buttonUp"
         android:layout_width="75dp"
         android:layout_height="75dp"
+        android:onClick="buttonUpAction"
         app:layout_constraintBottom_toTopOf="@+id/buttonMid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="buttonUpAction"
         app:srcCompat="@drawable/button_up"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -223,19 +555,19 @@
         android:id="@+id/buttonMid"
         android:layout_width="75dp"
         android:layout_height="75dp"
+        android:onClick="test"
         app:layout_constraintBottom_toTopOf="@+id/buttonDown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/button_mid"
-        android:onClick="test"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/buttonDown"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:onClick="buttonDownAction"
         android:layout_marginBottom="75dp"
+        android:onClick="buttonDownAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -246,8 +578,8 @@
         android:id="@+id/buttonDownRight"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:onClick="buttonDownRightAction"
         android:layout_marginBottom="75dp"
+        android:onClick="buttonDownRightAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -259,8 +591,8 @@
         android:id="@+id/buttonDownLeft"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:onClick="buttonDownLeftAction"
         android:layout_marginBottom="75dp"
+        android:onClick="buttonDownLeftAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonDown"
         app:layout_constraintHorizontal_bias="1.0"
@@ -296,11 +628,11 @@
         android:id="@+id/buttonUpLeft"
         android:layout_width="75dp"
         android:layout_height="75dp"
+        android:onClick="buttonUpLeftAction"
         app:layout_constraintBottom_toTopOf="@+id/buttonLeft"
         app:layout_constraintEnd_toStartOf="@+id/buttonUp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="buttonUpLeftAction"
         app:srcCompat="@drawable/button_up_left"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -322,8 +654,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="TextView"
-        android:textSize="20dp"
         android:textColor="@color/green"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonUpLeft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
