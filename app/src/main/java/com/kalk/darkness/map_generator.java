@@ -23,6 +23,7 @@ public class map_generator extends mob
     static mob slon = new mob();
     static mob sKorol = new mob();
     static mob medved = new mob();
+    static mob bolshoj = new mob();
 
     public static String[][] mapThrower(double points, String hard)
     {
@@ -359,27 +360,31 @@ public class map_generator extends mob
                 }
                 helper = 1;
             }
+            if (points >= 7)
+            {
+                while (helper == 1) // Bolshoj brat
+                {
+                    int a = (rand.nextInt(28) + 2);
+                    int b = (rand.nextInt(28) + 2);
+
+                    int solution = check(a, b);
+
+                    if (solution == 1)
+                    {
+                        bolshoj.corY = a;
+                        bolshoj.corX = b;
+
+                        map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+
+                        bolshoj.isHere = true;
+
+                        helper = 0;
+                    }
+                }
+                helper = 1;
+            }
 
         /*while (helper == 1)
-        {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
-            {
-                krotX = a;
-                krotY = b;
-
-                map[krotY][krotX] = 26;
-
-                helper = 0;
-            }
-        }
-        helper = 1;
-
-        while (helper == 1)
         {
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
@@ -505,6 +510,26 @@ public class map_generator extends mob
             }
             helper = 1;
 
+            while (helper == 1) // Bolshoj brat
+            {
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
+
+                int solution = check(a, b);
+
+                if (solution == 1)
+                {
+                    bolshoj.corY = a;
+                    bolshoj.corX = b;
+
+                    map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+
+                    bolshoj.isHere = true;
+
+                    helper = 0;
+                }
+            }
+            helper = 1;
         }
     }
 

@@ -16,7 +16,6 @@ public class movement_logic extends map_generator
     public void gameplayInit()
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
 
         String hard = settings.getString("difficulty", "");
 
@@ -91,6 +90,17 @@ public class movement_logic extends map_generator
         }
 
         if (sKorol.corX == player.corX && sKorol.corY == player.corY)
+        {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
+            gameIn = 0;
+            score = 0;
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
+        }
+
+        if (bolshoj.corX == player.corX && bolshoj.corY == player.corY)
         {
             editor.putString("score", String.valueOf(score));
             editor.apply();
@@ -637,7 +647,7 @@ public class movement_logic extends map_generator
 
     public void mapDrawEmptyScreen()
     {
-        ImageView im1_1 = (ImageView) findViewById(R.id.mapDrawImage1_1);
+        /*ImageView im1_1 = (ImageView) findViewById(R.id.mapDrawImage1_1);
         ImageView im1_2 = (ImageView) findViewById(R.id.mapDrawImage1_2);
         ImageView im1_3 = (ImageView) findViewById(R.id.mapDrawImage1_3);
         ImageView im1_4 = (ImageView) findViewById(R.id.mapDrawImage1_4);
@@ -725,9 +735,7 @@ public class movement_logic extends map_generator
         ImageView im9_6 = (ImageView) findViewById(R.id.mapDrawImage9_6);
         ImageView im9_7 = (ImageView) findViewById(R.id.mapDrawImage9_7);
         ImageView im9_8 = (ImageView) findViewById(R.id.mapDrawImage9_8);
-        ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
-
-        int resId;
+        ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);*/
     }
 
     public void peshkaSukaMove()
@@ -1244,10 +1252,142 @@ public class movement_logic extends map_generator
         }
     }
 
+    public void bolshojMove()
+    {
+        int negr = 9;
+        int needMove = 1;
+
+        if (bolshoj.corY - player.corY <= 2 && bolshoj.corX - player.corX <= 2 && bolshoj.corY - player.corY >= -2 && bolshoj.corX - player.corX >= -2)
+        {
+            negr = 9;
+
+            System.out.println(bolshoj.corY - player.corY);
+            System.out.println(bolshoj.corX - player.corX);
+
+            needMove = 0;
+        }
+
+        else
+        {
+            computeFlowField(map, player.corX, player.corY, 1);
+            negr = getDirection(bolshoj.corX, bolshoj.corY);
+
+            if (player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                negr = 7;
+
+            else if (player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                negr = 3;
+
+            needMove = 0;
+
+            System.out.println(negr);
+        }
+
+        if (negr == 1)
+        {
+            bolshoj.helper1 = bolshoj.helper2;
+            bolshoj.helper2 = map[bolshoj.corY - 2][bolshoj.corX];
+            map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+            bolshoj.corY -= 2;
+            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+        }
+
+        if (negr == 5)
+        {
+            bolshoj.helper1 = bolshoj.helper2;
+            bolshoj.helper2 = map[bolshoj.corY + 2][bolshoj.corX];
+            map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+            bolshoj.corY += 2;
+            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+        }
+
+        if (negr == 3)
+        {
+            bolshoj.helper1 = bolshoj.helper2;
+            bolshoj.helper2 = map[bolshoj.corY][bolshoj.corX + 2];
+            map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+            bolshoj.corX += 2;
+            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+        }
+
+        if (negr == 7)
+        {
+            bolshoj.helper1 = bolshoj.helper2;
+            bolshoj.helper2 = map[bolshoj.corY][bolshoj.corX - 2];
+            map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+            bolshoj.corX -= 2;
+            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+        }
+
+        else if (negr == 9)
+        {
+            int negrM = 0;
+
+            if (player.corY < bolshoj.corY && needMove == 1)
+                negrM = 1;
+
+            if (player.corY > bolshoj.corY && needMove == 1)
+                negrM = 5;
+
+            if (negrM == 1 && needMove == 1)
+            {
+                if ((player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                    negrM = 7;
+
+                else if ((player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                    negrM = 3;
+
+                else
+                {
+                    bolshoj.helper1 = bolshoj.helper2;
+                    bolshoj.helper2 = map[bolshoj.corY - 2][bolshoj.corX];
+                    map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+                    bolshoj.corY -= 2;
+                    map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+                }
+            }
+
+            if (negrM == 5 && needMove == 1)
+            {
+                if ((player.corY - 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                    negrM = 7;
+
+                else if ((player.corY - 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                    negrM = 3;
+
+                else
+                {
+                    bolshoj.helper1 = bolshoj.helper2;
+                    bolshoj.helper2 = map[bolshoj.corY + 2][bolshoj.corX];
+                    map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+                    bolshoj.corY += 2;
+                    map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+                }
+            }
+
+            if (negrM == 3 && needMove == 1)
+            {
+                bolshoj.helper1 = bolshoj.helper2;
+                bolshoj.helper2 = map[bolshoj.corY][bolshoj.corX + 2];
+                map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+                bolshoj.corX += 2;
+                map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+            }
+
+            if (negrM == 7 && needMove == 1)
+            {
+                bolshoj.helper1 = bolshoj.helper2;
+                bolshoj.helper2 = map[bolshoj.corY][bolshoj.corX - 2];
+                map[bolshoj.corY][bolshoj.corX] = bolshoj.helper1;
+                bolshoj.corX -= 2;
+                map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+            }
+        }
+    }
+
     public void playerMove (int a)
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
 
         String b = settings.getString("difficulty", "");
 
@@ -1408,6 +1548,9 @@ public class movement_logic extends map_generator
 
             if(medved.isHere)
                 medvedMove();
+
+            if (bolshoj.isHere)
+                bolshojMove();
 
             gameLifeCheck(player.helper2);
 

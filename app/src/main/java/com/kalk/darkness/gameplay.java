@@ -64,30 +64,13 @@ public class gameplay extends movement_logic
     public void midButtonAction(View v)
     {
         playerMove(9);
+        test();
     }
 
-    public void test(View v)
+    public void test()
     {
-        playerMoveRem = 9;
-
-        if (peshka.isHere)
-            peshkaSukaMove();
-
-        if (slon.isHere)
-            slonMove();
-
-        if (sKorol.isHere)
-            sKorolMove();
-
-        if (medved.isHere)
-            medvedMove();
-
-        mapDrawScreen();
-        System.out.println(map[player.corY][player.corX]);
-        System.out.println(player.corY);
-        System.out.println(player.corX);
+        System.out.println(player.corY + " " + player.corX);
         System.out.println("-----");
-        System.out.println(medved.corY);
-        System.out.println(medved.corX);
+        System.out.println(bolshoj.corY + " " + bolshoj.corX);
     }
 }

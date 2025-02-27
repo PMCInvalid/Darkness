@@ -22,7 +22,7 @@ public class mob extends AppCompatActivity
                     {0, 1},   // 5: Вниз
                     {-1, 1},  // 6: Вниз и влево (диагональ)
                     {-1, 0},  // 7: Влево
-                    {-1, -1}  // 8: Влево и вверх (диагональ)
+                    {-1, -1}, // 8: Влево и вверх (диагональ)
             };
 
     private int[][] distanceMap;
@@ -135,10 +135,9 @@ public class mob extends AppCompatActivity
                 // Проверяем, что клетка в пределах карты
                 if (newX >= 0 && newY >= 0 && newX < distanceMap.length && newY < distanceMap[0].length)
                 {
-                    if (distanceMap[newX][newY] < minDistance)
-                    {
+                    if (distanceMap[newX][newY] < minDistance) {
                         minDistance = distanceMap[newX][newY];
-                        bestDirection = i + 1; // Направление от 1 до 8
+                        bestDirection = i + 1; // Направление от 1 до 12
                     }
                 }
             }
@@ -149,13 +148,12 @@ public class mob extends AppCompatActivity
 
     private boolean canMove(int direction, int mobType)
     {
-        switch (mobType)
-        {
-            case 1: // Только вертикали и горизонтали
+        switch (mobType) {
+            case 1: // Только вертикали и горизонтали (1 клетка)
                 return direction == 1 || direction == 3 || direction == 5 || direction == 7;
-            case 2: // Только диагонали
+            case 2: // Только диагонали (1 клетка)
                 return direction == 2 || direction == 4 || direction == 6 || direction == 8;
-            case 3: // Все 8 направлений
+            case 3: // Все 8 направлений (1 клетка)
                 return true;
             default:
                 return false;

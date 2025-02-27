@@ -557,7 +557,7 @@
         android:id="@+id/buttonMid"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:onClick="test"
+        android:onClick="midButtonAction"
         app:layout_constraintBottom_toTopOf="@+id/buttonDown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
