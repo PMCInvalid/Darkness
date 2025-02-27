@@ -338,7 +338,7 @@ public class map_generator extends mob
                 helper = 1;
             }
 
-            if (points >= 4)
+            if (points >= 4) // Medved
             {
                 while (helper == 1) {
                     int a = (rand.nextInt(28) + 2);
@@ -351,6 +351,8 @@ public class map_generator extends mob
                         medved.corX = b;
 
                         map[medved.corY][medved.corX] = "medved_tile";
+
+                        medved.isHere = true;
 
                         helper = 0;
                     }
@@ -495,6 +497,8 @@ public class map_generator extends mob
                     medved.corX = b;
 
                     map[medved.corY][medved.corX] = "medved_tile";
+
+                    medved.isHere = true;
 
                     helper = 0;
                 }
