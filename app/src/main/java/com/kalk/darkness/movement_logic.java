@@ -1257,7 +1257,7 @@ public class movement_logic extends map_generator
         int negr = 9;
         int needMove = 1;
 
-        if (bolshoj.corY - player.corY <= 2 && bolshoj.corX - player.corX <= 2 && bolshoj.corY - player.corY >= -2 && bolshoj.corX - player.corX >= -2)
+        if (bolshoj.corY - player.corY < 2 && bolshoj.corX - player.corX < 2 && bolshoj.corY - player.corY > -2 && bolshoj.corX - player.corX > -2)
         {
             negr = 9;
 
