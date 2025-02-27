@@ -1269,13 +1269,11 @@ public class movement_logic extends map_generator
             computeFlowField(map, player.corX, player.corY, 1);
             negr = getDirection(bolshoj.corX, bolshoj.corY);
 
-            if (player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
+            if (player.corX < bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
                 negr = 7;
 
-            else if (player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
+            if (player.corX > bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
                 negr = 3;
-
-            needMove = 0;
         }
 
         if (negr == 1)
@@ -1326,10 +1324,10 @@ public class movement_logic extends map_generator
 
             if (negrM == 1 && needMove == 1)
             {
-                if ((player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                if (player.corX < bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
                     negrM = 7;
 
-                else if ((player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                else if (player.corX > bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
                     negrM = 3;
 
                 else
@@ -1344,10 +1342,10 @@ public class movement_logic extends map_generator
 
             if (negrM == 5 && needMove == 1)
             {
-                if ((player.corY - 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                if (player.corX < bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
                     negrM = 7;
 
-                else if ((player.corY - 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                else if (player.corX > bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
                     negrM = 3;
 
                 else
