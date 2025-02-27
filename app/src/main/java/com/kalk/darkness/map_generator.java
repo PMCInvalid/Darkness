@@ -250,6 +250,7 @@ public class map_generator extends mob
     public static void mobGen(double points, String level)
     {
         int helper = 1;
+        int spawnChance = 0;
 
         if (level.equals("easy"))
         {
@@ -362,26 +363,30 @@ public class map_generator extends mob
             }
             if (points >= 7)
             {
-                while (helper == 1) // Bolshoj brat
+                spawnChance = rand.nextInt(101);
+
+                if (spawnChance % 2 == 0)
                 {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    int solution = check(a, b);
-
-                    if (solution == 1)
+                    while (helper == 1) // Bolshoj brat
                     {
-                        bolshoj.corY = a;
-                        bolshoj.corX = b;
+                        int a = (rand.nextInt(28) + 2);
+                        int b = (rand.nextInt(28) + 2);
 
-                        map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+                        int solution = check(a, b);
 
-                        bolshoj.isHere = true;
+                        if (solution == 1) {
+                            bolshoj.corY = a;
+                            bolshoj.corX = b;
 
-                        helper = 0;
+                            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+
+                            bolshoj.isHere = true;
+
+                            helper = 0;
+                        }
                     }
+                    helper = 1;
                 }
-                helper = 1;
             }
 
         /*while (helper == 1)
@@ -468,7 +473,6 @@ public class map_generator extends mob
             }
             helper = 1;
 
-
             while (helper == 1) // Korol
             {
                 int a = (rand.nextInt(28) + 2);
@@ -510,26 +514,30 @@ public class map_generator extends mob
             }
             helper = 1;
 
-            while (helper == 1) // Bolshoj brat
+            spawnChance = rand.nextInt(101);
+
+            if (spawnChance % 2 == 0)
             {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                int solution = check(a, b);
-
-                if (solution == 1)
+                while (helper == 1) // Bolshoj brat
                 {
-                    bolshoj.corY = a;
-                    bolshoj.corX = b;
+                    int a = (rand.nextInt(28) + 2);
+                    int b = (rand.nextInt(28) + 2);
 
-                    map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+                    int solution = check(a, b);
 
-                    bolshoj.isHere = true;
+                    if (solution == 1) {
+                        bolshoj.corY = a;
+                        bolshoj.corX = b;
 
-                    helper = 0;
+                        map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+
+                        bolshoj.isHere = true;
+
+                        helper = 0;
+                    }
                 }
+                helper = 1;
             }
-            helper = 1;
         }
     }
 

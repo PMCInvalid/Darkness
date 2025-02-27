@@ -1261,9 +1261,6 @@ public class movement_logic extends map_generator
         {
             negr = 9;
 
-            System.out.println(bolshoj.corY - player.corY);
-            System.out.println(bolshoj.corX - player.corX);
-
             needMove = 0;
         }
 
@@ -1279,8 +1276,6 @@ public class movement_logic extends map_generator
                 negr = 3;
 
             needMove = 0;
-
-            System.out.println(negr);
         }
 
         if (negr == 1)
