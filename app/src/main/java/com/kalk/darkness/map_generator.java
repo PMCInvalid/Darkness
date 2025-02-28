@@ -24,13 +24,15 @@ public class map_generator extends mob
     static mob sKorol = new mob();
     static mob medved = new mob();
     static mob bolshoj = new mob();
+    static mob[] portals = new mob[3];
+
 
     public static String[][] mapThrower(double points, String hard)
     {
         emptySetter();
         wallGen();
         mobGen(points, hard);
-        extrGen();
+        extrGen(points, hard);
 
         return map;
     }
@@ -228,9 +230,9 @@ public class map_generator extends mob
         }
     }
 
-    public static int check(int a, int b)
+    public static boolean check(int a, int b)
     {
-        int result = 1;
+        boolean result = true;
 
         if (map[a - 1][b - 1].equals("wall_tile") && map[a - 1][b - 1].equals("wall_tile") &&
             map[a - 1][b].equals("wall_tile") && map[a - 1][b].equals("wall_tile") &&
@@ -241,10 +243,17 @@ public class map_generator extends mob
             map[a + 1][b].equals("wall_tile") && map[a + 1][b].equals("wall_tile") &&
             map[a + 1][b + 1].equals("wall_tile") && map[a + 1][b + 1].equals("wall_tile"))
         {
-            result = 0;
+            result = false;
         }
 
         return result;
+    }
+
+    public static boolean find(int y, int x, String target)
+    {
+        boolean sol = true;
+
+        return sol;
     }
 
     public static void mobGen(double points, String level)
@@ -259,9 +268,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(27) + 2);
                 int b = (rand.nextInt(27) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1) {
+                if (solution) {
                     player.corX = a;
                     player.corY = b;
 
@@ -280,9 +289,9 @@ public class map_generator extends mob
                     int a = (rand.nextInt(28) + 2);
                     int b = (rand.nextInt(28) + 2);
 
-                    int solution = check(a, b);
+                    boolean solution = check(a, b);
 
-                    if (solution == 1) {
+                    if (solution) {
                         peshka.corY = a;
                         peshka.corX = b;
 
@@ -302,9 +311,9 @@ public class map_generator extends mob
                     int a = (rand.nextInt(28) + 2);
                     int b = (rand.nextInt(28) + 2);
 
-                    int solution = check(a, b);
+                    boolean solution = check(a, b);
 
-                    if (solution == 1) {
+                    if (solution) {
                         slon.corY = a;
                         slon.corX = b;
 
@@ -324,9 +333,9 @@ public class map_generator extends mob
                     int a = (rand.nextInt(28) + 2);
                     int b = (rand.nextInt(28) + 2);
 
-                    int solution = check(a, b);
+                    boolean solution = check(a, b);
 
-                    if (solution == 1) {
+                    if (solution) {
                         sKorol.corY = a;
                         sKorol.corX = b;
 
@@ -346,9 +355,9 @@ public class map_generator extends mob
                     int a = (rand.nextInt(28) + 2);
                     int b = (rand.nextInt(28) + 2);
 
-                    int solution = check(a, b);
+                    boolean solution = check(a, b);
 
-                    if (solution == 1) {
+                    if (solution) {
                         medved.corY = a;
                         medved.corX = b;
 
@@ -372,9 +381,9 @@ public class map_generator extends mob
                         int a = (rand.nextInt(28) + 2);
                         int b = (rand.nextInt(28) + 2);
 
-                        int solution = check(a, b);
+                        boolean solution = check(a, b);
 
-                        if (solution == 1) {
+                        if (solution) {
                             bolshoj.corY = a;
                             bolshoj.corX = b;
 
@@ -416,9 +425,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(27) + 2);
                 int b = (rand.nextInt(27) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1) {
+                if (solution) {
                     player.corX = a;
                     player.corY = b;
 
@@ -436,9 +445,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(28) + 2);
                 int b = (rand.nextInt(28) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1)
+                if (solution)
                 {
                     peshka.corY = a;
                     peshka.corX = b;
@@ -457,9 +466,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(28) + 2);
                 int b = (rand.nextInt(28) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1)
+                if (solution)
                 {
                     slon.corY = a;
                     slon.corX = b;
@@ -478,9 +487,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(28) + 2);
                 int b = (rand.nextInt(28) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1)
+                if (solution)
                 {
                     sKorol.corY = a;
                     sKorol.corX = b;
@@ -499,9 +508,9 @@ public class map_generator extends mob
                 int a = (rand.nextInt(28) + 2);
                 int b = (rand.nextInt(28) + 2);
 
-                int solution = check(a, b);
+                boolean solution = check(a, b);
 
-                if (solution == 1) {
+                if (solution) {
                     medved.corY = a;
                     medved.corX = b;
 
@@ -523,9 +532,9 @@ public class map_generator extends mob
                     int a = (rand.nextInt(28) + 2);
                     int b = (rand.nextInt(28) + 2);
 
-                    int solution = check(a, b);
+                    boolean solution = check(a, b);
 
-                    if (solution == 1) {
+                    if (solution) {
                         bolshoj.corY = a;
                         bolshoj.corX = b;
 
@@ -541,18 +550,25 @@ public class map_generator extends mob
         }
     }
 
-    public static void extrGen()
+    public static void extrGen(double points, String level)
     {
+        Random rar = new Random();
         int helper = 1;
+
+        for (int i = 0; i < portals.length; i++)
+        {
+            portals[i] = new mob();
+        }
+
 
         while (helper == 1)
         {
             int a = (rand.nextInt(27) + 2);
             int b = (rand.nextInt(27) + 2);
 
-            int solution = check(a, b);
+            boolean solution = check(a, b);
 
-            if (solution == 1)
+            if (solution)
             {
                 extr.corY = a;
                 extr.corX = b;
@@ -569,7 +585,7 @@ public class map_generator extends mob
             int a = (rand.nextInt(28) + 2);
             int b = (rand.nextInt(28) + 2);
 
-            int solution = check(a, b);
+            boolean solution = check(a, b);
             int solution2 = 1;
 
             if (abs(extr.corY - a) < 10 || abs(extr.corX - b) < 10)
@@ -577,7 +593,7 @@ public class map_generator extends mob
                 solution2 = 0;
             }
 
-            if (solution == 1 && solution2 == 1)
+            if (solution && solution2 == 1)
             {
                 lever.corY = a;
                 lever.corX = b;
@@ -638,6 +654,63 @@ public class map_generator extends mob
                     helper = 0;
                 }
             }
+
+
         }
+        helper = 3;
+
+        int s = rar.nextInt(101);
+
+        if (level.equals("easy"))
+        {
+            if (points > 3)
+            {
+                if (s % 2 == 0)
+                {
+                    while (helper > 0) // Portals
+                    {
+                        int y = rand.nextInt(27) + 2;
+                        int x = rand.nextInt(27) + 2;
+
+                        boolean solution = check(y, x);
+
+                        if (solution)
+                        {
+                            portals[helper - 1].corY = y;
+                            portals[helper - 1].corX = x;
+                            map[portals[helper - 1].corY][portals[helper - 1].corX] = "portal_tile";
+                            portals[helper - 1].isHere = true;
+
+                            helper--;
+                        }
+                    }
+                }
+            }
+        }
+
+        else
+        {
+            if (s % 2 == 0)
+            {
+                while (helper > 0) // Portals
+                {
+                    int y = rand.nextInt(27) + 2;
+                    int x = rand.nextInt(27) + 2;
+
+                    boolean solution = check(y, x);
+
+                    if (solution)
+                    {
+                        portals[helper - 1].corY = y;
+                        portals[helper - 1].corX = x;
+                        map[portals[helper - 1].corY][portals[helper - 1].corX] = "portal_tile";
+                        portals[helper - 1].isHere = true;
+
+                        helper--;
+                    }
+                }
+            }
+        }
+        helper = 1;
     }
 }

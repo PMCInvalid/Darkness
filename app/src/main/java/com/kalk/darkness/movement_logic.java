@@ -44,6 +44,7 @@ public class movement_logic extends map_generator
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+        int needToTeleport = 1;
 
         if(opengate == 1)
         {
@@ -109,6 +110,33 @@ public class movement_logic extends map_generator
             score = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
+        }
+
+        if(portals[0].isHere || portals[1].isHere || portals[2].isHere)
+        {
+            if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
+            {
+                player.corX = portals[1].corX;
+                player.corY = portals[1].corY;
+
+                needToTeleport = 0;
+            }
+
+            if (player.corY == portals[1].corY && player.corX == portals[1].corX && needToTeleport == 1)
+            {
+                player.corX = portals[2].corX;
+                player.corY = portals[2].corY;
+
+                needToTeleport = 0;
+            }
+
+            if (player.corY == portals[2].corY && player.corX == portals[2].corX && needToTeleport == 1)
+            {
+                player.corX = portals[0].corX;
+                player.corY = portals[0].corY;
+
+                needToTeleport = 0;
+            }
         }
     }
 
