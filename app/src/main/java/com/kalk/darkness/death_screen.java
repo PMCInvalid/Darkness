@@ -36,6 +36,9 @@ public class death_screen extends AppCompatActivity
 
         highS.setText("Highscore is:" + h);
         sco.setText("Your score is:" + s);
+
+        editor.remove("score");
+        editor.apply();
     }
 
     public void goToMainMenuFromDeathScreen(View v)
