@@ -24,7 +24,7 @@ public class map_generator extends mob
     static mob sKorol = new mob();
     static mob medved = new mob();
     static mob bolshoj = new mob();
-    static mob[] portals = new mob[3];
+    static mob[] portals;
 
 
     public static String[][] mapThrower(double points, String hard)
@@ -555,11 +555,6 @@ public class map_generator extends mob
         Random rar = new Random();
         int helper = 1;
 
-        for (int i = 0; i < portals.length; i++)
-        {
-            portals[i] = new mob();
-        }
-
 
         while (helper == 1)
         {
@@ -657,9 +652,19 @@ public class map_generator extends mob
 
 
         }
-        helper = 3;
 
-        int s = rar.nextInt(101);
+        int s = rar.nextInt(5) + 2;
+
+        portals = new mob[s];
+
+        for (int i = 0; i < portals.length; i++)
+        {
+            portals[i] = new mob();
+        }
+
+        helper = portals.length;
+
+        s = rar.nextInt(101);
 
         if (level.equals("easy"))
         {

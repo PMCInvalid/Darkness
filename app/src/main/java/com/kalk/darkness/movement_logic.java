@@ -112,30 +112,128 @@ public class movement_logic extends map_generator
             startActivity(pip);
         }
 
-        if(portals[0].isHere || portals[1].isHere || portals[2].isHere)
+        if(portals[0].isHere)
         {
             if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
             {
+                map[player.corY][player.corX] = "portal_tile";
+
                 player.corX = portals[1].corX;
                 player.corY = portals[1].corY;
+
+                map[player.corY][player.corX] = "portal_tile";
 
                 needToTeleport = 0;
             }
 
             if (player.corY == portals[1].corY && player.corX == portals[1].corX && needToTeleport == 1)
             {
-                player.corX = portals[2].corX;
-                player.corY = portals[2].corY;
+                map[player.corY][player.corX] = "portal_tile";
+
+                if (portals[2].isHere)
+                {
+                    player.corX = portals[2].corX;
+                    player.corY = portals[2].corY;
+                }
+
+                else
+                {
+                    player.corX = portals[0].corX;
+                    player.corY = portals[0].corY;
+                }
+
+                map[player.corY][player.corX] = "portal_tile";
 
                 needToTeleport = 0;
             }
 
-            if (player.corY == portals[2].corY && player.corX == portals[2].corX && needToTeleport == 1)
+            if (portals.length > 2)
             {
-                player.corX = portals[0].corX;
-                player.corY = portals[0].corY;
+                if (player.corY == portals[2].corY && player.corX == portals[2].corX && needToTeleport == 1)
+                {
+                    map[player.corY][player.corX] = "portal_tile";
 
-                needToTeleport = 0;
+                    if (portals.length > 3)
+                    {
+                        player.corX = portals[3].corX;
+                        player.corY = portals[3].corY;
+                    }
+
+                    else
+                    {
+                        player.corX = portals[0].corX;
+                        player.corY = portals[0].corY;
+                    }
+
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    needToTeleport = 0;
+                }
+            }
+
+            if (portals.length > 4)
+            {
+                if (player.corY == portals[3].corY && player.corX == portals[3].corX && needToTeleport == 1)
+                {
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    if (portals.length > 4)
+                    {
+                        player.corX = portals[4].corX;
+                        player.corY = portals[4].corY;
+                    }
+
+                    else
+                    {
+                        player.corX = portals[0].corX;
+                        player.corY = portals[0].corY;
+                    }
+
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    needToTeleport = 0;
+                }
+            }
+
+            if (portals.length > 5)
+            {
+                if (player.corY == portals[4].corY && player.corX == portals[4].corX && needToTeleport == 1)
+                {
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    if (portals.length > 5)
+                    {
+                        player.corX = portals[4].corX;
+                        player.corY = portals[4].corY;
+                    }
+
+                    else
+                    {
+                        player.corX = portals[0].corX;
+                        player.corY = portals[0].corY;
+                    }
+
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    needToTeleport = 0;
+                }
+            }
+
+            if (portals.length > 6)
+            {
+                if (player.corY == portals[5].corY && player.corX == portals[5].corX && needToTeleport == 1)
+                {
+                    map[player.corY][player.corX] = "portal_tile";
+
+
+                    player.corX = portals[0].corX;
+                    player.corY = portals[0].corY;
+
+
+                    map[player.corY][player.corX] = "portal_tile";
+
+                    needToTeleport = 0;
+                }
             }
         }
     }
