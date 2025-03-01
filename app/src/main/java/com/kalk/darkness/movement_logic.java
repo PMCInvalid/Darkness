@@ -8,6 +8,7 @@ import android.widget.TextView;
 public class movement_logic extends map_generator
 {
     int opengate = 0;
+    int flashlight = 0;
     int playerMoveRem = 9;
     double score = 1;
     public static int gameIn = 0;
@@ -234,6 +235,27 @@ public class movement_logic extends map_generator
 
                     needToTeleport = 0;
                 }
+            }
+        }
+    }
+
+    private void setTileImage(ImageView imageView, int y, int x)
+    {
+        if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
+        {
+            imageView.setImageResource(R.drawable.empty_tile);
+        }
+
+        else
+        {
+            if (map[y][x].equals("wall_tile"))
+            {
+                imageView.setImageResource(R.drawable.dark_wall_tile);
+            }
+
+            else
+            {
+                imageView.setImageResource(R.drawable.empty_tile);
             }
         }
     }
@@ -771,9 +793,9 @@ public class movement_logic extends map_generator
 
     }
 
-    public void mapDrawEmptyScreen()
+    public void mapDrawDarkScreen()
     {
-        /*ImageView im1_1 = (ImageView) findViewById(R.id.mapDrawImage1_1);
+        ImageView im1_1 = (ImageView) findViewById(R.id.mapDrawImage1_1);
         ImageView im1_2 = (ImageView) findViewById(R.id.mapDrawImage1_2);
         ImageView im1_3 = (ImageView) findViewById(R.id.mapDrawImage1_3);
         ImageView im1_4 = (ImageView) findViewById(R.id.mapDrawImage1_4);
@@ -861,7 +883,101 @@ public class movement_logic extends map_generator
         ImageView im9_6 = (ImageView) findViewById(R.id.mapDrawImage9_6);
         ImageView im9_7 = (ImageView) findViewById(R.id.mapDrawImage9_7);
         ImageView im9_8 = (ImageView) findViewById(R.id.mapDrawImage9_8);
-        ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);*/
+        ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
+
+        int resId;
+
+// Использование метода для всех imageView
+        setTileImage(im1_1, player.corY - 4, player.corX - 4);
+        setTileImage(im1_2, player.corY - 4, player.corX - 3);
+        setTileImage(im1_3, player.corY - 4, player.corX - 2);
+        setTileImage(im1_4, player.corY - 4, player.corX - 1);
+        setTileImage(im1_5, player.corY - 4, player.corX);
+        setTileImage(im1_6, player.corY - 4, player.corX + 1);
+        setTileImage(im1_7, player.corY - 4, player.corX + 2);
+        setTileImage(im1_8, player.corY - 4, player.corX + 3);
+        setTileImage(im1_9, player.corY - 4, player.corX + 4);
+
+// Теперь для im2, im3, im4, im5, im6, im7, im8, im9
+        setTileImage(im2_1, player.corY - 3, player.corX - 4);
+        setTileImage(im2_2, player.corY - 3, player.corX - 3);
+        setTileImage(im2_3, player.corY - 3, player.corX - 2);
+        setTileImage(im2_4, player.corY - 3, player.corX - 1);
+        setTileImage(im2_5, player.corY - 3, player.corX);
+        setTileImage(im2_6, player.corY - 3, player.corX + 1);
+        setTileImage(im2_7, player.corY - 3, player.corX + 2);
+        setTileImage(im2_8, player.corY - 3, player.corX + 3);
+        setTileImage(im2_9, player.corY - 3, player.corX + 4);
+
+        setTileImage(im3_1, player.corY - 2, player.corX - 4);
+        setTileImage(im3_2, player.corY - 2, player.corX - 3);
+        setTileImage(im3_3, player.corY - 2, player.corX - 2);
+        setTileImage(im3_4, player.corY - 2, player.corX - 1);
+        setTileImage(im3_5, player.corY - 2, player.corX);
+        setTileImage(im3_6, player.corY - 2, player.corX + 1);
+        setTileImage(im3_7, player.corY - 2, player.corX + 2);
+        setTileImage(im3_8, player.corY - 2, player.corX + 3);
+        setTileImage(im3_9, player.corY - 2, player.corX + 4);
+
+        setTileImage(im4_1, player.corY - 1, player.corX - 4);
+        setTileImage(im4_2, player.corY - 1, player.corX - 3);
+        setTileImage(im4_3, player.corY - 1, player.corX - 2);
+        setTileImage(im4_4, player.corY - 1, player.corX - 1);
+        setTileImage(im4_5, player.corY - 1, player.corX);
+        setTileImage(im4_6, player.corY - 1, player.corX + 1);
+        setTileImage(im4_7, player.corY - 1, player.corX + 2);
+        setTileImage(im4_8, player.corY - 1, player.corX + 3);
+        setTileImage(im4_9, player.corY - 1, player.corX + 4);
+
+        setTileImage(im5_1, player.corY, player.corX - 4);
+        setTileImage(im5_2, player.corY, player.corX - 3);
+        setTileImage(im5_3, player.corY, player.corX - 2);
+        setTileImage(im5_4, player.corY, player.corX - 1);
+        im5_5.setImageResource(R.drawable.player_tile);
+        setTileImage(im5_6, player.corY, player.corX + 1);
+        setTileImage(im5_7, player.corY, player.corX + 2);
+        setTileImage(im5_8, player.corY, player.corX + 3);
+        setTileImage(im5_9, player.corY, player.corX + 4);
+
+        setTileImage(im6_1, player.corY + 1, player.corX - 4);
+        setTileImage(im6_2, player.corY + 1, player.corX - 3);
+        setTileImage(im6_3, player.corY + 1, player.corX - 2);
+        setTileImage(im6_4, player.corY + 1, player.corX - 1);
+        setTileImage(im6_5, player.corY + 1, player.corX);
+        setTileImage(im6_6, player.corY + 1, player.corX + 1);
+        setTileImage(im6_7, player.corY + 1, player.corX + 2);
+        setTileImage(im6_8, player.corY + 1, player.corX + 3);
+        setTileImage(im6_9, player.corY + 1, player.corX + 4);
+
+        setTileImage(im7_1, player.corY + 2, player.corX - 4);
+        setTileImage(im7_2, player.corY + 2, player.corX - 3);
+        setTileImage(im7_3, player.corY + 2, player.corX - 2);
+        setTileImage(im7_4, player.corY + 2, player.corX - 1);
+        setTileImage(im7_5, player.corY + 2, player.corX);
+        setTileImage(im7_6, player.corY + 2, player.corX + 1);
+        setTileImage(im7_7, player.corY + 2, player.corX + 2);
+        setTileImage(im7_8, player.corY + 2, player.corX + 3);
+        setTileImage(im7_9, player.corY + 2, player.corX + 4);
+
+        setTileImage(im8_1, player.corY + 3, player.corX - 4);
+        setTileImage(im8_2, player.corY + 3, player.corX - 3);
+        setTileImage(im8_3, player.corY + 3, player.corX - 2);
+        setTileImage(im8_4, player.corY + 3, player.corX - 1);
+        setTileImage(im8_5, player.corY + 3, player.corX);
+        setTileImage(im8_6, player.corY + 3, player.corX + 1);
+        setTileImage(im8_7, player.corY + 3, player.corX + 2);
+        setTileImage(im8_8, player.corY + 3, player.corX + 3);
+        setTileImage(im8_9, player.corY + 3, player.corX + 4);
+
+        setTileImage(im9_1, player.corY + 4, player.corX - 4);
+        setTileImage(im9_2, player.corY + 4, player.corX - 3);
+        setTileImage(im9_3, player.corY + 4, player.corX - 2);
+        setTileImage(im9_4, player.corY + 4, player.corX - 1);
+        setTileImage(im9_5, player.corY + 4, player.corX);
+        setTileImage(im9_6, player.corY + 4, player.corX + 1);
+        setTileImage(im9_7, player.corY + 4, player.corX + 2);
+        setTileImage(im9_8, player.corY + 4, player.corX + 3);
+        setTileImage(im9_9, player.corY + 4, player.corX + 4);
     }
 
     public void peshkaSukaMove()
@@ -1647,7 +1763,7 @@ public class movement_logic extends map_generator
         else if (a == 9)
         {
             moveCheck = 1;
-
+            flashlight = 1;
             playerMoveRem = 9;
         }
 
@@ -1673,14 +1789,31 @@ public class movement_logic extends map_generator
 
             gameLifeCheck(player.helper2);
 
-            if (b.equals("easy") || b.equals("hard") || a == 9)
-            {
+            if (b.equals("easy"))
                 mapDrawScreen();
+
+            if (b.equals("hard") || a == 9)
+            {
+                if (flashlight == 1)
+                {
+                    mapDrawScreen();
+                    flashlight = 0;
+                }
+
+                else
+                    mapDrawDarkScreen();
             }
 
             else
             {
-                mapDrawScreen();
+                if (flashlight == 1)
+                {
+                    mapDrawScreen();
+                    flashlight = 0;
+                }
+
+                else
+                    mapDrawDarkScreen();
             }
         }
     }
