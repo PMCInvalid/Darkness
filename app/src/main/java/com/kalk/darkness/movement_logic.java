@@ -2,8 +2,15 @@ package com.kalk.darkness;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Arrays;
+import java.util.Random;
 
 public class movement_logic extends map_generator
 {
@@ -13,6 +20,7 @@ public class movement_logic extends map_generator
     double score = 1;
     int krotDim = 9;
     int krotMoves = 0;
+    int ability = 0;
     public static int gameIn = 0;
     static public String[][] map = new String[32][32];
 
@@ -43,15 +51,16 @@ public class movement_logic extends map_generator
         }
     }
 
-    public void gameLifeCheck(String a)
+    public void gameLifeCheck()
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+        Random rar = new Random();
         int needToTeleport = 1;
 
         if(opengate == 1)
         {
-            if (a.equals("extraction_tile"))
+            if (extr.corY == player.corY && extr.corX == player.corX)
             {
                 gameIn = 0;
                 opengate = 0;
@@ -61,7 +70,7 @@ public class movement_logic extends map_generator
             }
         }
 
-        if (a.equals("door_tile"))
+        if (door.corY == player.corY && door.corX == player.corX)
         {
             gameIn = 0;
             opengate = 0;
@@ -78,6 +87,7 @@ public class movement_logic extends map_generator
 
             gameIn = 0;
             score = 0;
+            ability = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
@@ -89,6 +99,7 @@ public class movement_logic extends map_generator
 
             gameIn = 0;
             score = 0;
+            ability = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
@@ -100,6 +111,7 @@ public class movement_logic extends map_generator
 
             gameIn = 0;
             score = 0;
+            ability = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
@@ -111,6 +123,7 @@ public class movement_logic extends map_generator
 
             gameIn = 0;
             score = 0;
+            ability = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
@@ -122,6 +135,7 @@ public class movement_logic extends map_generator
 
             gameIn = 0;
             score = 0;
+            ability = 0;
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
@@ -248,6 +262,11 @@ public class movement_logic extends map_generator
 
                     needToTeleport = 0;
                 }
+            }
+
+            if (power.corY == player.corY && power.corX == player.corX)
+            {
+                ability = 1;
             }
         }
     }
@@ -991,6 +1010,114 @@ public class movement_logic extends map_generator
         setTileImage(im9_7, player.corY + 4, player.corX + 2);
         setTileImage(im9_8, player.corY + 4, player.corX + 3);
         setTileImage(im9_9, player.corY + 4, player.corX + 4);
+    }
+
+    public void enemySence()
+    {
+        ImageView im3_3 = (ImageView) findViewById(R.id.mapDrawImage3_3);
+        ImageView im3_4 = (ImageView) findViewById(R.id.mapDrawImage3_4);
+        ImageView im3_5 = (ImageView) findViewById(R.id.mapDrawImage3_5);
+        ImageView im3_6 = (ImageView) findViewById(R.id.mapDrawImage3_6);
+        ImageView im3_7 = (ImageView) findViewById(R.id.mapDrawImage3_7);
+
+        ImageView im4_3 = (ImageView) findViewById(R.id.mapDrawImage4_3);
+        ImageView im4_4 = (ImageView) findViewById(R.id.mapDrawImage4_4);
+        ImageView im4_5 = (ImageView) findViewById(R.id.mapDrawImage4_5);
+        ImageView im4_6 = (ImageView) findViewById(R.id.mapDrawImage4_6);
+        ImageView im4_7 = (ImageView) findViewById(R.id.mapDrawImage4_7);
+
+        ImageView im5_3 = (ImageView) findViewById(R.id.mapDrawImage5_3);
+        ImageView im5_4 = (ImageView) findViewById(R.id.mapDrawImage5_4);
+        ImageView im5_5 = (ImageView) findViewById(R.id.mapDrawImage5_5);
+        ImageView im5_6 = (ImageView) findViewById(R.id.mapDrawImage5_6);
+        ImageView im5_7 = (ImageView) findViewById(R.id.mapDrawImage5_7);
+
+        ImageView im6_3 = (ImageView) findViewById(R.id.mapDrawImage6_3);
+        ImageView im6_4 = (ImageView) findViewById(R.id.mapDrawImage6_4);
+        ImageView im6_5 = (ImageView) findViewById(R.id.mapDrawImage6_5);
+        ImageView im6_6 = (ImageView) findViewById(R.id.mapDrawImage6_6);
+        ImageView im6_7 = (ImageView) findViewById(R.id.mapDrawImage6_7);
+
+        ImageView im7_3 = (ImageView) findViewById(R.id.mapDrawImage7_3);
+        ImageView im7_4 = (ImageView) findViewById(R.id.mapDrawImage7_4);
+        ImageView im7_5 = (ImageView) findViewById(R.id.mapDrawImage7_5);
+        ImageView im7_6 = (ImageView) findViewById(R.id.mapDrawImage7_6);
+        ImageView im7_7 = (ImageView) findViewById(R.id.mapDrawImage7_7);
+
+
+        drawSence(im3_3, player.corY - 2, player.corX - 2);
+        drawSence(im3_4, player.corY - 2, player.corX - 1);
+        drawSence(im3_5, player.corY - 2, player.corX);
+        drawSence(im3_6, player.corY - 2, player.corX + 1);
+        drawSence(im3_7, player.corY - 2, player.corX + 2);
+
+        drawSence(im4_3, player.corY - 1, player.corX - 2);
+        drawSence(im4_4, player.corY - 1, player.corX - 1);
+        drawSence(im4_5, player.corY - 1, player.corX);
+        drawSence(im4_6, player.corY - 1, player.corX + 1);
+        drawSence(im4_7, player.corY - 1, player.corX + 2);
+
+        drawSence(im5_3, player.corY, player.corX - 2);
+        drawSence(im5_4, player.corY, player.corX - 1);
+        drawSence(im5_5, player.corY, player.corX);
+        drawSence(im5_6, player.corY, player.corX + 1);
+        drawSence(im5_7, player.corY, player.corX + 2);
+
+        drawSence(im6_3, player.corY + 1, player.corX - 2);
+        drawSence(im6_4, player.corY + 1, player.corX - 1);
+        drawSence(im6_5, player.corY + 1, player.corX);
+        drawSence(im6_6, player.corY + 1, player.corX + 1);
+        drawSence(im6_7, player.corY + 1, player.corX + 2);
+
+        drawSence(im7_3, player.corY + 2, player.corX - 2);
+        drawSence(im7_4, player.corY + 2, player.corX - 1);
+        drawSence(im7_5, player.corY + 2, player.corX);
+        drawSence(im7_6, player.corY + 2, player.corX + 1);
+        drawSence(im7_7, player.corY + 2, player.corX + 2);
+
+    }
+
+    public void drawSence(ImageView imka, int y, int x)
+    {
+        int color = Color.argb(128, 255, 0, 0);
+        PorterDuffColorFilter colorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+        Drawable dr = imka.getDrawable().mutate();
+        Random rar = new Random();
+        dr.setColorFilter(colorFilter);
+
+        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot};
+
+        boolean isNearEnemy = false;
+        for (mob m : mobs)
+        {
+            if (Math.abs(m.corY - y) <= 1 && Math.abs(m.corX - x) <= 1) {
+                isNearEnemy = true;
+                break;
+            }
+        }
+
+        if (isNearEnemy)
+        {
+            int ran = rar.nextInt(2);
+            if (ran == 1)
+            {
+                dr.setColorFilter(colorFilter);
+                imka.setImageDrawable(dr);
+            }
+
+            else
+            {
+                dr.clearColorFilter();
+                imka.setImageDrawable(dr);
+            }
+        }
+
+        else
+        {
+            dr.clearColorFilter();
+            imka.setImageDrawable(dr);
+        }
     }
 
     public void peshkaSukaMove()
@@ -1922,7 +2049,7 @@ public class movement_logic extends map_generator
             if (krot.isHere)
                 krotMove();
 
-            gameLifeCheck(player.helper2);
+            gameLifeCheck();
 
             if (b.equals("easy"))
                 mapDrawScreen();
@@ -1936,7 +2063,11 @@ public class movement_logic extends map_generator
                 }
 
                 else
+                {
                     mapDrawDarkScreen();
+                    if (ability == 1)
+                        enemySence();
+                }
             }
 
             else
@@ -1948,7 +2079,11 @@ public class movement_logic extends map_generator
                 }
 
                 else
+                {
                     mapDrawDarkScreen();
+                    if (ability == 1)
+                        enemySence();
+                }
             }
         }
     }

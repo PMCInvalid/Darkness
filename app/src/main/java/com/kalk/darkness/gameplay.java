@@ -64,6 +64,7 @@ public class gameplay extends movement_logic
     public void midButtonAction(View v)
     {
         playerMove(9);
+        enemySence();
         test();
     }
 
@@ -71,6 +72,6 @@ public class gameplay extends movement_logic
     {
         System.out.println(player.corY + " " + player.corX);
         System.out.println("-----");
-        System.out.println(krot.corY + " " + krot.corX);
+        System.out.println(power.corY + " " + power.corX);
     }
 }

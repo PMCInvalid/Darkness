@@ -19,12 +19,14 @@ public class map_generator extends mob
     static mob player = new mob();
     static mob extr = new mob();
     static mob lever = new mob();
+    static mob door = new mob();
     static mob peshka = new mob();
     static mob slon = new mob();
     static mob sKorol = new mob();
     static mob medved = new mob();
     static mob bolshoj = new mob();
     static mob krot = new mob();
+    static mob power = new mob();
     static mob[] portals;
 
 
@@ -584,7 +586,6 @@ public class map_generator extends mob
         Random rar = new Random();
         int helper = 1;
 
-
         while (helper == 1)
         {
             int a = (rand.nextInt(27) + 2);
@@ -641,7 +642,9 @@ public class map_generator extends mob
 
                 if (map[2][a].equals("empty_tile"))
                 {
-                    map[1][a] = "door_tile";
+                    door.corY = 1;
+                    door.corX = a;
+                    map[door.corY][door.corX] = "door_tile";
                     helper = 0;
                 }
             }
@@ -652,7 +655,10 @@ public class map_generator extends mob
 
                 if (map[a][2].equals("empty_tile"))
                 {
-                    map[a][1] = "door_tile";
+                    door.corY = a;
+                    door.corX = 1;
+
+                    map[door.corY][door.corX] = "door_tile";
                     helper = 0;
                 }
             }
@@ -663,7 +669,10 @@ public class map_generator extends mob
 
                 if (map[29][a].equals("empty_tile"))
                 {
-                    map[30][a] = "door_tile";
+                    door.corY = 30;
+                    door.corX = a;
+
+                    map[door.corY][door.corX] = "door_tile";
                     helper = 0;
                 }
             }
@@ -674,7 +683,10 @@ public class map_generator extends mob
 
                 if (map[a][29].equals("empty_tile"))
                 {
-                    map[a][30] = "door_tile";
+                    door.corY = a;
+                    door.corX = 30;
+
+                    map[door.corY][door.corX] = "door_tile";
                     helper = 0;
                 }
             }
@@ -739,6 +751,29 @@ public class map_generator extends mob
                         portals[helper - 1].corX = x;
                         map[portals[helper - 1].corY][portals[helper - 1].corX] = "portal_tile";
                         portals[helper - 1].isHere = true;
+
+                        helper--;
+                    }
+                }
+            }
+
+            helper = 1;
+
+            if (s % 4 == 0)
+            {
+                while (helper > 0) // Powers
+                {
+                    int y = rand.nextInt(27) + 2;
+                    int x = rand.nextInt(27) + 2;
+
+                    boolean solution = check(y, x);
+
+                    if (solution)
+                    {
+                        power.corY = y;
+                        power.corX = x;
+
+                        map[power.corY][power.corX] = "power_tile";
 
                         helper--;
                     }
