@@ -24,6 +24,7 @@ public class map_generator extends mob
     static mob sKorol = new mob();
     static mob medved = new mob();
     static mob bolshoj = new mob();
+    static mob krot = new mob();
     static mob[] portals;
 
 
@@ -370,6 +371,33 @@ public class map_generator extends mob
                 }
                 helper = 1;
             }
+            if (points >= 5.5)
+            {
+                spawnChance = rand.nextInt(101);
+
+                if (spawnChance % 2 == 0)
+                {
+                    while (helper == 1) // Krot
+                    {
+                        int a = (rand.nextInt(28) + 2);
+                        int b = (rand.nextInt(28) + 2);
+
+                        boolean solution = check(a, b);
+
+                        if (solution) {
+                            krot.corY = a;
+                            krot.corX = b;
+
+                            map[krot.corY][krot.corX] = "bolshoj_b_tile";
+
+                            krot.isHere = true;
+
+                            helper = 0;
+                        }
+                    }
+                    helper = 1;
+                }
+            }
             if (points >= 7)
             {
                 spawnChance = rand.nextInt(101);
@@ -397,25 +425,6 @@ public class map_generator extends mob
                     helper = 1;
                 }
             }
-
-        /*while (helper == 1)
-        {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            int solution = check(a, b);
-
-            if (solution == 1)
-            {
-                medvedX = a;
-                medvedY = b;
-
-                map[medvedY][medvedX] = 27;
-
-                helper = 0;
-            }
-        }
-        helper = 1;*/
         }
 
         else
@@ -547,6 +556,26 @@ public class map_generator extends mob
                 }
                 helper = 1;
             }
+
+            while (helper == 1) // Krot
+            {
+                int a = (rand.nextInt(28) + 2);
+                int b = (rand.nextInt(28) + 2);
+
+                boolean solution = check(a, b);
+
+                if (solution) {
+                    krot.corY = a;
+                    krot.corX = b;
+
+                    map[krot.corY][krot.corX] = "bolshoj_b_tile";
+
+                    krot.isHere = true;
+
+                    helper = 0;
+                }
+            }
+            helper = 1;
         }
     }
 

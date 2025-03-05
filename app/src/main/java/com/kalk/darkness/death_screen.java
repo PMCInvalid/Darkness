@@ -25,9 +25,6 @@ public class death_screen extends AppCompatActivity
         String h = settings.getString("highscore", "0");
         String s = settings.getString("score", "0");
 
-        System.out.println("Highscore - " + h);
-        System.out.println("Score death - " + s);
-
         if (Double.parseDouble(h) < Double.parseDouble(s))
         {
             editor.putString("highscore", s);

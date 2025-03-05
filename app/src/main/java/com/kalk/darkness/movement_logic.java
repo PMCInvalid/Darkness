@@ -11,6 +11,8 @@ public class movement_logic extends map_generator
     int flashlight = 0;
     int playerMoveRem = 9;
     double score = 1;
+    int krotDim = 9;
+    int krotMoves = 0;
     public static int gameIn = 0;
     static public String[][] map = new String[32][32];
 
@@ -103,6 +105,17 @@ public class movement_logic extends map_generator
         }
 
         if (bolshoj.corX == player.corX && bolshoj.corY == player.corY)
+        {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
+            gameIn = 0;
+            score = 0;
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
+        }
+
+        if (krot.corX == player.corX && krot.corY == player.corY)
         {
             editor.putString("score", String.valueOf(score));
             editor.apply();
@@ -1620,6 +1633,125 @@ public class movement_logic extends map_generator
         }
     }
 
+    public void krotMove()
+    {
+        if (krotMoves <= 0)
+        {
+            krotDim = rand.nextInt(10) + 1;
+
+            krotMoves = rand.nextInt(10) + 1;
+        }
+
+        else
+        {
+            switch(krotDim)
+            {
+                case 1:
+                    if (krot.corY - 1 <= 1)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY -= 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 2:
+                    if (krot.corY - 1 <= 1 || krot.corX + 1 >= 30)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY -= 1;
+                    krot.corX += 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 3:
+                    if (krot.corX + 1 >= 30)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corX += 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 4:
+                    if (krot.corY + 1 >= 30 || krot.corX + 1 >= 30)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY += 1;
+                    krot.corX += 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 5:
+                    if (krot.corY + 1 >= 30)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY += 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 6:
+                    if (krot.corY + 1 >= 30 || krot.corX - 1 <= 1)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY += 1;
+                    krot.corX -= 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 7:
+                    if (krot.corX - 1 <= 1)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corX -= 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 8:
+                    if (krot.corY - 1 <= 1 || krot.corX - 1 <= 1)
+                    {
+                        krotMoves = 0;
+                        break;
+                    }
+                    map[krot.corY][krot.corX] = "empty_tile";
+                    krot.corY -= 1;
+                    krot.corX -= 1;
+                    map[krot.corY][krot.corX] = "krot_tile";
+                    krotMoves--;
+                    break;
+
+                case 9:
+                    krotMoves--;
+            }
+        }
+    }
+
     public void playerMove (int a)
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
@@ -1786,6 +1918,9 @@ public class movement_logic extends map_generator
 
             if (bolshoj.isHere)
                 bolshojMove();
+
+            if (krot.isHere)
+                krotMove();
 
             gameLifeCheck(player.helper2);
 
