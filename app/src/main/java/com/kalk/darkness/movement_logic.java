@@ -217,8 +217,8 @@ public class movement_logic extends map_generator
 
                     if (portals.length > 5)
                     {
-                        player.corX = portals[4].corX;
-                        player.corY = portals[4].corY;
+                        player.corX = portals[5].corX;
+                        player.corY = portals[5].corY;
                     }
 
                     else
