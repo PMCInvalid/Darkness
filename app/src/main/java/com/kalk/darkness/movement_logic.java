@@ -1100,7 +1100,7 @@ public class movement_logic extends map_generator
         if (isNearEnemy)
         {
             int ran = rar.nextInt(2);
-            if (ran == 1)
+            if (!map[y][x].equals("wall_tile") && ran == 1)
             {
                 dr.setColorFilter(colorFilter);
                 imka.setImageDrawable(dr);
