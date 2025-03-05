@@ -64,7 +64,6 @@ public class gameplay extends movement_logic
     public void midButtonAction(View v)
     {
         playerMove(9);
-        enemySence();
         test();
     }
 
