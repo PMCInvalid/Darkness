@@ -22,7 +22,7 @@ public class movement_logic extends map_generator
     int ability = 0;
     int gameIn = 0;
     String[][] map = new String[32][32];
-    map_generator genchik = new map_generator;
+    map_generator genchik = new map_generator();
 
     public void gameplayInit()
     {

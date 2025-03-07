@@ -406,6 +406,7 @@ public class map_generator extends mob
     public void objectsGen(double points, String level)
     {
         Random rar = new Random();
+        int s;
 
         extractionGen();
 
@@ -413,7 +414,7 @@ public class map_generator extends mob
 
         doorGen();
 
-        int s = rar.nextInt(5) + 2;
+        s = rar.nextInt(5) + 2;
         if (level.equals("easy"))
             if (points >= 3)
                 portalsGen(s);
