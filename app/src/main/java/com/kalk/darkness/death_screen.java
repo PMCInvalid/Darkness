@@ -35,6 +35,7 @@ public class death_screen extends AppCompatActivity
         sco.setText("Your score is:" + s);
 
         editor.remove("score");
+        editor.remove("difficulty");
         editor.apply();
     }
 

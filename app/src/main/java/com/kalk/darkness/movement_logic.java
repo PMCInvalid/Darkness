@@ -158,7 +158,7 @@ public class movement_logic extends map_generator
             {
                 map[player.corY][player.corX] = "portal_tile";
 
-                if (portals[2].isHere)
+                if (portals.length > 3)
                 {
                     player.corX = portals[2].corX;
                     player.corY = portals[2].corY;
@@ -181,7 +181,7 @@ public class movement_logic extends map_generator
                 {
                     map[player.corY][player.corX] = "portal_tile";
 
-                    if (portals.length > 3)
+                    if (portals.length > 4)
                     {
                         player.corX = portals[3].corX;
                         player.corY = portals[3].corY;
@@ -199,7 +199,7 @@ public class movement_logic extends map_generator
                 }
             }
 
-            if (portals.length > 4)
+            if (portals.length > 3)
             {
                 if (player.corY == portals[3].corY && player.corX == portals[3].corX && needToTeleport == 1)
                 {
@@ -223,7 +223,7 @@ public class movement_logic extends map_generator
                 }
             }
 
-            if (portals.length > 5)
+            if (portals.length > 4)
             {
                 if (player.corY == portals[4].corY && player.corX == portals[4].corX && needToTeleport == 1)
                 {
@@ -266,7 +266,13 @@ public class movement_logic extends map_generator
 
             if (power.corY == player.corY && power.corX == player.corX)
             {
-                ability = 1;
+                if (settings.getString("difficulty", "").equals("easy"))
+                    ability = 2;
+
+                else
+                {
+                    ability = rar.nextInt(2) + 1;
+                }
             }
         }
     }
@@ -385,7 +391,6 @@ public class movement_logic extends map_generator
         ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
 
         int resId;
-
 
         if (player.corY - 4 < 0 || player.corX - 4 < 0)
             im1_1.setImageResource(R.drawable.empty_tile);
@@ -917,9 +922,6 @@ public class movement_logic extends map_generator
         ImageView im9_8 = (ImageView) findViewById(R.id.mapDrawImage9_8);
         ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
 
-        int resId;
-
-// Использование метода для всех imageView
         setTileImage(im1_1, player.corY - 4, player.corX - 4);
         setTileImage(im1_2, player.corY - 4, player.corX - 3);
         setTileImage(im1_3, player.corY - 4, player.corX - 2);
@@ -930,7 +932,6 @@ public class movement_logic extends map_generator
         setTileImage(im1_8, player.corY - 4, player.corX + 3);
         setTileImage(im1_9, player.corY - 4, player.corX + 4);
 
-// Теперь для im2, im3, im4, im5, im6, im7, im8, im9
         setTileImage(im2_1, player.corY - 3, player.corX - 4);
         setTileImage(im2_2, player.corY - 3, player.corX - 3);
         setTileImage(im2_3, player.corY - 3, player.corX - 2);
@@ -1117,6 +1118,135 @@ public class movement_logic extends map_generator
         {
             dr.clearColorFilter();
             imka.setImageDrawable(dr);
+        }
+    }
+
+    public void sonar()
+    {
+        ImageView im4_4 = (ImageView) findViewById(R.id.mapDrawImage4_4);
+        ImageView im4_5 = (ImageView) findViewById(R.id.mapDrawImage4_5);
+        ImageView im4_6 = (ImageView) findViewById(R.id.mapDrawImage4_6);
+
+        ImageView im5_4 = (ImageView) findViewById(R.id.mapDrawImage5_4);
+        ImageView im5_6 = (ImageView) findViewById(R.id.mapDrawImage5_6);
+
+        ImageView im6_4 = (ImageView) findViewById(R.id.mapDrawImage6_4);
+        ImageView im6_5 = (ImageView) findViewById(R.id.mapDrawImage6_5);
+        ImageView im6_6 = (ImageView) findViewById(R.id.mapDrawImage6_6);
+
+        int color = Color.argb(75, 0, 255, 0);
+        PorterDuffColorFilter colorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+        Drawable[] dr = {
+                im4_4.getDrawable().mutate(),
+                im4_5.getDrawable().mutate(),
+                im4_6.getDrawable().mutate(),
+                im5_4.getDrawable().mutate(),
+                im5_6.getDrawable().mutate(),
+                im6_4.getDrawable().mutate(),
+                im6_5.getDrawable().mutate(),
+                im6_6.getDrawable().mutate()
+                        };
+
+        ImageView[] imageViews = {im4_4, im4_5, im4_6, im5_4, im5_6, im6_4, im6_5, im6_6};
+
+        for (int i = 0; i < 8; i++)
+        {
+            dr[i] = imageViews[i].getDrawable().mutate();
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            dr[i].clearColorFilter();
+            imageViews[i].setImageDrawable(dr[i]);
+        }
+
+        if (opengate == 1)
+        {
+            if (player.corY > extr.corY && player.corX == extr.corX) // Up
+            {
+                dr[1].setColorFilter(colorFilter);
+                im4_5.setImageDrawable(dr[1]);
+            }
+            else if (player.corY > extr.corY && player.corX < extr.corX) // Up right
+            {
+                dr[2].setColorFilter(colorFilter);
+                im4_6.setImageDrawable(dr[2]);
+            }
+            else if (player.corY == extr.corY && player.corX < extr.corX) // Right
+            {
+                dr[4].setColorFilter(colorFilter);
+                im5_6.setImageDrawable(dr[4]);
+            }
+            else if (player.corY < extr.corY && player.corX < extr.corX) // Down right
+            {
+                dr[7].setColorFilter(colorFilter);
+                im6_6.setImageDrawable(dr[7]);
+            }
+            else if (player.corY < extr.corY && player.corX == extr.corX) // Down
+            {
+                dr[6].setColorFilter(colorFilter);
+                im6_5.setImageDrawable(dr[6]);
+            }
+            else if (player.corY < extr.corY && player.corX > extr.corX) // Down left
+            {
+                dr[5].setColorFilter(colorFilter);
+                im6_4.setImageDrawable(dr[5]);
+            }
+            else if (player.corY == extr.corY && player.corX > extr.corX) // Left
+            {
+                dr[3].setColorFilter(colorFilter);
+                im5_4.setImageDrawable(dr[3]);
+            }
+            else if (player.corY > extr.corY && player.corX > extr.corX) // Up left
+            {
+                dr[0].setColorFilter(colorFilter);
+                im4_4.setImageDrawable(dr[0]);
+            }
+        }
+
+        else
+        {
+            if (player.corY > lever.corY && player.corX == lever.corX) // Up
+            {
+                dr[1].setColorFilter(colorFilter);
+                im4_5.setImageDrawable(dr[1]);
+            }
+            else if (player.corY > lever.corY && player.corX < lever.corX) // Up right
+            {
+                dr[2].setColorFilter(colorFilter);
+                im4_6.setImageDrawable(dr[2]);
+            }
+            else if (player.corY == lever.corY && player.corX < lever.corX) // Right
+            {
+                dr[4].setColorFilter(colorFilter);
+                im5_6.setImageDrawable(dr[4]);
+            }
+            else if (player.corY < lever.corY && player.corX < lever.corX) // Down right
+            {
+                dr[7].setColorFilter(colorFilter);
+                im6_6.setImageDrawable(dr[7]);
+            }
+            else if (player.corY < lever.corY && player.corX == lever.corX) // Down
+            {
+                dr[6].setColorFilter(colorFilter);
+                im6_5.setImageDrawable(dr[6]);
+            }
+            else if (player.corY < lever.corY && player.corX > lever.corX) // Down left
+            {
+                dr[5].setColorFilter(colorFilter);
+                im6_4.setImageDrawable(dr[5]);
+            }
+            else if (player.corY == lever.corY && player.corX > lever.corX) // Left
+            {
+                dr[3].setColorFilter(colorFilter);
+                im5_4.setImageDrawable(dr[3]);
+            }
+            else if (player.corY > lever.corY && player.corX > lever.corX) // Up left
+            {
+                dr[0].setColorFilter(colorFilter);
+                im4_4.setImageDrawable(dr[0]);
+            }
         }
     }
 
@@ -1879,6 +2009,20 @@ public class movement_logic extends map_generator
         }
     }
 
+    public void abi(int anum)
+    {
+        switch(anum)
+        {
+            case 1:
+                enemySence();
+                break;
+
+            case 2:
+                sonar();
+                break;
+        }
+    }
+
     public void playerMove (int a)
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
@@ -2054,7 +2198,7 @@ public class movement_logic extends map_generator
             if (b.equals("easy"))
                 mapDrawScreen();
 
-            if (b.equals("hard") || a == 9)
+            else if (b.equals("hard") || a == 9)
             {
                 if (flashlight == 1)
                 {
@@ -2065,8 +2209,7 @@ public class movement_logic extends map_generator
                 else
                 {
                     mapDrawDarkScreen();
-                    if (ability == 1)
-                        enemySence();
+                    abi(ability);
                 }
             }
 
@@ -2081,8 +2224,7 @@ public class movement_logic extends map_generator
                 else
                 {
                     mapDrawDarkScreen();
-                    if (ability == 1)
-                        enemySence();
+                    abi(ability);
                 }
             }
         }
