@@ -3,7 +3,6 @@ package com.kalk.darkness;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.*;
 
 public class mob extends AppCompatActivity
 {
@@ -13,7 +12,7 @@ public class mob extends AppCompatActivity
     public String helper2 = "empty_tile";
     public boolean isHere = false;
 
-    private static final int[][] DIRECTIONS =
+    private final int[][] DIRECTIONS =
             {
                     {0, -1},  // 1: Вверх
                     {1, -1},  // 2: Вверх и вправо (диагональ)
@@ -28,7 +27,7 @@ public class mob extends AppCompatActivity
     private static int[][] distanceMap;
     private static int[][] directionMap;
 
-    public static void computeFlowField(String[][] map, int endX, int endY, int mobType)
+    public void computeFlowField(String[][] map, int endX, int endY, int mobType)
     {
         int width = map.length;
         int height = map[0].length;
@@ -91,7 +90,7 @@ public class mob extends AppCompatActivity
         }
     }
 
-    public static int getDirection(int x, int y)
+    public int getDirection(int x, int y)
     {
         if (x < 0 || y < 0 || x >= directionMap.length || y >= directionMap[0].length)
         {
@@ -100,7 +99,7 @@ public class mob extends AppCompatActivity
         return directionMap[x][y];
     }
 
-    private static boolean isWalkable(String[][] map, int x, int y)
+    private boolean isWalkable(String[][] map, int x, int y)
     {
         if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
         {
@@ -119,7 +118,7 @@ public class mob extends AppCompatActivity
         return helperCell;
     }
 
-    private static int calculateDirection(int x, int y, int mobType)
+    private int calculateDirection(int x, int y, int mobType)
     {
         int minDistance = distanceMap[x][y];
         int bestDirection = 9; // По умолчанию — случайное направление
@@ -146,7 +145,7 @@ public class mob extends AppCompatActivity
         return bestDirection;
     }
 
-    private static boolean canMove(int direction, int mobType)
+    private boolean canMove(int direction, int mobType)
     {
         switch (mobType) {
             case 1: // Только вертикали и горизонтали (1 клетка)

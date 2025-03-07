@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class movement_logic extends map_generator
@@ -21,8 +20,9 @@ public class movement_logic extends map_generator
     int krotDim = 9;
     int krotMoves = 0;
     int ability = 0;
-    public static int gameIn = 0;
-    static public String[][] map = new String[32][32];
+    int gameIn = 0;
+    String[][] map = new String[32][32];
+    map_generator genchik = new map_generator;
 
     public void gameplayInit()
     {
@@ -45,7 +45,7 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            map = map_generator.mapThrower(score, hard);
+            map = genchik.mapThrower(score, hard);
 
             scores.setText("Score: " + score);
         }
@@ -140,25 +140,26 @@ public class movement_logic extends map_generator
             startActivity(pip);
         }
 
-        if(portals[0].isHere)
+
+        if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
         {
-            if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
-            {
-                map[player.corY][player.corX] = "portal_tile";
+            map[player.corY][player.corX] = "portal_tile";
 
-                player.corX = portals[1].corX;
-                player.corY = portals[1].corY;
+            player.corX = portals[1].corX;
+            player.corY = portals[1].corY;
 
-                map[player.corY][player.corX] = "portal_tile";
+            map[player.corY][player.corX] = "portal_tile";
 
-                needToTeleport = 0;
-            }
+            needToTeleport = 0;
+        }
 
+        if (portals[0].isHere)
+        {
             if (player.corY == portals[1].corY && player.corX == portals[1].corX && needToTeleport == 1)
             {
                 map[player.corY][player.corX] = "portal_tile";
 
-                if (portals.length > 3)
+                if (portals.length > 2)
                 {
                     player.corX = portals[2].corX;
                     player.corY = portals[2].corY;
@@ -174,107 +175,108 @@ public class movement_logic extends map_generator
 
                 needToTeleport = 0;
             }
+        }
 
-            if (portals.length > 2)
+        if (portals.length > 2)
+        {
+            if (player.corY == portals[2].corY && player.corX == portals[2].corX && needToTeleport == 1)
             {
-                if (player.corY == portals[2].corY && player.corX == portals[2].corX && needToTeleport == 1)
+                map[player.corY][player.corX] = "portal_tile";
+
+                if (portals.length > 3)
                 {
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    if (portals.length > 4)
-                    {
-                        player.corX = portals[3].corX;
-                        player.corY = portals[3].corY;
-                    }
-
-                    else
-                    {
-                        player.corX = portals[0].corX;
-                        player.corY = portals[0].corY;
-                    }
-
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    needToTeleport = 0;
+                    player.corX = portals[3].corX;
+                    player.corY = portals[3].corY;
                 }
-            }
-
-            if (portals.length > 3)
-            {
-                if (player.corY == portals[3].corY && player.corX == portals[3].corX && needToTeleport == 1)
-                {
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    if (portals.length > 4)
-                    {
-                        player.corX = portals[4].corX;
-                        player.corY = portals[4].corY;
-                    }
-
-                    else
-                    {
-                        player.corX = portals[0].corX;
-                        player.corY = portals[0].corY;
-                    }
-
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    needToTeleport = 0;
-                }
-            }
-
-            if (portals.length > 4)
-            {
-                if (player.corY == portals[4].corY && player.corX == portals[4].corX && needToTeleport == 1)
-                {
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    if (portals.length > 5)
-                    {
-                        player.corX = portals[5].corX;
-                        player.corY = portals[5].corY;
-                    }
-
-                    else
-                    {
-                        player.corX = portals[0].corX;
-                        player.corY = portals[0].corY;
-                    }
-
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    needToTeleport = 0;
-                }
-            }
-
-            if (portals.length > 6)
-            {
-                if (player.corY == portals[5].corY && player.corX == portals[5].corX && needToTeleport == 1)
-                {
-                    map[player.corY][player.corX] = "portal_tile";
-
-
-                    player.corX = portals[0].corX;
-                    player.corY = portals[0].corY;
-
-
-                    map[player.corY][player.corX] = "portal_tile";
-
-                    needToTeleport = 0;
-                }
-            }
-
-            if (power.corY == player.corY && power.corX == player.corX)
-            {
-                if (settings.getString("difficulty", "").equals("easy"))
-                    ability = 2;
 
                 else
                 {
-                    ability = rar.nextInt(2) + 1;
+                    player.corX = portals[0].corX;
+                    player.corY = portals[0].corY;
                 }
+
+                map[player.corY][player.corX] = "portal_tile";
+
+                needToTeleport = 0;
             }
         }
+
+        if (portals.length > 3)
+        {
+            if (player.corY == portals[3].corY && player.corX == portals[3].corX && needToTeleport == 1)
+            {
+                map[player.corY][player.corX] = "portal_tile";
+
+                if (portals.length > 4)
+                {
+                    player.corX = portals[4].corX;
+                    player.corY = portals[4].corY;
+                }
+
+                else
+                {
+                    player.corX = portals[0].corX;
+                    player.corY = portals[0].corY;
+                }
+
+                map[player.corY][player.corX] = "portal_tile";
+
+                needToTeleport = 0;
+            }
+        }
+
+        if (portals.length > 4)
+        {
+            if (player.corY == portals[4].corY && player.corX == portals[4].corX && needToTeleport == 1)
+            {
+                map[player.corY][player.corX] = "portal_tile";
+
+                if (portals.length > 5)
+                {
+                    player.corX = portals[5].corX;
+                    player.corY = portals[5].corY;
+                }
+
+                else
+                {
+                    player.corX = portals[0].corX;
+                    player.corY = portals[0].corY;
+                }
+
+                map[player.corY][player.corX] = "portal_tile";
+
+                needToTeleport = 0;
+            }
+        }
+
+        if (portals.length > 5)
+        {
+            if (player.corY == portals[5].corY && player.corX == portals[5].corX && needToTeleport == 1)
+            {
+                map[player.corY][player.corX] = "portal_tile";
+
+
+                player.corX = portals[0].corX;
+                player.corY = portals[0].corY;
+
+
+                map[player.corY][player.corX] = "portal_tile";
+
+                needToTeleport = 0;
+            }
+        }
+
+        if (power.corY == player.corY && power.corX == player.corX)
+        {
+            if (settings.getString("difficulty", "").equals("easy"))
+                ability = 2;
+
+            else
+            {
+                ability = rar.nextInt(2) + 1;
+            }
+        }
+
     }
 
     private void setTileImage(ImageView imageView, int y, int x)

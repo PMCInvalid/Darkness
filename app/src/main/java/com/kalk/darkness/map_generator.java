@@ -2,44 +2,38 @@ package com.kalk.darkness;
 
 import static java.lang.Math.*;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Random;
 
 public class map_generator extends mob
 {
     static Random rand = new Random();
 
-
     static public String[][] map = new String[32][32];
 
-    static mob player = new mob();
-    static mob extr = new mob();
-    static mob lever = new mob();
-    static mob door = new mob();
-    static mob peshka = new mob();
-    static mob slon = new mob();
-    static mob sKorol = new mob();
-    static mob medved = new mob();
-    static mob bolshoj = new mob();
-    static mob krot = new mob();
-    static mob power = new mob();
-    static mob[] portals;
+    mob player = new mob();
+    mob extr = new mob();
+    mob lever = new mob();
+    mob door = new mob();
+    mob peshka = new mob();
+    mob slon = new mob();
+    mob sKorol = new mob();
+    mob medved = new mob();
+    mob bolshoj = new mob();
+    mob krot = new mob();
+    mob power = new mob();
+    mob[] portals;
 
-    public static String[][] mapThrower(double points, String hard)
+    public String[][] mapThrower(double points, String hard)
     {
         emptySetter();
         wallGen();
-        extrGen(points, hard);
+        objectsGen(points, hard);
         mobGen(points, hard);
 
         return map;
     }
 
-    public static void emptySetter()
+    public void emptySetter()
     {
         for (int i = 0; i < 32; i++)
         {
@@ -62,7 +56,7 @@ public class map_generator extends mob
         }
     }
 
-    public static void wallGen()
+    public void wallGen()
     {
         for (int i = 0; i <= 25;)
         {
@@ -232,7 +226,7 @@ public class map_generator extends mob
         }
     }
 
-    public static boolean check(int corYStart, int corXStart, int corYTarget, int corXTarget, int mobtype)
+    public boolean check(int corYStart, int corXStart, int corYTarget, int corXTarget, int mobtype)
     {
         boolean result = false;
 
@@ -246,344 +240,15 @@ public class map_generator extends mob
         return result;
     }
 
-    public static boolean find(int y, int x, String target)
+    public boolean find(int y, int x, String target)
     {
         boolean sol = true;
 
         return sol;
     }
 
-    public static void mobGen(double points, String level)
+    public void extractionGen()
     {
-        int helper = 1;
-        int spawnChance = 0;
-
-        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot, power};
-
-        boolean isNearEnemy = false;
-        for (mob m : mobs)
-        {
-            m.corX = -1;
-            m.corY = -1;
-            m.isHere = false;
-        }
-
-        if (level.equals("easy"))
-        {
-            while (helper == 1) // Player
-            {
-                int a = (rand.nextInt(27) + 2);
-                int b = (rand.nextInt(27) + 2);
-
-                boolean solution = check(a, b, extr.corY, extr.corY, 3);
-
-                if (solution) {
-                    player.corX = b;
-                    player.corY = a;
-
-                    map[player.corY][player.corX] = "player_tile";
-
-                    player.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            if (points >= 1) // Peshka
-            {
-                while (helper == 1) {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    boolean solution = check(a, b, player.corY, player.corX, 1);
-
-                    if (solution) {
-                        peshka.corY = a;
-                        peshka.corX = b;
-
-                        map[peshka.corY][peshka.corX] = "peshka_tile";
-
-                        peshka.isHere = true;
-
-                        helper = 0;
-                    }
-                }
-                helper = 1;
-            }
-
-            if (points >= 2) // Slon
-            {
-                while (helper == 1) {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    boolean solution = check(a, b, player.corY, player.corX , 3);
-
-                    if (solution) {
-                        slon.corY = a;
-                        slon.corX = b;
-
-                        map[slon.corY][slon.corX] = "slon_tile";
-
-                        slon.isHere = true;
-
-                        helper = 0;
-                    }
-                }
-                helper = 1;
-            }
-
-            if (points >= 3) // Skorol
-            {
-                while (helper == 1) {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    boolean solution = check(a, b, player.corY, player.corX , 3);
-
-                    if (solution) {
-                        sKorol.corY = a;
-                        sKorol.corX = b;
-
-                        map[sKorol.corY][sKorol.corX] = "sking_tile";
-
-                        sKorol.isHere = true;
-
-                        helper = 0;
-                    }
-                }
-                helper = 1;
-            }
-
-            if (points >= 4) // Medved
-            {
-                while (helper == 1) {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    boolean solution = check(a, b, player.corY, player.corX , 3);
-
-                    if (solution) {
-                        medved.corY = a;
-                        medved.corX = b;
-
-                        map[medved.corY][medved.corX] = "medved_tile";
-
-                        medved.isHere = true;
-
-                        helper = 0;
-                    }
-                }
-                helper = 1;
-            }
-            if (points >= 5.5)
-            {
-                spawnChance = rand.nextInt(101);
-
-                if (spawnChance % 2 == 0)
-                {
-                    while (helper == 1) // Krot
-                    {
-                        int a = (rand.nextInt(28) + 2);
-                        int b = (rand.nextInt(28) + 2);
-
-                        krot.corY = a;
-                        krot.corX = b;
-
-                        map[krot.corY][krot.corX] = "bolshoj_b_tile";
-
-                        krot.isHere = true;
-
-                        helper = 0;
-                    }
-                    helper = 1;
-                }
-            }
-            if (points >= 7)
-            {
-                spawnChance = rand.nextInt(101);
-
-                if (spawnChance % 2 == 0)
-                {
-                    while (helper == 1) // Bolshoj brat
-                    {
-                        int a = (rand.nextInt(28) + 2);
-                        int b = (rand.nextInt(28) + 2);
-
-                        boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                        if (solution) {
-                            bolshoj.corY = a;
-                            bolshoj.corX = b;
-
-                            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
-
-                            bolshoj.isHere = true;
-
-                            helper = 0;
-                        }
-                    }
-                    helper = 1;
-                }
-            }
-        }
-
-        else
-        {
-            while (helper == 1) // Player
-            {
-                int a = (rand.nextInt(27) + 2);
-                int b = (rand.nextInt(27) + 2);
-
-                boolean solution = check(a, b, extr.corY, extr.corX, 3);
-
-                if (solution) {
-                    player.corX = a;
-                    player.corY = b;
-
-                    map[player.corY][player.corX] = "player_tile";
-
-                    player.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            while (helper == 1) // Peshka
-            {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                if (solution)
-                {
-                    peshka.corY = a;
-                    peshka.corX = b;
-
-                    map[peshka.corY][peshka.corX] = "peshka_tile";
-
-                    peshka.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            while (helper == 1) // Slon
-            {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                if (solution)
-                {
-                    slon.corY = a;
-                    slon.corX = b;
-
-                    map[slon.corY][slon.corX] = "slon_tile";
-
-                    slon.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            while (helper == 1) // Korol
-            {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                if (solution)
-                {
-                    sKorol.corY = a;
-                    sKorol.corX = b;
-
-                    map[sKorol.corY][sKorol.corX] = "sking_tile";
-
-                    sKorol.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            while (helper == 1) //Medved
-            {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                if (solution) {
-                    medved.corY = a;
-                    medved.corX = b;
-
-                    map[medved.corY][medved.corX] = "medved_tile";
-
-                    medved.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-
-            spawnChance = rand.nextInt(101);
-
-            if (spawnChance % 2 == 0)
-            {
-                while (helper == 1) // Bolshoj brat
-                {
-                    int a = (rand.nextInt(28) + 2);
-                    int b = (rand.nextInt(28) + 2);
-
-                    boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                    if (solution) {
-                        bolshoj.corY = a;
-                        bolshoj.corX = b;
-
-                        map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
-
-                        bolshoj.isHere = true;
-
-                        helper = 0;
-                    }
-                }
-                helper = 1;
-            }
-
-            while (helper == 1) // Krot
-            {
-                int a = (rand.nextInt(28) + 2);
-                int b = (rand.nextInt(28) + 2);
-
-                boolean solution = check(a, b, player.corY, player.corX, 3);
-
-                if (solution) {
-                    krot.corY = a;
-                    krot.corX = b;
-
-                    map[krot.corY][krot.corX] = "bolshoj_b_tile";
-
-                    krot.isHere = true;
-
-                    helper = 0;
-                }
-            }
-            helper = 1;
-        }
-    }
-
-    public static void extrGen(double points, String level)
-    {
-        Random rar = new Random();
         int helper = 1;
 
         while (helper == 1) // Extraction
@@ -603,98 +268,95 @@ public class map_generator extends mob
                 helper = 0;
             }
         }
-        helper = 1;
+    }
 
-        while (helper == 1) // Lever
+    public void leverGen()
+    {
+        int a = (rand.nextInt(28) + 2);
+        int b = (rand.nextInt(28) + 2);
+
+        boolean solution = check(a, b, extr.corY, extr.corX, 3);
+        int solution2 = 1;
+
+        if (abs(extr.corY - a) < 10 || abs(extr.corX - b) < 10)
         {
-            int a = (rand.nextInt(28) + 2);
-            int b = (rand.nextInt(28) + 2);
-
-            boolean solution = check(a, b, extr.corY, extr.corX, 3);
-            int solution2 = 1;
-
-            if (abs(extr.corY - a) < 10 || abs(extr.corX - b) < 10)
-            {
-                solution2 = 0;
-            }
-
-            if (solution && solution2 == 1)
-            {
-                lever.corY = a;
-                lever.corX = b;
-
-                map[lever.corY][lever.corX] = "lever_tile";
-
-                helper = 0;
-            }
-
-            solution2 = 1;
-        }
-        helper = 1;
-
-        while (helper == 1)
-        {
-            int a  = rand.nextInt(5);
-
-            if (a == 1)
-            {
-                a = rand.nextInt(17) + 2;
-
-                if (map[2][a].equals("empty_tile"))
-                {
-                    door.corY = 1;
-                    door.corX = a;
-                    map[door.corY][door.corX] = "door_tile";
-                    helper = 0;
-                }
-            }
-
-            else if (a == 2)
-            {
-                a = rand.nextInt(17) + 2;
-
-                if (map[a][2].equals("empty_tile"))
-                {
-                    door.corY = a;
-                    door.corX = 1;
-
-                    map[door.corY][door.corX] = "door_tile";
-                    helper = 0;
-                }
-            }
-
-            else if (a == 3)
-            {
-                a = rand.nextInt(17) + 2;
-
-                if (map[29][a].equals("empty_tile"))
-                {
-                    door.corY = 30;
-                    door.corX = a;
-
-                    map[door.corY][door.corX] = "door_tile";
-                    helper = 0;
-                }
-            }
-
-            if (a == 4)
-            {
-                a = rand.nextInt(17) + 2;
-
-                if (map[a][29].equals("empty_tile"))
-                {
-                    door.corY = a;
-                    door.corX = 30;
-
-                    map[door.corY][door.corX] = "door_tile";
-                    helper = 0;
-                }
-            }
-
-
+            solution2 = 0;
         }
 
-        int s = rar.nextInt(5) + 2;
+        if (solution && solution2 == 1)
+        {
+            lever.corY = a;
+            lever.corX = b;
+
+            map[lever.corY][lever.corX] = "lever_tile";
+        }
+
+        else
+        {
+            extractionGen();
+            leverGen();
+        }
+    }
+
+    public void doorGen()
+    {
+        int a  = rand.nextInt(5);
+
+        if (a == 1)
+        {
+            a = rand.nextInt(17) + 2;
+
+            if (map[2][a].equals("empty_tile"))
+            {
+                door.corY = 1;
+                door.corX = a;
+                map[door.corY][door.corX] = "door_tile";
+            }
+        }
+
+        else if (a == 2)
+        {
+            a = rand.nextInt(17) + 2;
+
+            if (map[a][2].equals("empty_tile"))
+            {
+                door.corY = a;
+                door.corX = 1;
+
+                map[door.corY][door.corX] = "door_tile";
+            }
+        }
+
+        else if (a == 3)
+        {
+            a = rand.nextInt(17) + 2;
+
+            if (map[29][a].equals("empty_tile"))
+            {
+                door.corY = 30;
+                door.corX = a;
+
+                map[door.corY][door.corX] = "door_tile";
+            }
+        }
+
+        if (a == 4)
+        {
+            a = rand.nextInt(17) + 2;
+
+            if (map[a][29].equals("empty_tile"))
+            {
+                door.corY = a;
+                door.corX = 30;
+
+                map[door.corY][door.corX] = "door_tile";
+            }
+        }
+    }
+
+    public void portalsGen(int amount)
+    {
+        int s = amount;
 
         portals = new mob[s];
 
@@ -703,83 +365,255 @@ public class map_generator extends mob
             portals[i] = new mob();
         }
 
-        helper = portals.length;
+        while (s > 0)
+        {
+            int y = rand.nextInt(27) + 2;
+            int x = rand.nextInt(27) + 2;
+
+            boolean solution = check(y, x, y + 2, x + 2,  3);
+
+            if (solution)
+            {
+                portals[s - 1].corY = y;
+                portals[s - 1].corX = x;
+                map[portals[s - 1].corY][portals[s - 1].corX] = "portal_tile";
+                portals[s - 1].isHere = true;
+
+                s--;
+            }
+        }
+    }
+
+    public void powerGen()
+    {
+        int y = rand.nextInt(27) + 2;
+        int x = rand.nextInt(27) + 2;
+
+        boolean solution = check(y, x, y, x, 3);
+
+        if (solution)
+        {
+            power.corY = y;
+            power.corX = x;
+
+            map[power.corY][power.corX] = "power_tile";
+        }
+
+        else
+            powerGen();
+    }
+
+    public void objectsGen(double points, String level)
+    {
+        Random rar = new Random();
+
+        extractionGen();
+
+        leverGen();
+
+        doorGen();
+
+        int s = rar.nextInt(5) + 2;
+        if (level.equals("easy"))
+            if (points >= 3)
+                portalsGen(s);
+
+        else
+            portalsGen(s);
 
         s = rar.nextInt(101);
+        if (s % 4 == 0)
+            powerGen();
+    }
+
+    public void playerSpawn()
+    {
+        int a = (rand.nextInt(27) + 2);
+        int b = (rand.nextInt(27) + 2);
+
+        boolean solution = check(a, b, extr.corY, extr.corY, 3);
+
+        if (solution)
+        {
+            player.corX = b;
+            player.corY = a;
+
+            map[player.corY][player.corX] = "player_tile";
+
+            player.isHere = true;
+        }
+
+        else
+            playerSpawn();
+    }
+
+    public void peshkaSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX, 1);
+
+        if (solution)
+        {
+            peshka.corY = y;
+            peshka.corX = x;
+
+            map[peshka.corY][peshka.corX] = "peshka_tile";
+
+            peshka.isHere = true;
+        }
+        else
+            peshkaSpawn();
+    }
+
+    public void slonSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX , 3);
+
+        if (solution) {
+            slon.corY = y;
+            slon.corX = x;
+
+            map[slon.corY][slon.corX] = "slon_tile";
+
+            slon.isHere = true;
+        }
+        else
+            slonSpawn();
+    }
+
+    public void sKorolSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX , 3);
+
+        if (solution)
+        {
+            sKorol.corY = y;
+            sKorol.corX = x;
+
+            map[sKorol.corY][sKorol.corX] = "sking_tile";
+
+            sKorol.isHere = true;
+        }
+
+        else
+            sKorolSpawn();
+    }
+
+    public void medvedSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX , 3);
+
+        if (solution) {
+            medved.corY = y;
+            medved.corX = x;
+
+            map[medved.corY][medved.corX] = "medved_tile";
+
+            medved.isHere = true;
+        }
+        else
+            medvedSpawn();
+    }
+
+    public void krotSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        krot.corY = y;
+        krot.corX = x;
+
+        map[krot.corY][krot.corX] = "krot_tile";
+
+        krot.isHere = true;
+    }
+
+    public void bolshojSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX, 3);
+
+        if (solution) {
+            bolshoj.corY = y;
+            bolshoj.corX = x;
+
+            map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
+
+            bolshoj.isHere = true;
+        }
+        else
+            bolshojSpawn();
+    }
+
+    public void mobGen(double points, String level)
+    {
+        int helper = 1;
+        int spawnChance = 0;
+        spawnChance = rand.nextInt(101);
+
+        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot, power};
+
+        boolean isNearEnemy = false;
+        for (mob m : mobs)
+        {
+            m.corX = -1;
+            m.corY = -1;
+            m.isHere = false;
+        }
+
+        playerSpawn();
 
         if (level.equals("easy"))
         {
-            if (points > 3)
-            {
-                if (s % 2 == 0)
-                {
-                    while (helper > 0) // Portals
-                    {
-                        int y = rand.nextInt(27) + 2;
-                        int x = rand.nextInt(27) + 2;
+            if (points >= 1)
+                peshkaSpawn();
 
-                        boolean solution = check(y, x, y + 2, x + 2,  3);
+            if (points >= 2)
+                slonSpawn();
 
-                        if (solution)
-                        {
-                            portals[helper - 1].corY = y;
-                            portals[helper - 1].corX = x;
-                            map[portals[helper - 1].corY][portals[helper - 1].corX] = "portal_tile";
-                            portals[helper - 1].isHere = true;
+            if (points >= 3)
+                sKorolSpawn();
 
-                            helper--;
-                        }
-                    }
-                }
-            }
+            if (points >= 4)
+                medvedSpawn();
+
+            if (points >= 5.5)
+                if (spawnChance % 2 == 0)
+                    krotSpawn();
+
+            if (points >= 7)
+                if (spawnChance % 2 == 0)
+                    bolshojSpawn();
         }
 
         else
         {
-            if (s % 2 == 0)
-            {
-                while (helper > 0) // Portals
-                {
-                    int y = rand.nextInt(27) + 2;
-                    int x = rand.nextInt(27) + 2;
+            peshkaSpawn();
 
-                    boolean solution = check(y, x, y + 2, x + 2, 3);
+            slonSpawn();
 
-                    if (solution)
-                    {
-                        portals[helper - 1].corY = y;
-                        portals[helper - 1].corX = x;
-                        map[portals[helper - 1].corY][portals[helper - 1].corX] = "portal_tile";
-                        portals[helper - 1].isHere = true;
+            sKorolSpawn();
 
-                        helper--;
-                    }
-                }
-            }
+            medvedSpawn();
 
-            helper = 1;
+            if (spawnChance % 3 == 0)
+                bolshojSpawn();
 
-            if (s % 4 == 0)
-            {
-                while (helper > 0) // Powers
-                {
-                    int y = rand.nextInt(27) + 2;
-                    int x = rand.nextInt(27) + 2;
-
-                    boolean solution = check(y, x, y, x, 3);
-
-                    if (solution)
-                    {
-                        power.corY = y;
-                        power.corX = x;
-
-                        map[power.corY][power.corX] = "power_tile";
-
-                        helper--;
-                    }
-                }
-            }
+            if (spawnChance % 2 == 0)
+                krotSpawn();
         }
-        helper = 1;
     }
 }
