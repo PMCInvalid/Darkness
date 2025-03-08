@@ -12,7 +12,7 @@ public class mob extends AppCompatActivity
     public String helper2 = "empty_tile";
     public boolean isHere = false;
 
-    private final int[][] DIRECTIONS =
+    private static final int[][] DIRECTIONS =
             {
                     {0, -1},  // 1: Вверх
                     {1, -1},  // 2: Вверх и вправо (диагональ)
@@ -27,7 +27,7 @@ public class mob extends AppCompatActivity
     private static int[][] distanceMap;
     private static int[][] directionMap;
 
-    public void computeFlowField(String[][] map, int endX, int endY, int mobType)
+    public static void computeFlowField(String[][] map, int endX, int endY, int mobType)
     {
         int width = map.length;
         int height = map[0].length;
@@ -90,7 +90,7 @@ public class mob extends AppCompatActivity
         }
     }
 
-    public int getDirection(int x, int y)
+    public static int getDirection(int x, int y)
     {
         if (x < 0 || y < 0 || x >= directionMap.length || y >= directionMap[0].length)
         {
@@ -99,7 +99,7 @@ public class mob extends AppCompatActivity
         return directionMap[x][y];
     }
 
-    private boolean isWalkable(String[][] map, int x, int y)
+    private static boolean isWalkable(String[][] map, int x, int y)
     {
         if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
         {
@@ -118,7 +118,7 @@ public class mob extends AppCompatActivity
         return helperCell;
     }
 
-    private int calculateDirection(int x, int y, int mobType)
+    private static int calculateDirection(int x, int y, int mobType)
     {
         int minDistance = distanceMap[x][y];
         int bestDirection = 9; // По умолчанию — случайное направление
@@ -145,7 +145,7 @@ public class mob extends AppCompatActivity
         return bestDirection;
     }
 
-    private boolean canMove(int direction, int mobType)
+    private static boolean canMove(int direction, int mobType)
     {
         switch (mobType) {
             case 1: // Только вертикали и горизонтали (1 клетка)

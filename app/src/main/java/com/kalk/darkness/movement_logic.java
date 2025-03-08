@@ -22,7 +22,6 @@ public class movement_logic extends map_generator
     int ability = 0;
     int gameIn = 0;
     String[][] map = new String[32][32];
-    map_generator genchik = new map_generator();
 
     public void gameplayInit()
     {
@@ -45,7 +44,9 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            map = genchik.mapThrower(score, hard);
+            map = map_generator.mapThrower(score, hard);
+
+            System.out.println(player.corY + " " +  player.corX);
 
             scores.setText("Score: " + score);
         }
@@ -82,7 +83,6 @@ public class movement_logic extends map_generator
         if (peshka.corX == player.corX && peshka.corY == player.corY)
         {
             editor.putString("score", String.valueOf(score));
-            System.out.println("Score live - " + String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -140,21 +140,20 @@ public class movement_logic extends map_generator
             startActivity(pip);
         }
 
-
-        if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
+        if (portals.length > 1)
         {
-            map[player.corY][player.corX] = "portal_tile";
+            if (player.corY == portals[0].corY && player.corX == portals[0].corX && needToTeleport == 1)
+            {
+                map[player.corY][player.corX] = "portal_tile";
 
-            player.corX = portals[1].corX;
-            player.corY = portals[1].corY;
+                player.corX = portals[1].corX;
+                player.corY = portals[1].corY;
 
-            map[player.corY][player.corX] = "portal_tile";
+                map[player.corY][player.corX] = "portal_tile";
 
-            needToTeleport = 0;
-        }
+                needToTeleport = 0;
+            }
 
-        if (portals[0].isHere)
-        {
             if (player.corY == portals[1].corY && player.corX == portals[1].corX && needToTeleport == 1)
             {
                 map[player.corY][player.corX] = "portal_tile";

@@ -2,6 +2,8 @@ package com.kalk.darkness;
 
 import static java.lang.Math.*;
 
+import androidx.annotation.NonNull;
+
 import java.util.Random;
 
 public class map_generator extends mob
@@ -10,20 +12,20 @@ public class map_generator extends mob
 
     static public String[][] map = new String[32][32];
 
-    mob player = new mob();
-    mob extr = new mob();
-    mob lever = new mob();
-    mob door = new mob();
-    mob peshka = new mob();
-    mob slon = new mob();
-    mob sKorol = new mob();
-    mob medved = new mob();
-    mob bolshoj = new mob();
-    mob krot = new mob();
-    mob power = new mob();
-    mob[] portals;
+    static mob player = new mob();
+    static mob extr = new mob();
+    static mob lever = new mob();
+    static mob door = new mob();
+    static mob peshka = new mob();
+    static mob slon = new mob();
+    static mob sKorol = new mob();
+    static mob medved = new mob();
+    static mob bolshoj = new mob();
+    static mob krot = new mob();
+    static mob power = new mob();
+    static mob[] portals;
 
-    public String[][] mapThrower(double points, String hard)
+    public static String[][] mapThrower(double points, String hard)
     {
         emptySetter();
         wallGen();
@@ -33,7 +35,7 @@ public class map_generator extends mob
         return map;
     }
 
-    public void emptySetter()
+    public static void emptySetter()
     {
         for (int i = 0; i < 32; i++)
         {
@@ -56,7 +58,7 @@ public class map_generator extends mob
         }
     }
 
-    public void wallGen()
+    public static void wallGen()
     {
         for (int i = 0; i <= 25;)
         {
@@ -226,7 +228,7 @@ public class map_generator extends mob
         }
     }
 
-    public boolean check(int corYStart, int corXStart, int corYTarget, int corXTarget, int mobtype)
+    public static boolean check(int corYStart, int corXStart, int corYTarget, int corXTarget, int mobtype)
     {
         boolean result = false;
 
@@ -247,7 +249,7 @@ public class map_generator extends mob
         return sol;
     }
 
-    public void extractionGen()
+    public static void extractionGen()
     {
         int helper = 1;
 
@@ -270,7 +272,7 @@ public class map_generator extends mob
         }
     }
 
-    public void leverGen()
+    public static void leverGen()
     {
         int a = (rand.nextInt(28) + 2);
         int b = (rand.nextInt(28) + 2);
@@ -293,12 +295,11 @@ public class map_generator extends mob
 
         else
         {
-            extractionGen();
             leverGen();
         }
     }
 
-    public void doorGen()
+    public static void doorGen()
     {
         int a  = rand.nextInt(5);
 
@@ -354,16 +355,9 @@ public class map_generator extends mob
         }
     }
 
-    public void portalsGen(int amount)
+    public static void portalsGen(int amount)
     {
         int s = amount;
-
-        portals = new mob[s];
-
-        for (int i = 0; i < portals.length; i++)
-        {
-            portals[i] = new mob();
-        }
 
         while (s > 0)
         {
@@ -384,12 +378,14 @@ public class map_generator extends mob
         }
     }
 
-    public void powerGen()
+    public static void powerGen()
     {
         int y = rand.nextInt(27) + 2;
         int x = rand.nextInt(27) + 2;
 
-        boolean solution = check(y, x, y, x, 3);
+        boolean solution = check(y, x, y + 2, x + 2, 3);
+
+        System.out.println(solution);
 
         if (solution)
         {
@@ -403,7 +399,7 @@ public class map_generator extends mob
             powerGen();
     }
 
-    public void objectsGen(double points, String level)
+    public static void objectsGen(double points, @NonNull String level)
     {
         Random rar = new Random();
         int s;
@@ -415,6 +411,11 @@ public class map_generator extends mob
         doorGen();
 
         s = rar.nextInt(5) + 2;
+        portals = new mob[s];
+        for (int i = 0; i < portals.length; i++)
+        {
+            portals[i] = new mob();
+        }
         if (level.equals("easy"))
             if (points >= 3)
                 portalsGen(s);
@@ -427,7 +428,7 @@ public class map_generator extends mob
             powerGen();
     }
 
-    public void playerSpawn()
+    public static void playerSpawn()
     {
         int a = (rand.nextInt(27) + 2);
         int b = (rand.nextInt(27) + 2);
@@ -448,7 +449,7 @@ public class map_generator extends mob
             playerSpawn();
     }
 
-    public void peshkaSpawn()
+    public static void peshkaSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -468,7 +469,7 @@ public class map_generator extends mob
             peshkaSpawn();
     }
 
-    public void slonSpawn()
+    public static void slonSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -487,7 +488,7 @@ public class map_generator extends mob
             slonSpawn();
     }
 
-    public void sKorolSpawn()
+    public static void sKorolSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -508,7 +509,7 @@ public class map_generator extends mob
             sKorolSpawn();
     }
 
-    public void medvedSpawn()
+    public static void medvedSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -527,7 +528,7 @@ public class map_generator extends mob
             medvedSpawn();
     }
 
-    public void krotSpawn()
+    public static void krotSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -540,7 +541,7 @@ public class map_generator extends mob
         krot.isHere = true;
     }
 
-    public void bolshojSpawn()
+    public static void bolshojSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
@@ -559,7 +560,7 @@ public class map_generator extends mob
             bolshojSpawn();
     }
 
-    public void mobGen(double points, String level)
+    public static void mobGen(double points, String level)
     {
         int helper = 1;
         int spawnChance = 0;
@@ -596,7 +597,7 @@ public class map_generator extends mob
                     krotSpawn();
 
             if (points >= 7)
-                if (spawnChance % 2 == 0)
+                if (spawnChance % 3 == 0)
                     bolshojSpawn();
         }
 
