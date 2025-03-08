@@ -70,7 +70,7 @@ public class gameplay extends movement_logic
     public void test()
     {
         System.out.println(player.corY + " " + player.corX);
-        System.out.println("-----");
+        System.out.println("-------");
         System.out.println(power.corY + " " + power.corX);
     }
 }

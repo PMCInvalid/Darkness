@@ -23,7 +23,6 @@ public class movement_logic extends map_generator
     int krotMoves = 0;
     int ability = 0;
     int gameIn = 0;
-    String[][] map = new String[32][32];
 
     public void gameplayInit()
     {
@@ -47,8 +46,6 @@ public class movement_logic extends map_generator
             opengate = 0;
 
             map = map_generator.mapThrower(score, hard);
-
-            System.out.println(player.corY + " " +  player.corX);
 
             scores.setText("Score: " + score);
         }
@@ -131,6 +128,18 @@ public class movement_logic extends map_generator
         }
 
         if (krot.corX == player.corX && krot.corY == player.corY)
+        {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
+            gameIn = 0;
+            score = 0;
+            ability = 0;
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
+        }
+
+        if (gonchaja.corY == player.corY && gonchaja.corX == player.corX)
         {
             editor.putString("score", String.valueOf(score));
             editor.apply();
@@ -269,8 +278,11 @@ public class movement_logic extends map_generator
 
         if (power.corY == player.corY && power.corX == player.corX)
         {
+
             if (settings.getString("difficulty", "").equals("easy"))
+            {
                 ability = 2;
+            }
 
             else
             {
@@ -2012,26 +2024,119 @@ public class movement_logic extends map_generator
         }
     }
 
-    public int[] gonScan(int range)
+    public boolean gonScan(int range)
     {
-        int[] targetCor = new int [2];
+        boolean playerIsHere = false;
 
-        targetCor[0] = gonchaja.corY;
-        targetCor[1] = gonchaja.corY;
-
-        for (int i = gonchaja.corY - range; i < gonchaja.corY + range; i++)
+        for (int i = gonchajaBaseY - range; i <= gonchajaBaseY + range; i++)
         {
-            for (int j = gonchaja.corX - range; j < gonchaja.corX + range; j++)
+            for (int j = gonchajaBaseX - range; j <= gonchajaBaseX + range; j++)
             {
-                if (map[i][j] == "player_tile")
-                {
-                    targetCor[0] = i;
-                    targetCor[1] = j;
-                }
+                if (map[i][j].equals("player_tile"))
+                    playerIsHere = true;
             }
         }
 
-        return targetCor;
+        return playerIsHere;
+    }
+
+    public void gonchajaMove()
+    {
+        boolean act = gonScan(gonTer);
+
+        int negr = 0;
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (act)
+            {
+                computeFlowField(map, player.corX, player.corY, 3);
+
+                negr = getDirection(gonchaja.corX, gonchaja.corY);
+            }
+            else
+            {
+                computeFlowField(map, gonchajaBaseX, gonchajaBaseY, 3);
+
+                negr = getDirection(gonchaja.corX, gonchaja.corY);
+            }
+
+            if (negr == 1)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY - 1][gonchaja.corX];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY -= 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 2)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY - 1][gonchaja.corX + 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY -= 1;
+                gonchaja.corX += 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 3)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY][gonchaja.corX + 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corX += 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 4)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY + 1][gonchaja.corX + 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY += 1;
+                gonchaja.corX += 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 5)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY + 1][gonchaja.corX];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY += 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 6)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY + 1][gonchaja.corX - 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY += 1;
+                gonchaja.corX -= 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 7)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY][gonchaja.corX - 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corX -= 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+
+            else if (negr == 8)
+            {
+                gonchaja.helper1 = gonchaja.helper2;
+                gonchaja.helper2 = map[gonchaja.corY - 1][gonchaja.corX - 1];
+                map[gonchaja.corY][gonchaja.corX] = gonchaja.helper1;
+                gonchaja.corY -= 1;
+                gonchaja.corX -= 1;
+                map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            }
+        }
     }
 
     public void abi(int anum)
@@ -2218,10 +2323,16 @@ public class movement_logic extends map_generator
             if (krot.isHere)
                 krotMove();
 
+            if (gonchaja.isHere)
+                gonchajaMove();
+
             gameLifeCheck();
 
             if (b.equals("easy"))
+            {
                 mapDrawScreen();
+                abi(ability);
+            }
 
             else if (b.equals("hard") || a == 9)
             {

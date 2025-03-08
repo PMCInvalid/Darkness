@@ -24,6 +24,9 @@ public class map_generator extends mob
     static mob krot = new mob();
     static mob power = new mob();
     static mob gonchaja = new mob();
+    static  int gonTer = 0;
+    static int gonchajaBaseX = -1;
+    static int gonchajaBaseY = -1;
     static mob[] portals;
 
     public static String[][] mapThrower(double points, String hard)
@@ -386,8 +389,6 @@ public class map_generator extends mob
 
         boolean solution = check(y, x, y + 2, x + 2, 3);
 
-        System.out.println(solution);
-
         if (solution)
         {
             power.corY = y;
@@ -431,15 +432,15 @@ public class map_generator extends mob
 
     public static void playerSpawn()
     {
-        int a = (rand.nextInt(27) + 2);
-        int b = (rand.nextInt(27) + 2);
+        int y = (rand.nextInt(27) + 2);
+        int x = (rand.nextInt(27) + 2);
 
-        boolean solution = check(a, b, extr.corY, extr.corY, 3);
+        boolean solution = check(y, x, extr.corY, extr.corY, 3);
 
         if (solution)
         {
-            player.corX = b;
-            player.corY = a;
+            player.corX = x;
+            player.corY = y;
 
             map[player.corY][player.corX] = "player_tile";
 
@@ -561,13 +562,58 @@ public class map_generator extends mob
             bolshojSpawn();
     }
 
+    public static void gonchajaSpawn()
+    {
+        gonTer = rand.nextInt(3) + 2;
+
+        int y = rand.nextInt(25) + 4;
+        int x = rand.nextInt(25) + 4;
+
+        boolean solution = check(y, x, y + 2, x + 2, 3);
+
+        if (solution)
+        {
+            gonchaja.corY = y;
+            gonchaja.corX = x;
+
+            for (int i = gonchaja.corY - gonTer; i <= gonchaja.corY + gonTer ;i++)
+            {
+                if (i >= map.length)
+                    break;
+                else
+                {
+                    for (int j = gonchaja.corX - gonTer; j <= gonchaja.corX + gonTer; j++)
+                    {
+                        if (j >= map.length)
+                            break;
+                        else
+                        {
+                            if (map[i][j] == "empty_tile")
+                                map[i][j] = "gonchaja_territory_tile";
+                        }
+                    }
+                }
+            }
+
+            map[gonchaja.corY][gonchaja.corX] = "gonchaja_tile";
+            gonchajaBaseY = gonchaja.corY;
+            gonchajaBaseX = gonchaja.corX;
+            gonchaja.isHere = true;
+            gonchaja.helper1 = "gonchaja_territory_tile";
+            gonchaja.helper2 = "gonchaja_territory_tile";
+        }
+
+        else
+            gonchajaSpawn();
+    }
+
     public static void mobGen(double points, String level)
     {
         int helper = 1;
         int spawnChance = 0;
         spawnChance = rand.nextInt(101);
 
-        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot, power};
+        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot};
 
         boolean isNearEnemy = false;
         for (mob m : mobs)
@@ -584,20 +630,24 @@ public class map_generator extends mob
             if (points >= 1)
                 peshkaSpawn();
 
-            if (points >= 2)
+            if (points >= 1.5)
                 slonSpawn();
 
-            if (points >= 3)
+            if (points >= 2.25)
                 sKorolSpawn();
 
-            if (points >= 4)
+            if (points >= 3)
                 medvedSpawn();
 
-            if (points >= 5.5)
+            if (points >= 3.5)
                 if (spawnChance % 2 == 0)
                     krotSpawn();
 
-            if (points >= 7)
+            if (points >= 4)
+                if (spawnChance % 2 == 0)
+                    gonchajaSpawn();
+
+            if (points >= 4.5)
                 if (spawnChance % 3 == 0)
                     bolshojSpawn();
         }
@@ -617,6 +667,9 @@ public class map_generator extends mob
 
             if (spawnChance % 2 == 0)
                 krotSpawn();
+
+            if (spawnChance % 2 == 0)
+                gonchajaSpawn();
         }
     }
 }
