@@ -23,6 +23,7 @@ public class map_generator extends mob
     static mob bolshoj = new mob();
     static mob krot = new mob();
     static mob power = new mob();
+    static mob gonchaja = new mob();
     static mob[] portals;
 
     public static String[][] mapThrower(double points, String hard)

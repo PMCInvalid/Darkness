@@ -9,6 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import java.util.Random;
 
 public class movement_logic extends map_generator
@@ -1079,7 +1081,7 @@ public class movement_logic extends map_generator
 
     }
 
-    public void drawSence(ImageView imka, int y, int x)
+    public void drawSence(@NonNull ImageView imka, int y, int x)
     {
         int color = Color.argb(128, 255, 0, 0);
         PorterDuffColorFilter colorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP);
@@ -2008,6 +2010,28 @@ public class movement_logic extends map_generator
                     krotMoves--;
             }
         }
+    }
+
+    public int[] gonScan(int range)
+    {
+        int[] targetCor = new int [2];
+
+        targetCor[0] = gonchaja.corY;
+        targetCor[1] = gonchaja.corY;
+
+        for (int i = gonchaja.corY - range; i < gonchaja.corY + range; i++)
+        {
+            for (int j = gonchaja.corX - range; j < gonchaja.corX + range; j++)
+            {
+                if (map[i][j] == "player_tile")
+                {
+                    targetCor[0] = i;
+                    targetCor[1] = j;
+                }
+            }
+        }
+
+        return targetCor;
     }
 
     public void abi(int anum)
