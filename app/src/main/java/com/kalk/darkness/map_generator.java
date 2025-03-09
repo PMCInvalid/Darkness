@@ -28,6 +28,7 @@ public class map_generator extends mob
     static int gonchajaBaseX = -1;
     static int gonchajaBaseY = -1;
     static mob[] portals;
+    static mob[][] rivers = new mob[3][15];
 
     public static String[][] mapThrower(double points, String hard)
     {
@@ -282,14 +283,8 @@ public class map_generator extends mob
         int b = (rand.nextInt(28) + 2);
 
         boolean solution = check(a, b, extr.corY, extr.corX, 3);
-        int solution2 = 1;
 
-        if (abs(extr.corY - a) < 10 || abs(extr.corX - b) < 10)
-        {
-            solution2 = 0;
-        }
-
-        if (solution && solution2 == 1)
+        if (solution)
         {
             lever.corY = a;
             lever.corX = b;
@@ -401,6 +396,142 @@ public class map_generator extends mob
             powerGen();
     }
 
+    public static void riverGen(int amount)
+    {
+        int corStartX = 0;
+        int corStartY = 0;
+        int leng = 0;
+
+        for (int i = 0; i < amount; i++)
+        {
+            int helper = 1;
+            while (helper == 1)
+            {
+                corStartY = rand.nextInt(28) + 2;
+                corStartX = rand.nextInt(28) + 2;
+
+                if (map[corStartY][corStartX].equals("wall_tile"))
+                {
+                    if (map[corStartY - 1][corStartX].equals("empty_tile"))
+                    {
+                        corStartY--;
+                        helper--;
+                        rivers[i][0].riverDir = 1;
+                    }
+
+                    else if (map[corStartY + 1][corStartX].equals("empty_tile"))
+                    {
+                        corStartY++;
+                        helper--;
+                        rivers[i][0].riverDir = 3;
+                    }
+
+                    else if (map[corStartY][corStartX - 1].equals("empty_tile"))
+                    {
+                        corStartX--;
+                        helper--;
+                        rivers[i][0].riverDir = 2;
+                    }
+
+                    else if (map[corStartY][corStartX + 1].equals("empty_tile"))
+                    {
+                        corStartX++;
+                        helper--;
+                        rivers[i][0].riverDir = 4;
+                    }
+                }
+            }
+
+            helper = 1;
+            rivers[i][leng].corY = corStartY;
+            rivers[i][leng].corX = corStartX;
+            map[rivers[i][leng].corY][rivers[i][leng].corX] = "river_tile";
+
+            while (helper == 1)
+            {
+                if (rivers[i][leng].riverDir == 1)
+                {
+                    if (map[rivers[i][leng].corY - 1][rivers[i][leng].corX].equals("empty_tile") && leng < 14 || map[rivers[i][leng].corY - 1][rivers[i][leng].corX].equals("gonchaja_territory_tile") && leng < 14)
+                    {
+                        rivers[i][leng + 1].corY = rivers[i][leng].corY - 1;
+                        rivers[i][leng + 1].corX = rivers[i][leng].corX;
+                        rivers[i][leng + 1].riverDir = rivers[i][leng].riverDir;
+                        leng++;
+                        map[rivers[i][leng].corY][rivers[i][leng].corX] = "river_tile";
+                    }
+
+                    else
+                        break;
+                }
+
+                if (rivers[i][leng].riverDir == 2)
+                {
+                    if (map[rivers[i][leng].corY][rivers[i][leng].corX + 1].equals("empty_tile") && leng < 14 || map[rivers[i][leng].corY][rivers[i][leng].corX + 1].equals("gonchaja_territory_tile") && leng < 14)
+                    {
+                        rivers[i][leng + 1].corY = rivers[i][leng].corY;
+                        rivers[i][leng + 1].corX = rivers[i][leng].corX + 1;
+                        rivers[i][leng + 1].riverDir = rivers[i][leng].riverDir;
+                        leng++;
+                        map[rivers[i][leng].corY][rivers[i][leng].corX] = "river_tile";
+                    }
+
+                    else
+                        break;
+                }
+
+                if (rivers[i][leng].riverDir == 3)
+                {
+                    if (map[rivers[i][leng].corY + 1][rivers[i][leng].corX].equals("empty_tile") && leng < 14 || map[rivers[i][leng].corY + 1][rivers[i][leng].corX].equals("gonchaja_territory_tile") && leng < 14)
+                    {
+                        rivers[i][leng + 1].corY = rivers[i][leng].corY + 1;
+                        rivers[i][leng + 1].corX = rivers[i][leng].corX;
+                        rivers[i][leng + 1].riverDir = rivers[i][leng].riverDir;
+                        leng++;
+                        map[rivers[i][leng].corY][rivers[i][leng].corX] = "river_tile";
+                    }
+
+                    else
+                        break;
+                }
+
+                if (rivers[i][leng].riverDir == 4)
+                {
+                    if (map[rivers[i][leng].corY][rivers[i][leng].corX - 1].equals("empty_tile") && leng < 14 || map[rivers[i][leng].corY][rivers[i][leng].corX - 1].equals("gonchaja_territory_tile") && leng < 14)
+                    {
+                        rivers[i][leng + 1].corY = rivers[i][leng].corY;
+                        rivers[i][leng + 1].corX = rivers[i][leng].corX - 1;
+                        rivers[i][leng + 1].riverDir = rivers[i][leng].riverDir;
+                        leng++;
+                        map[rivers[i][leng].corY][rivers[i][leng].corX] = "river_tile";
+                    }
+
+                    else
+                        break;
+                }
+
+                int chance = rand.nextInt(101);
+                if (chance % 2 == 0)
+                {
+                    if (rivers[i][leng].riverDir == 1)
+                        rivers[i][leng].riverDir++;
+
+                    if (rivers[i][leng].riverDir == 4)
+                        rivers[i][leng].riverDir--;
+
+                    else
+                    {
+                        chance = rand.nextInt(2);
+
+                        if (chance == 1)
+                            rivers[i][leng].riverDir--;
+                        else
+                            rivers[i][leng].riverDir++;
+                    }
+                }
+            }
+        }
+    }
+
     public static void objectsGen(double points, @NonNull String level)
     {
         Random rar = new Random();
@@ -426,8 +557,16 @@ public class map_generator extends mob
             portalsGen(s);
 
         s = rar.nextInt(101);
-        if (s % 4 == 0)
+        if (s % 5 == 0)
             powerGen();
+
+        s = rar.nextInt(3) + 1;
+        for (int i = 0; i < rivers.length; i++)
+            for (int j = 0; j < 15; j++)
+                rivers[i][j] = new mob();
+
+        riverGen(s);
+        System.out.println(s);
     }
 
     public static void playerSpawn()

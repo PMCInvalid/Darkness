@@ -55,8 +55,6 @@ public class movement_logic extends map_generator
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        Random rar = new Random();
-        int needToTeleport = 1;
 
         if(opengate == 1)
         {
@@ -150,6 +148,11 @@ public class movement_logic extends map_generator
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
+    }
+
+    public void portalsWork()
+    {
+        int needToTeleport = 1;
 
         if (portals.length > 1)
         {
@@ -275,9 +278,15 @@ public class movement_logic extends map_generator
                 needToTeleport = 0;
             }
         }
+    }
 
+    public void abiWork()
+    {
         if (power.corY == player.corY && power.corX == player.corX)
         {
+            SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            Random rar = new Random();
 
             if (settings.getString("difficulty", "").equals("easy"))
             {
@@ -289,7 +298,62 @@ public class movement_logic extends map_generator
                 ability = rar.nextInt(2) + 1;
             }
         }
+    }
 
+    public void riverwork(mob entity, String tileName)
+    {
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 15; j++)
+            {
+                if (rivers[i][j].corY == entity.corY && rivers[i][j].corX == entity.corX)
+                {
+                    switch(rivers[i][j].riverDir)
+                    {
+                        case 1:
+                            entity.helper1 = entity.helper2;
+                            entity.helper2 = map[entity.corY - 1][entity.corX];
+                            map[entity.corY][entity.corX] = entity.helper1;
+                            entity.corY -= 1;
+                            map[entity.corY][entity.corX] = tileName;
+                            break;
+
+                        case 2:
+                            entity.helper1 = entity.helper2;
+                            entity.helper2 = map[entity.corY][entity.corX + 1];
+                            map[entity.corY][entity.corX] = entity.helper1;
+                            entity.corX += 1;
+                            map[entity.corY][entity.corX] = tileName;
+                            break;
+
+                        case 3:
+                            entity.helper1 = entity.helper2;
+                            entity.helper2 = map[entity.corY + 1][entity.corX];
+                            map[entity.corY][entity.corX] = entity.helper1;
+                            entity.corY += 1;
+                            map[entity.corY][entity.corX] = tileName;
+                            break;
+
+                        case 4:
+                            entity.helper1 = entity.helper2;
+                            entity.helper2 = map[entity.corY][entity.corX - 1];
+                            map[entity.corY][entity.corX] = entity.helper1;
+                            entity.corX -= 1;
+                            map[entity.corY][entity.corX] = tileName;
+                            break;
+                    }
+                    break;
+                }
+
+            }
+
+        if (settings.getString("difficulty", "").equals("easy"))
+            mapDrawScreen();
+
+        else
+            mapDrawDarkScreen();
     }
 
     private void setTileImage(ImageView imageView, int y, int x)
@@ -2303,29 +2367,55 @@ public class movement_logic extends map_generator
         if (player.corY == lever.corY && player.corX == lever.corX)
             opengate = 1;
 
+        riverwork(player, "player_tile");
+
         if (moveCheck == 1)
         {
             if (peshka.isHere)
+            {
                 peshkaSukaMove();
+                riverwork(peshka, "peshka_tile");
+            }
 
             if (slon.isHere)
+            {
+
                 slonMove();
+                riverwork(slon, "slon_tile");
+            }
 
             if (sKorol.isHere)
+            {
                 sKorolMove();
+                riverwork(sKorol, "sking_tile");
+            }
 
             if(medved.isHere)
+            {
                 medvedMove();
+                riverwork(medved, "medved_tile");
+            }
 
             if (bolshoj.isHere)
+            {
                 bolshojMove();
+                riverwork(bolshoj, "bolshoj_b_tile");
+            }
 
             if (krot.isHere)
+            {
                 krotMove();
+                riverwork(krot, "krot_tile");
+            }
 
             if (gonchaja.isHere)
+            {
                 gonchajaMove();
+                riverwork(gonchaja, "gonchaja_tile");
+            }
 
+            portalsWork();
+            abiWork();
             gameLifeCheck();
 
             if (b.equals("easy"))

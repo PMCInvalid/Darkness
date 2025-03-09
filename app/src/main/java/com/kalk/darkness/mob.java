@@ -10,6 +10,7 @@ public class mob extends AppCompatActivity
     public int corY = -1;
     public String helper1 = "empty_tile";
     public String helper2 = "empty_tile";
+    public int riverDir = 4;
     public boolean isHere = false;
 
     private static final int[][] DIRECTIONS =
@@ -110,7 +111,7 @@ public class mob extends AppCompatActivity
 
         boolean helperCell = false;
 
-        if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile"))
+        if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile"))
         {
             helperCell = true;
         }
