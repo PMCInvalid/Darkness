@@ -64,7 +64,6 @@ public class movement_logic extends map_generator
                 opengate = 0;
                 score++;
                 gameplayInit();
-                mapDrawScreen();
             }
         }
 
@@ -74,7 +73,6 @@ public class movement_logic extends map_generator
             opengate = 0;
             score += 0.25;
             gameplayInit();
-            mapDrawScreen();
         }
 
         if (peshka.corX == player.corX && peshka.corY == player.corY)
@@ -302,9 +300,6 @@ public class movement_logic extends map_generator
 
     public void riverwork(mob entity, String tileName)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 15; j++)
             {
@@ -348,12 +343,6 @@ public class movement_logic extends map_generator
                 }
 
             }
-
-        if (settings.getString("difficulty", "").equals("easy"))
-            mapDrawScreen();
-
-        else
-            mapDrawDarkScreen();
     }
 
     private void setTileImage(ImageView imageView, int y, int x)

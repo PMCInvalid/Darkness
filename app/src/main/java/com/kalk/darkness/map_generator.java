@@ -300,7 +300,7 @@ public class map_generator extends mob
 
     public static void doorGen()
     {
-        int a  = rand.nextInt(5);
+        int a  = rand.nextInt(4) + 1;
 
         if (a == 1)
         {
@@ -566,7 +566,6 @@ public class map_generator extends mob
                 rivers[i][j] = new mob();
 
         riverGen(s);
-        System.out.println(s);
     }
 
     public static void playerSpawn()
