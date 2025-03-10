@@ -785,7 +785,7 @@ public class map_generator extends mob
 
         playerSpawn();
 
-        /*if (level.equals("easy"))
+        if (level.equals("easy"))
         {
             if (points >= 1)
                 peshkaSpawn();
@@ -830,6 +830,6 @@ public class map_generator extends mob
 
             if (spawnChance % 2 == 0)
                 gonchajaSpawn();
-        }*/
+        }
     }
 }
