@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class movement_logic extends map_generator
     int krotMoves = 0;
     int ability = 0;
     int gameIn = 0;
+    int energy = 100;
 
     public void gameplayInit()
     {
@@ -30,10 +32,11 @@ public class movement_logic extends map_generator
 
         String hard = settings.getString("difficulty", "");
 
-        TextView scores = (TextView) findViewById(R.id.scoreText);
-
         if (gameIn == 0)
         {
+            TextView scores = (TextView) findViewById(R.id.scoreText);
+            TextView ener = (TextView) findViewById(R.id.powerText);
+
             player.helper1 = "empty_tile";
             player.helper2 = "empty_tile";
             peshka.helper1 = "empty_tile";
@@ -48,6 +51,7 @@ public class movement_logic extends map_generator
             map = map_generator.mapThrower(score, hard);
 
             scores.setText("Score: " + score);
+            ener.setText("Battery: " + energy + "%");
         }
     }
 
@@ -73,6 +77,15 @@ public class movement_logic extends map_generator
             opengate = 0;
             score += 0.25;
             gameplayInit();
+        }
+
+        if (battery.corY == player.corY && battery.corX == player.corX)
+        {
+            energy = 100;
+            player.helper2 = "empty_tile";
+            player.helper1 = "empty_tile";
+            battery.corY = -1;
+            battery.corX = -1;
         }
 
         if (peshka.corX == player.corX && peshka.corY == player.corY)
@@ -2194,15 +2207,64 @@ public class movement_logic extends map_generator
 
     public void abi(int anum)
     {
-        switch(anum)
-        {
-            case 1:
-                enemySence();
-                break;
+        if (energy > 0)
+            switch(anum)
+            {
+                case 1:
+                    enemySence();
+                    energy -= 2;
+                    break;
 
-            case 2:
-                sonar();
-                break;
+                case 2:
+                    sonar();
+                    energy -= 2;
+                    break;
+            }
+    }
+
+    public void mobWalk()
+    {
+        if (peshka.isHere)
+        {
+            peshkaSukaMove();
+            riverwork(peshka, "peshka_tile");
+        }
+
+        if (slon.isHere)
+        {
+
+            slonMove();
+            riverwork(slon, "slon_tile");
+        }
+
+        if (sKorol.isHere)
+        {
+            sKorolMove();
+            riverwork(sKorol, "sking_tile");
+        }
+
+        if(medved.isHere)
+        {
+            medvedMove();
+            riverwork(medved, "medved_tile");
+        }
+
+        if (bolshoj.isHere)
+        {
+            bolshojMove();
+            riverwork(bolshoj, "bolshoj_b_tile");
+        }
+
+        if (krot.isHere)
+        {
+            krotMove();
+            riverwork(krot, "krot_tile");
+        }
+
+        if (gonchaja.isHere)
+        {
+            gonchajaMove();
+            riverwork(gonchaja, "gonchaja_tile");
         }
     }
 
@@ -2211,6 +2273,8 @@ public class movement_logic extends map_generator
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
 
         String b = settings.getString("difficulty", "");
+
+        TextView ener = (TextView) findViewById(R.id.powerText);
 
         int moveCheck = 0;
 
@@ -2360,48 +2424,7 @@ public class movement_logic extends map_generator
 
         if (moveCheck == 1)
         {
-            if (peshka.isHere)
-            {
-                peshkaSukaMove();
-                riverwork(peshka, "peshka_tile");
-            }
-
-            if (slon.isHere)
-            {
-
-                slonMove();
-                riverwork(slon, "slon_tile");
-            }
-
-            if (sKorol.isHere)
-            {
-                sKorolMove();
-                riverwork(sKorol, "sking_tile");
-            }
-
-            if(medved.isHere)
-            {
-                medvedMove();
-                riverwork(medved, "medved_tile");
-            }
-
-            if (bolshoj.isHere)
-            {
-                bolshojMove();
-                riverwork(bolshoj, "bolshoj_b_tile");
-            }
-
-            if (krot.isHere)
-            {
-                krotMove();
-                riverwork(krot, "krot_tile");
-            }
-
-            if (gonchaja.isHere)
-            {
-                gonchajaMove();
-                riverwork(gonchaja, "gonchaja_tile");
-            }
+            mobWalk();
 
             portalsWork();
             abiWork();
@@ -2415,10 +2438,11 @@ public class movement_logic extends map_generator
 
             else if (b.equals("hard") || a == 9)
             {
-                if (flashlight == 1)
+                if (flashlight == 1 && energy > 0)
                 {
                     mapDrawScreen();
                     flashlight = 0;
+                    energy-=3;
                 }
 
                 else
@@ -2430,10 +2454,11 @@ public class movement_logic extends map_generator
 
             else
             {
-                if (flashlight == 1)
+                if (flashlight == 1 && energy > 0)
                 {
                     mapDrawScreen();
                     flashlight = 0;
+                    energy -= 6;
                 }
 
                 else
@@ -2442,6 +2467,23 @@ public class movement_logic extends map_generator
                     abi(ability);
                 }
             }
+
+            if (energy < 0)
+                energy = 0;
+
+            if (energy > 50)
+                ener.setTextColor(ContextCompat.getColor(this, R.color.green));
+
+            if (energy < 50)
+                ener.setTextColor(ContextCompat.getColor(this, R.color.yellow));
+
+            if (energy < 25)
+                ener.setTextColor(ContextCompat.getColor(this, R.color.blood));
+
+            if (energy == 0)
+                ener.setTextColor(ContextCompat.getColor(this, R.color.black));
+
+            ener.setText("Battery: " + energy + "%");
         }
     }
 }

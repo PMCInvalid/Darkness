@@ -27,6 +27,7 @@ public class map_generator extends mob
     static  int gonTer = 0;
     static int gonchajaBaseX = -1;
     static int gonchajaBaseY = -1;
+    static mob battery = new mob();
     static mob[] portals;
     static mob[][] rivers = new mob[3][15];
 
@@ -534,7 +535,21 @@ public class map_generator extends mob
 
     public static void batteryGen()
     {
+        int y = rand.nextInt(27) + 2;
+        int x = rand.nextInt(27) + 2;
 
+        boolean solution = check(y, x, y + 2, x + 2, 3);
+
+        if (solution)
+        {
+            battery.corY = y;
+            battery.corX = x;
+
+            map[battery.corY][battery.corX] = "battery_tile";
+        }
+
+        else
+            batteryGen();
     }
 
     public static void objectsGen(double points, @NonNull String level)
@@ -571,6 +586,8 @@ public class map_generator extends mob
                 rivers[i][j] = new mob();
 
         riverGen(s);
+
+        batteryGen();
     }
 
     public static void playerSpawn()
@@ -768,7 +785,7 @@ public class map_generator extends mob
 
         playerSpawn();
 
-        if (level.equals("easy"))
+        /*if (level.equals("easy"))
         {
             if (points >= 1)
                 peshkaSpawn();
@@ -813,6 +830,6 @@ public class map_generator extends mob
 
             if (spawnChance % 2 == 0)
                 gonchajaSpawn();
-        }
+        }*/
     }
 }

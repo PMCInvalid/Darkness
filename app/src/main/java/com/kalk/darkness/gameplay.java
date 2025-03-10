@@ -71,6 +71,6 @@ public class gameplay extends movement_logic
     {
         System.out.println(player.corY + " " + player.corX);
         System.out.println("-------");
-        System.out.println(door.corY + " " + door.corX);
+        System.out.println(battery.corY + " " + battery.corX);
     }
 }
