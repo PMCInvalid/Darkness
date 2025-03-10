@@ -532,6 +532,11 @@ public class map_generator extends mob
         }
     }
 
+    public static void batteryGen()
+    {
+
+    }
+
     public static void objectsGen(double points, @NonNull String level)
     {
         Random rar = new Random();
