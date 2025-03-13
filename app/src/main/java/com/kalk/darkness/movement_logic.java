@@ -389,6 +389,9 @@ public class movement_logic extends map_generator
             if (map[y][x].equals("wall_tile"))
                 imageView.setImageResource(R.drawable.dark_wall_tile);
 
+            else if (map[y][x].equals("battery_tile"))
+                imageView.setImageResource(R.drawable.battery_tile);
+
             else if (map[y][x].equals("bushes_tile"))
                 imageView.setImageResource(R.drawable.dark_bushes_tile);
 
