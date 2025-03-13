@@ -627,7 +627,7 @@ public class map_generator extends mob
                         continue;
                     }
 
-                    if (j == bushes[i][0].corY - 4)
+                    if (j == bushes[i][0].corY - size - 2)
                         if (rand.nextInt(101) % 2 == 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -639,7 +639,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (k == bushes[i][0].corX - 4)
+                    if (k == bushes[i][0].corX - size - 2)
                         if (rand.nextInt(101) % 2 == 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -651,7 +651,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (j == bushes[i][0].corY + 4)
+                    if (j == bushes[i][0].corY + size + 2)
                         if (rand.nextInt(101) % 2 == 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -663,7 +663,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (k == bushes[i][0].corX + 4)
+                    if (k == bushes[i][0].corX + size + 2)
                         if (rand.nextInt(101) % 2 == 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -675,7 +675,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (j == bushes[i][0].corY - 3)
+                    if (j == bushes[i][0].corY - size - 1)
                         if (rand.nextInt(101) % 3 != 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -687,7 +687,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (k == bushes[i][0].corX - 3)
+                    if (k == bushes[i][0].corX - size - 1)
                         if (rand.nextInt(101) % 3 != 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -699,7 +699,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (j == bushes[i][0].corY + 3)
+                    if (j == bushes[i][0].corY + size + 1)
                         if (rand.nextInt(101) % 3 != 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -711,7 +711,7 @@ public class map_generator extends mob
                             }
                         }
 
-                    if (k == bushes[i][0].corX + 3)
+                    if (k == bushes[i][0].corX + size + 1)
                         if (rand.nextInt(101) % 3 != 0)
                         {
                             if (map[j][k].equals("empty_tile"))
@@ -722,9 +722,6 @@ public class map_generator extends mob
                                 counter++;
                             }
                         }
-
-                    if (j == bushes[i][0].corY - 2)
-                        j = bushes[i][0].corY + 2;
                 }
             }
         }
