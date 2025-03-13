@@ -595,35 +595,35 @@ public class map_generator extends mob
             {
                 for (int k = bushes[i][0].corX - size - 2; k <= bushes[i][0].corX + size + 2; k++)
                 {
-                    if (bushes[i][0].corY - size - 2 < 2) {
+                    if (bushes[i][0].corY - size - 2 < 0) {
                         j++;
                         continue;
                     }
-                    if (bushes[i][0].corY - size - 1 < 2) {
+                    if (bushes[i][0].corY - size - 1 < 0) {
                         j++;
                         continue;
                     }
 
-                    if (bushes[i][0].corY + size + 2 > 30) {
+                    if (bushes[i][0].corY + size + 2 > 32) {
                         continue;
                     }
-                    if (bushes[i][0].corY + size + 1 > 30) {
-                        continue;
-                    }
-
-                    if (bushes[i][0].corX - size - 2 < 2) {
-                        k++;
-                        continue;
-                    }
-                    if (bushes[i][0].corX - size - 1 < 2) {
-                        k++;
+                    if (bushes[i][0].corY + size + 1 > 32) {
                         continue;
                     }
 
-                    if (bushes[i][0].corX + size + 2 > 30) {
+                    if (bushes[i][0].corX - size - 2 < 0) {
+                        k++;
                         continue;
                     }
-                    if (bushes[i][0].corX + size + 1 > 30) {
+                    if (bushes[i][0].corX - size - 1 < 0) {
+                        k++;
+                        continue;
+                    }
+
+                    if (bushes[i][0].corX + size + 2 > 32) {
+                        continue;
+                    }
+                    if (bushes[i][0].corX + size + 1 > 32) {
                         continue;
                     }
 
