@@ -785,6 +785,8 @@ public class map_generator extends mob
             player.corX = x;
             player.corY = y;
 
+            player.helper2 = map[player.corY][player.corX];
+
             map[player.corY][player.corX] = "player_tile";
 
             player.isHere = true;
@@ -806,6 +808,8 @@ public class map_generator extends mob
             peshka.corY = y;
             peshka.corX = x;
 
+            peshka.helper2 = map[peshka.corY][peshka.corX];
+
             map[peshka.corY][peshka.corX] = "peshka_tile";
 
             peshka.isHere = true;
@@ -824,6 +828,8 @@ public class map_generator extends mob
         if (solution) {
             slon.corY = y;
             slon.corX = x;
+
+            slon.helper2 = map[slon.corY][slon.corX];
 
             map[slon.corY][slon.corX] = "slon_tile";
 
@@ -845,6 +851,8 @@ public class map_generator extends mob
             sKorol.corY = y;
             sKorol.corX = x;
 
+            sKorol.helper2 = map[sKorol.corY][sKorol.corX];
+
             map[sKorol.corY][sKorol.corX] = "sking_tile";
 
             sKorol.isHere = true;
@@ -865,6 +873,8 @@ public class map_generator extends mob
             medved.corY = y;
             medved.corX = x;
 
+            medved.helper2 = map[medved.corY][medved.corX];
+
             map[medved.corY][medved.corX] = "medved_tile";
 
             medved.isHere = true;
@@ -881,6 +891,8 @@ public class map_generator extends mob
         krot.corY = y;
         krot.corX = x;
 
+        krot.helper2 = map[krot.corY][krot.corX];
+
         map[krot.corY][krot.corX] = "krot_tile";
 
         krot.isHere = true;
@@ -896,6 +908,8 @@ public class map_generator extends mob
         if (solution) {
             bolshoj.corY = y;
             bolshoj.corX = x;
+
+            bolshoj.helper2 = map[bolshoj.corY][bolshoj.corX];
 
             map[bolshoj.corY][bolshoj.corX] = "bolshoj_b_tile";
 

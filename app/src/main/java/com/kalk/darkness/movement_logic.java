@@ -38,14 +38,6 @@ public class movement_logic extends map_generator
             TextView scores = (TextView) findViewById(R.id.scoreText);
             TextView ener = (TextView) findViewById(R.id.powerText);
 
-            player.helper1 = "empty_tile";
-            player.helper2 = "empty_tile";
-            peshka.helper1 = "empty_tile";
-            peshka.helper2 = "empty_tile";
-            slon.helper1 = "empty_tile";
-            slon.helper2 = "empty_tile";
-            sKorol.helper1 = "empty_tile";
-            sKorol.helper2 = "empty_tile";
             gameIn = 1;
             opengate = 0;
 
@@ -384,17 +376,16 @@ public class movement_logic extends map_generator
         else
         {
             if (map[y][x].equals("wall_tile"))
-            {
                 imageView.setImageResource(R.drawable.dark_wall_tile);
-            }
+
+            else if (map[y][x].equals("bushes_tile"))
+                imageView.setImageResource(R.drawable.dark_bushes_tile);
 
             else if (task)
-            {
-                imageView.setImageResource(R.drawable.empty_tile);
-            }
+                imageView.setImageResource(R.drawable.dark_empty_tile);
 
             else
-                imageView.setImageResource(R.drawable.nigger_tile);
+                imageView.setImageResource(R.drawable.empty_tile);
         }
     }
 
@@ -1229,59 +1220,59 @@ public class movement_logic extends map_generator
 
         im3_1.setImageResource(R.drawable.nigger_tile);
         im3_2.setImageResource(R.drawable.nigger_tile);
-        setTileImage(im3_3, player.corY - 2, player.corX - 2, false);
-        setTileImage(im3_4, player.corY - 2, player.corX - 1, false);
-        setTileImage(im3_5, player.corY - 2, player.corX, false);
-        setTileImage(im3_6, player.corY - 2, player.corX + 1, false);
-        setTileImage(im3_7, player.corY - 2, player.corX + 2, false);
+        setTileImage(im3_3, player.corY - 2, player.corX - 2, true);
+        setTileImage(im3_4, player.corY - 2, player.corX - 1, true);
+        setTileImage(im3_5, player.corY - 2, player.corX, true);
+        setTileImage(im3_6, player.corY - 2, player.corX + 1, true);
+        setTileImage(im3_7, player.corY - 2, player.corX + 2, true);
         im3_8.setImageResource(R.drawable.nigger_tile);
         im3_9.setImageResource(R.drawable.nigger_tile);
 
         im4_1.setImageResource(R.drawable.nigger_tile);
         im4_2.setImageResource(R.drawable.nigger_tile);
-        setTileImage(im4_3, player.corY - 1, player.corX - 2, false);
+        setTileImage(im4_3, player.corY - 1, player.corX - 2, true);
         resId = getResources().getIdentifier(map[player.corY - 1][player.corX - 1], "drawable", getPackageName());
         im4_4.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY - 1][player.corX], "drawable", getPackageName());
         im4_5.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY - 1][player.corX + 1], "drawable", getPackageName());
         im4_6.setImageResource(resId);
-        setTileImage(im4_7, player.corY - 1, player.corX + 2, false);
+        setTileImage(im4_7, player.corY - 1, player.corX + 2, true);
         im4_8.setImageResource(R.drawable.nigger_tile);
         im4_9.setImageResource(R.drawable.nigger_tile);
 
         im5_1.setImageResource(R.drawable.nigger_tile);
         im5_2.setImageResource(R.drawable.nigger_tile);
-        setTileImage(im5_3, player.corY, player.corX - 2, false);
+        setTileImage(im5_3, player.corY, player.corX - 2, true);
         resId = getResources().getIdentifier(map[player.corY][player.corX - 1], "drawable", getPackageName());
         im5_4.setImageResource(resId);
         im5_5.setImageResource(R.drawable.player_tile);
         resId = getResources().getIdentifier(map[player.corY][player.corX + 1], "drawable", getPackageName());
         im5_6.setImageResource(resId);
-        setTileImage(im5_7, player.corY, player.corX + 2, false);
+        setTileImage(im5_7, player.corY, player.corX + 2, true);
         im5_8.setImageResource(R.drawable.nigger_tile);
         im5_9.setImageResource(R.drawable.nigger_tile);
 
         im6_1.setImageResource(R.drawable.nigger_tile);
         im6_2.setImageResource(R.drawable.nigger_tile);
-        setTileImage(im6_3, player.corY + 1, player.corX - 2, false);
+        setTileImage(im6_3, player.corY + 1, player.corX - 2, true);
         resId = getResources().getIdentifier(map[player.corY + 1][player.corX - 1], "drawable", getPackageName());
         im6_4.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY + 1][player.corX], "drawable", getPackageName());
         im6_5.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY + 1][player.corX + 1], "drawable", getPackageName());
         im6_6.setImageResource(resId);
-        setTileImage(im6_7, player.corY + 1, player.corX + 2, false);
+        setTileImage(im6_7, player.corY + 1, player.corX + 2, true);
         im6_8.setImageResource(R.drawable.nigger_tile);
         im6_9.setImageResource(R.drawable.nigger_tile);
 
         im7_1.setImageResource(R.drawable.nigger_tile);
         im7_2.setImageResource(R.drawable.nigger_tile);
-        setTileImage(im7_3, player.corY + 2, player.corX - 2, false);
-        setTileImage(im7_4, player.corY + 2, player.corX - 1, false);
-        setTileImage(im7_5, player.corY + 2, player.corX, false);
-        setTileImage(im7_6, player.corY + 2, player.corX + 1, false);
-        setTileImage(im7_7, player.corY + 2, player.corX + 2, false);
+        setTileImage(im7_3, player.corY + 2, player.corX - 2, true);
+        setTileImage(im7_4, player.corY + 2, player.corX - 1, true);
+        setTileImage(im7_5, player.corY + 2, player.corX, true);
+        setTileImage(im7_6, player.corY + 2, player.corX + 1, true);
+        setTileImage(im7_7, player.corY + 2, player.corX + 2, true);
         im7_8.setImageResource(R.drawable.nigger_tile);
         im7_9.setImageResource(R.drawable.nigger_tile);
 
