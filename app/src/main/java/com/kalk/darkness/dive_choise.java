@@ -12,6 +12,7 @@ import android.view.View;
 
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +24,20 @@ public class dive_choise extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.level_choice);
+
+        TextView sWalk = (TextView) findViewById(R.id.textViewRecordSurfaceWalk);
+        TextView dDive = (TextView) findViewById(R.id.textViewRecordDeepDIve);
+        TextView bOut = (TextView) findViewById(R.id.textViewRecordBlackout);
+
+        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        String a = settings.getString("easyScore", "0");
+        String b = settings.getString("hardScore", "0");
+        String c = settings.getString("insaneScore", "0");
+
+        sWalk.setText("Highscore: " + a);
+        dDive.setText("Highscore: " + b);
+        bOut.setText("Highscore: " + c);
     }
 
     public void surfaceWalk(View v)

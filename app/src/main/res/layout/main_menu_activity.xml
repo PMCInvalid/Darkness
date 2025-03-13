@@ -19,49 +19,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/dive"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
-        android:text="Dive"
         android:onClick="dive"
+        android:text="Dive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/dive_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/rules"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
-        android:text="Rules"
         android:onClick="rules"
+        android:text="Rules"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dive" />
+        app:layout_constraintTop_toBottomOf="@+id/dive"
+        app:srcCompat="@drawable/rules_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/authors"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
-        android:text="Authors"
         android:onClick="authors"
+        android:text="Authors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rules" />
+        app:layout_constraintTop_toBottomOf="@+id/rules"
+        app:srcCompat="@drawable/authors_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/exit"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="50dp"
-        android:text="Exit"
         android:onClick="onDestroy"
+        android:text="Exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/authors" />
+        app:layout_constraintTop_toBottomOf="@+id/authors"
+        app:srcCompat="@drawable/exit_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

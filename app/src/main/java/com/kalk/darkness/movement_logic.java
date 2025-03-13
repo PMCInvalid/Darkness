@@ -52,6 +52,7 @@ public class movement_logic extends map_generator
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+        String b = settings.getString("difficulty", "");
 
         boolean flag = false;
         for (int i = 0; i < bushes.length; i++)
@@ -99,7 +100,12 @@ public class movement_logic extends map_generator
 
         if (peshka.corX == player.corX && peshka.corY == player.corY)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;

@@ -22,13 +22,18 @@ public class death_screen extends AppCompatActivity
         TextView highS = (TextView) findViewById(R.id.textViewHighScore);
         TextView sco = (TextView) findViewById(R.id.textViewScore);
 
+        String b = settings.getString("difficulty", "");
         String h = settings.getString("highscore", "0");
         String s = settings.getString("score", "0");
 
         if (Double.parseDouble(h) < Double.parseDouble(s))
         {
-            editor.putString("highscore", s);
-            editor.apply();
+            if (b.equals("easy"))
+                editor.putString("easyScore", s);
+            else if (b.equals("hard"))
+                editor.putString("hardScore", s);
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", s);
         }
 
         highS.setText("Highscore is:" + h);

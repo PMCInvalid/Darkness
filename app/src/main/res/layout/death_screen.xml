@@ -7,29 +7,31 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonToNewGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
         android:layout_marginTop="124dp"
-        android:text="New game"
         android:onClick="newGame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDeathScreen" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeathScreen"
+        app:srcCompat="@drawable/new_game_button"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonToMainMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="65dp"
         android:layout_marginTop="136dp"
-        android:text="Main menu"
         android:onClick="goToMainMenuFromDeathScreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToNewGame" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonToNewGame"
+        app:srcCompat="@drawable/menu_button"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textViewDeathScreen"

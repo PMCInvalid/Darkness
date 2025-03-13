@@ -6,18 +6,19 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <Button
+    <ImageButton
         android:id="@+id/surfaceWalkButton"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="100dp"
         android:onClick="surfaceWalk"
-        android:text="Surface walk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/walk_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/deepDiveButton"
         android:layout_width="250dp"
         android:layout_height="65dp"
@@ -26,28 +27,65 @@
         android:text="Deep dive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surfaceWalkButton" />
+        app:layout_constraintTop_toBottomOf="@+id/surfaceWalkButton"
+        app:srcCompat="@drawable/deep_dive_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/blackoutButton"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="75dp"
-        android:text="Blackout"
         android:onClick="blackout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deepDiveButton" />
+        app:layout_constraintTop_toBottomOf="@+id/deepDiveButton"
+        app:srcCompat="@drawable/blackout_button"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <Button
+    <ImageButton
         android:id="@+id/toMenuButton"
         android:layout_width="250dp"
         android:layout_height="65dp"
         android:layout_marginTop="75dp"
         android:onClick="gotoMainMenu"
-        android:text="Menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blackoutButton" />
+        app:layout_constraintTop_toBottomOf="@+id/blackoutButton"
+        app:srcCompat="@drawable/menu_button"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewRecordSurfaceWalk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="TextView"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/surfaceWalkButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRecordDeepDIve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="TextView"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/deepDiveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRecordBlackout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="TextView"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/blackoutButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
