@@ -803,6 +803,9 @@ public class map_generator extends mob
 
         boolean solution = check(y, x, player.corY, player.corX, 1);
 
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
+
         if (solution)
         {
             peshka.corY = y;
@@ -825,6 +828,9 @@ public class map_generator extends mob
 
         boolean solution = check(y, x, player.corY, player.corX , 3);
 
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
+
         if (solution) {
             slon.corY = y;
             slon.corX = x;
@@ -845,6 +851,9 @@ public class map_generator extends mob
         int x = (rand.nextInt(28) + 2);
 
         boolean solution = check(y, x, player.corY, player.corX , 3);
+
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
 
         if (solution)
         {
@@ -868,6 +877,9 @@ public class map_generator extends mob
         int x = (rand.nextInt(28) + 2);
 
         boolean solution = check(y, x, player.corY, player.corX , 3);
+
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
 
         if (solution) {
             medved.corY = y;
@@ -905,6 +917,9 @@ public class map_generator extends mob
 
         boolean solution = check(y, x, player.corY, player.corX, 3);
 
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
+
         if (solution) {
             bolshoj.corY = y;
             bolshoj.corX = x;
@@ -915,6 +930,7 @@ public class map_generator extends mob
 
             bolshoj.isHere = true;
         }
+
         else
             bolshojSpawn();
     }
@@ -927,6 +943,9 @@ public class map_generator extends mob
         int x = rand.nextInt(25) + 4;
 
         boolean solution = check(y, x, y + 2, x + 2, 3);
+
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
 
         if (solution)
         {

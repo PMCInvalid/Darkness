@@ -2665,7 +2665,7 @@ public class movement_logic extends map_generator
                     else
                     {
                         mapDrawDarkScreen();
-                        sonar();
+                        enemySence();
                         energy--;
                         abi(ability);
                     }
@@ -2708,7 +2708,7 @@ public class movement_logic extends map_generator
                 ener.setTextColor(ContextCompat.getColor(this, R.color.blood));
 
             if (energy == 0)
-                ener.setTextColor(ContextCompat.getColor(this, R.color.black));
+                ener.setTextColor(ContextCompat.getColor(this, R.color.gray));
 
             ener.setText("Battery: " + energy + "%");
         }
