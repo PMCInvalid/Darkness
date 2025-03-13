@@ -562,6 +562,7 @@ public class map_generator extends mob
         {
             int helper = 1;
             int counter = 1;
+            int size = rand.nextInt(2);
 
             while (helper == 1)
             {
@@ -575,9 +576,9 @@ public class map_generator extends mob
             bushes[i][0].corX = x;
             bushes[i][0].corY = y;
 
-            for (int j = bushes[i][0].corY - 2; j <= bushes[i][0].corY + 2; j++)
+            for (int j = bushes[i][0].corY - size; j <= bushes[i][0].corY + size; j++)
             {
-                for (int k = bushes[i][0].corX - 2; k <= bushes[i][0].corX + 2; k++)
+                for (int k = bushes[i][0].corX - size; k <= bushes[i][0].corX + size; k++)
                 {
                     if (map[j][k].equals("empty_tile"))
                     {
@@ -590,39 +591,39 @@ public class map_generator extends mob
                 }
             }
 
-            for (int j = bushes[i][0].corY - 4; j <= bushes[i][0].corY + 4; j++)
+            for (int j = bushes[i][0].corY - size - 2; j <= bushes[i][0].corY + size + 2; j++)
             {
-                for (int k = bushes[i][0].corX - 4; k <= bushes[i][0].corX + 4; k++)
+                for (int k = bushes[i][0].corX - size - 2; k <= bushes[i][0].corX + size + 2; k++)
                 {
-                    if (bushes[i][0].corY - 4 < 2) {
+                    if (bushes[i][0].corY - size - 2 < 2) {
                         j++;
                         continue;
                     }
-                    if (bushes[i][0].corY - 3 < 2) {
+                    if (bushes[i][0].corY - size - 1 < 2) {
                         j++;
                         continue;
                     }
 
-                    if (bushes[i][0].corY + 4 > 30) {
+                    if (bushes[i][0].corY + size + 2 > 30) {
                         continue;
                     }
-                    if (bushes[i][0].corY + 3 > 30) {
-                        continue;
-                    }
-
-                    if (bushes[i][0].corX - 4 < 2) {
-                        k++;
-                        continue;
-                    }
-                    if (bushes[i][0].corX - 3 < 2) {
-                        k++;
+                    if (bushes[i][0].corY + size + 1 > 30) {
                         continue;
                     }
 
-                    if (bushes[i][0].corX + 4 > 30) {
+                    if (bushes[i][0].corX - size - 2 < 2) {
+                        k++;
                         continue;
                     }
-                    if (bushes[i][0].corX + 3 > 30) {
+                    if (bushes[i][0].corX - size - 1 < 2) {
+                        k++;
+                        continue;
+                    }
+
+                    if (bushes[i][0].corX + size + 2 > 30) {
+                        continue;
+                    }
+                    if (bushes[i][0].corX + size + 1 > 30) {
                         continue;
                     }
 
