@@ -2428,14 +2428,12 @@ public class movement_logic extends map_generator
             switch(anum)
             {
                 case 1:
-                    enemySence();
+                    sonar();
                     energy -= 2;
                     break;
 
                 case 2:
-                    sonar();
-                    energy -= 2;
-                    break;
+                    energy = 100;
             }
     }
 
@@ -2667,6 +2665,8 @@ public class movement_logic extends map_generator
                     else
                     {
                         mapDrawDarkScreen();
+                        sonar();
+                        energy--;
                         abi(ability);
                     }
                 }
@@ -2683,6 +2683,7 @@ public class movement_logic extends map_generator
                     else
                     {
                         mapDrawDarkScreen();
+                        energy -= 2;
                         abi(ability);
                     }
                 }

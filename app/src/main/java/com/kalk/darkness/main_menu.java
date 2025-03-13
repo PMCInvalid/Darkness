@@ -53,9 +53,3 @@ public class main_menu extends AppCompatActivity
         System.exit(0);
     }
 }
-
-
-/*
-Intent pip = new Intent(this, mainMenu.class);
-startActivity(pip);
-*/
