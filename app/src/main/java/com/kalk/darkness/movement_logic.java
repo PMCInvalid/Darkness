@@ -2134,11 +2134,14 @@ public class movement_logic extends map_generator
         {
             int negrM = 0;
 
-            if (player.corY < bolshoj.corY && needMove == 1)
-                negrM = 1;
+            if (!playerInBushes)
+            {
+                if (player.corY < bolshoj.corY && needMove == 1)
+                    negrM = 1;
 
-            if (player.corY > bolshoj.corY && needMove == 1)
-                negrM = 5;
+                if (player.corY > bolshoj.corY && needMove == 1)
+                    negrM = 5;
+            }
 
             if (negrM == 1 && needMove == 1)
             {
