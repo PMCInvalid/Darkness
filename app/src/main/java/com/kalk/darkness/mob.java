@@ -111,7 +111,7 @@ public class mob extends AppCompatActivity
 
         boolean helperCell = false;
 
-        if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile"))
+        if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile") || cell.equals("bushes_tile"))
         {
             helperCell = true;
         }

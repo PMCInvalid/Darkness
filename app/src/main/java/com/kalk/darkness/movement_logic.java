@@ -25,6 +25,7 @@ public class movement_logic extends map_generator
     int ability = 0;
     int gameIn = 0;
     int energy = 100;
+    boolean playerInBushes = false;
 
     public void gameplayInit()
     {
@@ -59,6 +60,22 @@ public class movement_logic extends map_generator
     {
         SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+
+        boolean flag = false;
+        for (int i = 0; i < bushes.length; i++)
+        {
+            for (int j = 0; j < bushes[i].length; j++)
+            {
+                if (bushes[i][j].corY == player.corY && bushes[i][j].corX == player.corX)
+                    flag = true;
+            }
+        }
+
+        if (flag)
+            playerInBushes = true;
+
+        else
+            playerInBushes = false;
 
         if(opengate == 1)
         {
@@ -296,7 +313,6 @@ public class movement_logic extends map_generator
         if (power.corY == player.corY && power.corX == player.corX)
         {
             SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-            SharedPreferences.Editor editor = settings.edit();
             Random rar = new Random();
 
             if (settings.getString("difficulty", "").equals("easy"))
@@ -358,11 +374,11 @@ public class movement_logic extends map_generator
             }
     }
 
-    private void setTileImage(ImageView imageView, int y, int x)
+    private void setTileImage(ImageView imageView, int y, int x, boolean task)
     {
         if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
         {
-            imageView.setImageResource(R.drawable.empty_tile);
+            imageView.setImageResource(R.drawable.nigger_tile);
         }
 
         else
@@ -372,10 +388,13 @@ public class movement_logic extends map_generator
                 imageView.setImageResource(R.drawable.dark_wall_tile);
             }
 
-            else
+            else if (task)
             {
                 imageView.setImageResource(R.drawable.empty_tile);
             }
+
+            else
+                imageView.setImageResource(R.drawable.nigger_tile);
         }
     }
 
@@ -687,8 +706,7 @@ public class movement_logic extends map_generator
         im5_3.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY][player.corX - 1], "drawable", getPackageName());
         im5_4.setImageResource(resId);
-        resId = getResources().getIdentifier(map[player.corY][player.corX], "drawable", getPackageName());
-        im5_5.setImageResource(resId);
+        im5_5.setImageResource(R.drawable.player_tile);
         resId = getResources().getIdentifier(map[player.corY][player.corX + 1], "drawable", getPackageName());
         im5_6.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY][player.corX + 2], "drawable", getPackageName());
@@ -1003,95 +1021,289 @@ public class movement_logic extends map_generator
         ImageView im9_8 = (ImageView) findViewById(R.id.mapDrawImage9_8);
         ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
 
-        setTileImage(im1_1, player.corY - 4, player.corX - 4);
-        setTileImage(im1_2, player.corY - 4, player.corX - 3);
-        setTileImage(im1_3, player.corY - 4, player.corX - 2);
-        setTileImage(im1_4, player.corY - 4, player.corX - 1);
-        setTileImage(im1_5, player.corY - 4, player.corX);
-        setTileImage(im1_6, player.corY - 4, player.corX + 1);
-        setTileImage(im1_7, player.corY - 4, player.corX + 2);
-        setTileImage(im1_8, player.corY - 4, player.corX + 3);
-        setTileImage(im1_9, player.corY - 4, player.corX + 4);
+        setTileImage(im1_1, player.corY - 4, player.corX - 4, true);
+        setTileImage(im1_2, player.corY - 4, player.corX - 3, true);
+        setTileImage(im1_3, player.corY - 4, player.corX - 2, true);
+        setTileImage(im1_4, player.corY - 4, player.corX - 1, true);
+        setTileImage(im1_5, player.corY - 4, player.corX, true);
+        setTileImage(im1_6, player.corY - 4, player.corX + 1, true);
+        setTileImage(im1_7, player.corY - 4, player.corX + 2, true);
+        setTileImage(im1_8, player.corY - 4, player.corX + 3, true);
+        setTileImage(im1_9, player.corY - 4, player.corX + 4, true);
 
-        setTileImage(im2_1, player.corY - 3, player.corX - 4);
-        setTileImage(im2_2, player.corY - 3, player.corX - 3);
-        setTileImage(im2_3, player.corY - 3, player.corX - 2);
-        setTileImage(im2_4, player.corY - 3, player.corX - 1);
-        setTileImage(im2_5, player.corY - 3, player.corX);
-        setTileImage(im2_6, player.corY - 3, player.corX + 1);
-        setTileImage(im2_7, player.corY - 3, player.corX + 2);
-        setTileImage(im2_8, player.corY - 3, player.corX + 3);
-        setTileImage(im2_9, player.corY - 3, player.corX + 4);
+        setTileImage(im2_1, player.corY - 3, player.corX - 4, true);
+        setTileImage(im2_2, player.corY - 3, player.corX - 3, true);
+        setTileImage(im2_3, player.corY - 3, player.corX - 2, true);
+        setTileImage(im2_4, player.corY - 3, player.corX - 1, true);
+        setTileImage(im2_5, player.corY - 3, player.corX, true);
+        setTileImage(im2_6, player.corY - 3, player.corX + 1, true);
+        setTileImage(im2_7, player.corY - 3, player.corX + 2, true);
+        setTileImage(im2_8, player.corY - 3, player.corX + 3, true);
+        setTileImage(im2_9, player.corY - 3, player.corX + 4, true);
 
-        setTileImage(im3_1, player.corY - 2, player.corX - 4);
-        setTileImage(im3_2, player.corY - 2, player.corX - 3);
-        setTileImage(im3_3, player.corY - 2, player.corX - 2);
-        setTileImage(im3_4, player.corY - 2, player.corX - 1);
-        setTileImage(im3_5, player.corY - 2, player.corX);
-        setTileImage(im3_6, player.corY - 2, player.corX + 1);
-        setTileImage(im3_7, player.corY - 2, player.corX + 2);
-        setTileImage(im3_8, player.corY - 2, player.corX + 3);
-        setTileImage(im3_9, player.corY - 2, player.corX + 4);
+        setTileImage(im3_1, player.corY - 2, player.corX - 4, true);
+        setTileImage(im3_2, player.corY - 2, player.corX - 3, true);
+        setTileImage(im3_3, player.corY - 2, player.corX - 2, true);
+        setTileImage(im3_4, player.corY - 2, player.corX - 1, true);
+        setTileImage(im3_5, player.corY - 2, player.corX, true);
+        setTileImage(im3_6, player.corY - 2, player.corX + 1, true);
+        setTileImage(im3_7, player.corY - 2, player.corX + 2, true);
+        setTileImage(im3_8, player.corY - 2, player.corX + 3, true);
+        setTileImage(im3_9, player.corY - 2, player.corX + 4, true);
 
-        setTileImage(im4_1, player.corY - 1, player.corX - 4);
-        setTileImage(im4_2, player.corY - 1, player.corX - 3);
-        setTileImage(im4_3, player.corY - 1, player.corX - 2);
-        setTileImage(im4_4, player.corY - 1, player.corX - 1);
-        setTileImage(im4_5, player.corY - 1, player.corX);
-        setTileImage(im4_6, player.corY - 1, player.corX + 1);
-        setTileImage(im4_7, player.corY - 1, player.corX + 2);
-        setTileImage(im4_8, player.corY - 1, player.corX + 3);
-        setTileImage(im4_9, player.corY - 1, player.corX + 4);
+        setTileImage(im4_1, player.corY - 1, player.corX - 4, true);
+        setTileImage(im4_2, player.corY - 1, player.corX - 3, true);
+        setTileImage(im4_3, player.corY - 1, player.corX - 2, true);
+        setTileImage(im4_4, player.corY - 1, player.corX - 1, true);
+        setTileImage(im4_5, player.corY - 1, player.corX, true);
+        setTileImage(im4_6, player.corY - 1, player.corX + 1, true);
+        setTileImage(im4_7, player.corY - 1, player.corX + 2, true);
+        setTileImage(im4_8, player.corY - 1, player.corX + 3, true);
+        setTileImage(im4_9, player.corY - 1, player.corX + 4, true);
 
-        setTileImage(im5_1, player.corY, player.corX - 4);
-        setTileImage(im5_2, player.corY, player.corX - 3);
-        setTileImage(im5_3, player.corY, player.corX - 2);
-        setTileImage(im5_4, player.corY, player.corX - 1);
+        setTileImage(im5_1, player.corY, player.corX - 4, true);
+        setTileImage(im5_2, player.corY, player.corX - 3, true);
+        setTileImage(im5_3, player.corY, player.corX - 2, true);
+        setTileImage(im5_4, player.corY, player.corX - 1, true);
         im5_5.setImageResource(R.drawable.player_tile);
-        setTileImage(im5_6, player.corY, player.corX + 1);
-        setTileImage(im5_7, player.corY, player.corX + 2);
-        setTileImage(im5_8, player.corY, player.corX + 3);
-        setTileImage(im5_9, player.corY, player.corX + 4);
+        setTileImage(im5_6, player.corY, player.corX + 1, true);
+        setTileImage(im5_7, player.corY, player.corX + 2, true);
+        setTileImage(im5_8, player.corY, player.corX + 3, true);
+        setTileImage(im5_9, player.corY, player.corX + 4, true);
 
-        setTileImage(im6_1, player.corY + 1, player.corX - 4);
-        setTileImage(im6_2, player.corY + 1, player.corX - 3);
-        setTileImage(im6_3, player.corY + 1, player.corX - 2);
-        setTileImage(im6_4, player.corY + 1, player.corX - 1);
-        setTileImage(im6_5, player.corY + 1, player.corX);
-        setTileImage(im6_6, player.corY + 1, player.corX + 1);
-        setTileImage(im6_7, player.corY + 1, player.corX + 2);
-        setTileImage(im6_8, player.corY + 1, player.corX + 3);
-        setTileImage(im6_9, player.corY + 1, player.corX + 4);
+        setTileImage(im6_1, player.corY + 1, player.corX - 4, true);
+        setTileImage(im6_2, player.corY + 1, player.corX - 3, true);
+        setTileImage(im6_3, player.corY + 1, player.corX - 2, true);
+        setTileImage(im6_4, player.corY + 1, player.corX - 1, true);
+        setTileImage(im6_5, player.corY + 1, player.corX, true);
+        setTileImage(im6_6, player.corY + 1, player.corX + 1, true);
+        setTileImage(im6_7, player.corY + 1, player.corX + 2, true);
+        setTileImage(im6_8, player.corY + 1, player.corX + 3, true);
+        setTileImage(im6_9, player.corY + 1, player.corX + 4, true);
 
-        setTileImage(im7_1, player.corY + 2, player.corX - 4);
-        setTileImage(im7_2, player.corY + 2, player.corX - 3);
-        setTileImage(im7_3, player.corY + 2, player.corX - 2);
-        setTileImage(im7_4, player.corY + 2, player.corX - 1);
-        setTileImage(im7_5, player.corY + 2, player.corX);
-        setTileImage(im7_6, player.corY + 2, player.corX + 1);
-        setTileImage(im7_7, player.corY + 2, player.corX + 2);
-        setTileImage(im7_8, player.corY + 2, player.corX + 3);
-        setTileImage(im7_9, player.corY + 2, player.corX + 4);
+        setTileImage(im7_1, player.corY + 2, player.corX - 4, true);
+        setTileImage(im7_2, player.corY + 2, player.corX - 3, true);
+        setTileImage(im7_3, player.corY + 2, player.corX - 2, true);
+        setTileImage(im7_4, player.corY + 2, player.corX - 1, true);
+        setTileImage(im7_5, player.corY + 2, player.corX, true);
+        setTileImage(im7_6, player.corY + 2, player.corX + 1, true);
+        setTileImage(im7_7, player.corY + 2, player.corX + 2, true);
+        setTileImage(im7_8, player.corY + 2, player.corX + 3, true);
+        setTileImage(im7_9, player.corY + 2, player.corX + 4, true);
 
-        setTileImage(im8_1, player.corY + 3, player.corX - 4);
-        setTileImage(im8_2, player.corY + 3, player.corX - 3);
-        setTileImage(im8_3, player.corY + 3, player.corX - 2);
-        setTileImage(im8_4, player.corY + 3, player.corX - 1);
-        setTileImage(im8_5, player.corY + 3, player.corX);
-        setTileImage(im8_6, player.corY + 3, player.corX + 1);
-        setTileImage(im8_7, player.corY + 3, player.corX + 2);
-        setTileImage(im8_8, player.corY + 3, player.corX + 3);
-        setTileImage(im8_9, player.corY + 3, player.corX + 4);
+        setTileImage(im8_1, player.corY + 3, player.corX - 4, true);
+        setTileImage(im8_2, player.corY + 3, player.corX - 3, true);
+        setTileImage(im8_3, player.corY + 3, player.corX - 2, true);
+        setTileImage(im8_4, player.corY + 3, player.corX - 1, true);
+        setTileImage(im8_5, player.corY + 3, player.corX, true);
+        setTileImage(im8_6, player.corY + 3, player.corX + 1, true);
+        setTileImage(im8_7, player.corY + 3, player.corX + 2, true);
+        setTileImage(im8_8, player.corY + 3, player.corX + 3, true);
+        setTileImage(im8_9, player.corY + 3, player.corX + 4, true);
 
-        setTileImage(im9_1, player.corY + 4, player.corX - 4);
-        setTileImage(im9_2, player.corY + 4, player.corX - 3);
-        setTileImage(im9_3, player.corY + 4, player.corX - 2);
-        setTileImage(im9_4, player.corY + 4, player.corX - 1);
-        setTileImage(im9_5, player.corY + 4, player.corX);
-        setTileImage(im9_6, player.corY + 4, player.corX + 1);
-        setTileImage(im9_7, player.corY + 4, player.corX + 2);
-        setTileImage(im9_8, player.corY + 4, player.corX + 3);
-        setTileImage(im9_9, player.corY + 4, player.corX + 4);
+        setTileImage(im9_1, player.corY + 4, player.corX - 4, true);
+        setTileImage(im9_2, player.corY + 4, player.corX - 3, true);
+        setTileImage(im9_3, player.corY + 4, player.corX - 2, true);
+        setTileImage(im9_4, player.corY + 4, player.corX - 1, true);
+        setTileImage(im9_5, player.corY + 4, player.corX, true);
+        setTileImage(im9_6, player.corY + 4, player.corX + 1, true);
+        setTileImage(im9_7, player.corY + 4, player.corX + 2, true);
+        setTileImage(im9_8, player.corY + 4, player.corX + 3, true);
+        setTileImage(im9_9, player.corY + 4, player.corX + 4, true);
+    }
+
+    public void mapDrawBushesScreen()
+    {
+        ImageView im1_1 = (ImageView) findViewById(R.id.mapDrawImage1_1);
+        ImageView im1_2 = (ImageView) findViewById(R.id.mapDrawImage1_2);
+        ImageView im1_3 = (ImageView) findViewById(R.id.mapDrawImage1_3);
+        ImageView im1_4 = (ImageView) findViewById(R.id.mapDrawImage1_4);
+        ImageView im1_5 = (ImageView) findViewById(R.id.mapDrawImage1_5);
+        ImageView im1_6 = (ImageView) findViewById(R.id.mapDrawImage1_6);
+        ImageView im1_7 = (ImageView) findViewById(R.id.mapDrawImage1_7);
+        ImageView im1_8 = (ImageView) findViewById(R.id.mapDrawImage1_8);
+        ImageView im1_9 = (ImageView) findViewById(R.id.mapDrawImage1_9);
+
+        ImageView im2_1 = (ImageView) findViewById(R.id.mapDrawImage2_1);
+        ImageView im2_2 = (ImageView) findViewById(R.id.mapDrawImage2_2);
+        ImageView im2_3 = (ImageView) findViewById(R.id.mapDrawImage2_3);
+        ImageView im2_4 = (ImageView) findViewById(R.id.mapDrawImage2_4);
+        ImageView im2_5 = (ImageView) findViewById(R.id.mapDrawImage2_5);
+        ImageView im2_6 = (ImageView) findViewById(R.id.mapDrawImage2_6);
+        ImageView im2_7 = (ImageView) findViewById(R.id.mapDrawImage2_7);
+        ImageView im2_8 = (ImageView) findViewById(R.id.mapDrawImage2_8);
+        ImageView im2_9 = (ImageView) findViewById(R.id.mapDrawImage2_9);
+
+        ImageView im3_1 = (ImageView) findViewById(R.id.mapDrawImage3_1);
+        ImageView im3_2 = (ImageView) findViewById(R.id.mapDrawImage3_2);
+        ImageView im3_3 = (ImageView) findViewById(R.id.mapDrawImage3_3);
+        ImageView im3_4 = (ImageView) findViewById(R.id.mapDrawImage3_4);
+        ImageView im3_5 = (ImageView) findViewById(R.id.mapDrawImage3_5);
+        ImageView im3_6 = (ImageView) findViewById(R.id.mapDrawImage3_6);
+        ImageView im3_7 = (ImageView) findViewById(R.id.mapDrawImage3_7);
+        ImageView im3_8 = (ImageView) findViewById(R.id.mapDrawImage3_8);
+        ImageView im3_9 = (ImageView) findViewById(R.id.mapDrawImage3_9);
+
+        ImageView im4_1 = (ImageView) findViewById(R.id.mapDrawImage4_1);
+        ImageView im4_2 = (ImageView) findViewById(R.id.mapDrawImage4_2);
+        ImageView im4_3 = (ImageView) findViewById(R.id.mapDrawImage4_3);
+        ImageView im4_4 = (ImageView) findViewById(R.id.mapDrawImage4_4);
+        ImageView im4_5 = (ImageView) findViewById(R.id.mapDrawImage4_5);
+        ImageView im4_6 = (ImageView) findViewById(R.id.mapDrawImage4_6);
+        ImageView im4_7 = (ImageView) findViewById(R.id.mapDrawImage4_7);
+        ImageView im4_8 = (ImageView) findViewById(R.id.mapDrawImage4_8);
+        ImageView im4_9 = (ImageView) findViewById(R.id.mapDrawImage4_9);
+
+        ImageView im5_1 = (ImageView) findViewById(R.id.mapDrawImage5_1);
+        ImageView im5_2 = (ImageView) findViewById(R.id.mapDrawImage5_2);
+        ImageView im5_3 = (ImageView) findViewById(R.id.mapDrawImage5_3);
+        ImageView im5_4 = (ImageView) findViewById(R.id.mapDrawImage5_4);
+        ImageView im5_5 = (ImageView) findViewById(R.id.mapDrawImage5_5);
+        ImageView im5_6 = (ImageView) findViewById(R.id.mapDrawImage5_6);
+        ImageView im5_7 = (ImageView) findViewById(R.id.mapDrawImage5_7);
+        ImageView im5_8 = (ImageView) findViewById(R.id.mapDrawImage5_8);
+        ImageView im5_9 = (ImageView) findViewById(R.id.mapDrawImage5_9);
+
+        ImageView im6_1 = (ImageView) findViewById(R.id.mapDrawImage6_1);
+        ImageView im6_2 = (ImageView) findViewById(R.id.mapDrawImage6_2);
+        ImageView im6_3 = (ImageView) findViewById(R.id.mapDrawImage6_3);
+        ImageView im6_4 = (ImageView) findViewById(R.id.mapDrawImage6_4);
+        ImageView im6_5 = (ImageView) findViewById(R.id.mapDrawImage6_5);
+        ImageView im6_6 = (ImageView) findViewById(R.id.mapDrawImage6_6);
+        ImageView im6_7 = (ImageView) findViewById(R.id.mapDrawImage6_7);
+        ImageView im6_8 = (ImageView) findViewById(R.id.mapDrawImage6_8);
+        ImageView im6_9 = (ImageView) findViewById(R.id.mapDrawImage6_9);
+
+        ImageView im7_1 = (ImageView) findViewById(R.id.mapDrawImage7_1);
+        ImageView im7_2 = (ImageView) findViewById(R.id.mapDrawImage7_2);
+        ImageView im7_3 = (ImageView) findViewById(R.id.mapDrawImage7_3);
+        ImageView im7_4 = (ImageView) findViewById(R.id.mapDrawImage7_4);
+        ImageView im7_5 = (ImageView) findViewById(R.id.mapDrawImage7_5);
+        ImageView im7_6 = (ImageView) findViewById(R.id.mapDrawImage7_6);
+        ImageView im7_7 = (ImageView) findViewById(R.id.mapDrawImage7_7);
+        ImageView im7_8 = (ImageView) findViewById(R.id.mapDrawImage7_8);
+        ImageView im7_9 = (ImageView) findViewById(R.id.mapDrawImage7_9);
+
+        ImageView im8_1 = (ImageView) findViewById(R.id.mapDrawImage8_1);
+        ImageView im8_2 = (ImageView) findViewById(R.id.mapDrawImage8_2);
+        ImageView im8_3 = (ImageView) findViewById(R.id.mapDrawImage8_3);
+        ImageView im8_4 = (ImageView) findViewById(R.id.mapDrawImage8_4);
+        ImageView im8_5 = (ImageView) findViewById(R.id.mapDrawImage8_5);
+        ImageView im8_6 = (ImageView) findViewById(R.id.mapDrawImage8_6);
+        ImageView im8_7 = (ImageView) findViewById(R.id.mapDrawImage8_7);
+        ImageView im8_8 = (ImageView) findViewById(R.id.mapDrawImage8_8);
+        ImageView im8_9 = (ImageView) findViewById(R.id.mapDrawImage8_9);
+
+        ImageView im9_1 = (ImageView) findViewById(R.id.mapDrawImage9_1);
+        ImageView im9_2 = (ImageView) findViewById(R.id.mapDrawImage9_2);
+        ImageView im9_3 = (ImageView) findViewById(R.id.mapDrawImage9_3);
+        ImageView im9_4 = (ImageView) findViewById(R.id.mapDrawImage9_4);
+        ImageView im9_5 = (ImageView) findViewById(R.id.mapDrawImage9_5);
+        ImageView im9_6 = (ImageView) findViewById(R.id.mapDrawImage9_6);
+        ImageView im9_7 = (ImageView) findViewById(R.id.mapDrawImage9_7);
+        ImageView im9_8 = (ImageView) findViewById(R.id.mapDrawImage9_8);
+        ImageView im9_9 = (ImageView) findViewById(R.id.mapDrawImage9_9);
+
+        int resId;
+
+        im1_1.setImageResource(R.drawable.nigger_tile);
+        im1_2.setImageResource(R.drawable.nigger_tile);
+        im1_3.setImageResource(R.drawable.nigger_tile);
+        im1_4.setImageResource(R.drawable.nigger_tile);
+        im1_5.setImageResource(R.drawable.nigger_tile);
+        im1_6.setImageResource(R.drawable.nigger_tile);
+        im1_7.setImageResource(R.drawable.nigger_tile);
+        im1_8.setImageResource(R.drawable.nigger_tile);
+        im1_9.setImageResource(R.drawable.nigger_tile);
+
+        im2_1.setImageResource(R.drawable.nigger_tile);
+        im2_2.setImageResource(R.drawable.nigger_tile);
+        im2_3.setImageResource(R.drawable.nigger_tile);
+        im2_4.setImageResource(R.drawable.nigger_tile);
+        im2_5.setImageResource(R.drawable.nigger_tile);
+        im2_6.setImageResource(R.drawable.nigger_tile);
+        im2_7.setImageResource(R.drawable.nigger_tile);
+        im2_8.setImageResource(R.drawable.nigger_tile);
+        im2_9.setImageResource(R.drawable.nigger_tile);
+
+
+        im3_1.setImageResource(R.drawable.nigger_tile);
+        im3_2.setImageResource(R.drawable.nigger_tile);
+        setTileImage(im3_3, player.corY - 2, player.corX - 2, false);
+        setTileImage(im3_4, player.corY - 2, player.corX - 1, false);
+        setTileImage(im3_5, player.corY - 2, player.corX, false);
+        setTileImage(im3_6, player.corY - 2, player.corX + 1, false);
+        setTileImage(im3_7, player.corY - 2, player.corX + 2, false);
+        im3_8.setImageResource(R.drawable.nigger_tile);
+        im3_9.setImageResource(R.drawable.nigger_tile);
+
+        im4_1.setImageResource(R.drawable.nigger_tile);
+        im4_2.setImageResource(R.drawable.nigger_tile);
+        setTileImage(im4_3, player.corY - 1, player.corX - 2, false);
+        resId = getResources().getIdentifier(map[player.corY - 1][player.corX - 1], "drawable", getPackageName());
+        im4_4.setImageResource(resId);
+        resId = getResources().getIdentifier(map[player.corY - 1][player.corX], "drawable", getPackageName());
+        im4_5.setImageResource(resId);
+        resId = getResources().getIdentifier(map[player.corY - 1][player.corX + 1], "drawable", getPackageName());
+        im4_6.setImageResource(resId);
+        setTileImage(im4_7, player.corY - 1, player.corX + 2, false);
+        im4_8.setImageResource(R.drawable.nigger_tile);
+        im4_9.setImageResource(R.drawable.nigger_tile);
+
+        im5_1.setImageResource(R.drawable.nigger_tile);
+        im5_2.setImageResource(R.drawable.nigger_tile);
+        setTileImage(im5_3, player.corY, player.corX - 2, false);
+        resId = getResources().getIdentifier(map[player.corY][player.corX - 1], "drawable", getPackageName());
+        im5_4.setImageResource(resId);
+        im5_5.setImageResource(R.drawable.player_tile);
+        resId = getResources().getIdentifier(map[player.corY][player.corX + 1], "drawable", getPackageName());
+        im5_6.setImageResource(resId);
+        setTileImage(im5_7, player.corY, player.corX + 2, false);
+        im5_8.setImageResource(R.drawable.nigger_tile);
+        im5_9.setImageResource(R.drawable.nigger_tile);
+
+        im6_1.setImageResource(R.drawable.nigger_tile);
+        im6_2.setImageResource(R.drawable.nigger_tile);
+        setTileImage(im6_3, player.corY + 1, player.corX - 2, false);
+        resId = getResources().getIdentifier(map[player.corY + 1][player.corX - 1], "drawable", getPackageName());
+        im6_4.setImageResource(resId);
+        resId = getResources().getIdentifier(map[player.corY + 1][player.corX], "drawable", getPackageName());
+        im6_5.setImageResource(resId);
+        resId = getResources().getIdentifier(map[player.corY + 1][player.corX + 1], "drawable", getPackageName());
+        im6_6.setImageResource(resId);
+        setTileImage(im6_7, player.corY + 1, player.corX + 2, false);
+        im6_8.setImageResource(R.drawable.nigger_tile);
+        im6_9.setImageResource(R.drawable.nigger_tile);
+
+        im7_1.setImageResource(R.drawable.nigger_tile);
+        im7_2.setImageResource(R.drawable.nigger_tile);
+        setTileImage(im7_3, player.corY + 2, player.corX - 2, false);
+        setTileImage(im7_4, player.corY + 2, player.corX - 1, false);
+        setTileImage(im7_5, player.corY + 2, player.corX, false);
+        setTileImage(im7_6, player.corY + 2, player.corX + 1, false);
+        setTileImage(im7_7, player.corY + 2, player.corX + 2, false);
+        im7_8.setImageResource(R.drawable.nigger_tile);
+        im7_9.setImageResource(R.drawable.nigger_tile);
+
+        im8_1.setImageResource(R.drawable.nigger_tile);
+        im8_2.setImageResource(R.drawable.nigger_tile);
+        im8_3.setImageResource(R.drawable.nigger_tile);
+        im8_4.setImageResource(R.drawable.nigger_tile);
+        im8_5.setImageResource(R.drawable.nigger_tile);
+        im8_6.setImageResource(R.drawable.nigger_tile);
+        im8_7.setImageResource(R.drawable.nigger_tile);
+        im8_8.setImageResource(R.drawable.nigger_tile);
+        im8_9.setImageResource(R.drawable.nigger_tile);
+
+        im9_1.setImageResource(R.drawable.nigger_tile);
+        im9_2.setImageResource(R.drawable.nigger_tile);
+        im9_3.setImageResource(R.drawable.nigger_tile);
+        im9_4.setImageResource(R.drawable.nigger_tile);
+        im9_5.setImageResource(R.drawable.nigger_tile);
+        im9_6.setImageResource(R.drawable.nigger_tile);
+        im9_7.setImageResource(R.drawable.nigger_tile);
+        im9_8.setImageResource(R.drawable.nigger_tile);
+        im9_9.setImageResource(R.drawable.nigger_tile);
     }
 
     public void enemySence()
@@ -1331,11 +1543,16 @@ public class movement_logic extends map_generator
         }
     }
 
-    public void peshkaSukaMove()
+    public void peshkaSukaMove(boolean task)
     {
-        computeFlowField(map, player.corX, player.corY, 1);
+        int negr = 9;
 
-        int negr = getDirection(peshka.corX, peshka.corY);
+        if (!task)
+        {
+            computeFlowField(map, player.corX, player.corY, 1);
+
+            negr = getDirection(peshka.corX, peshka.corY);
+        }
 
         if (negr == 1)
         {
@@ -1416,11 +1633,16 @@ public class movement_logic extends map_generator
         }
     }
 
-    public void slonMove()
+    public void slonMove(boolean task)
     {
-        computeFlowField(map, player.corX, player.corY, 2);
+        int negr = 9;
 
-        int negr = getDirection(slon.corX, slon.corY);
+        if (!task)
+        {
+            computeFlowField(map, player.corX, player.corY, 1);
+
+            negr = getDirection(peshka.corX, peshka.corY);
+        }
 
         if (negr == 2)
         {
@@ -1845,28 +2067,26 @@ public class movement_logic extends map_generator
         }
     }
 
-    public void bolshojMove()
+    public void bolshojMove(boolean task)
     {
         int negr = 9;
         int needMove = 1;
-
-        if (bolshoj.corY - player.corY < 2 && bolshoj.corX - player.corX < 2 && bolshoj.corY - player.corY > -2 && bolshoj.corX - player.corX > -2)
+        if (!task)
         {
-            negr = 9;
+            if (bolshoj.corY - player.corY < 2 && bolshoj.corX - player.corX < 2 && bolshoj.corY - player.corY > -2 && bolshoj.corX - player.corX > -2) {
+                negr = 9;
 
-            needMove = 0;
-        }
+                needMove = 0;
+            } else {
+                computeFlowField(map, player.corX, player.corY, 1);
+                negr = getDirection(bolshoj.corX, bolshoj.corY);
 
-        else
-        {
-            computeFlowField(map, player.corX, player.corY, 1);
-            negr = getDirection(bolshoj.corX, bolshoj.corY);
+                if (player.corX < bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
+                    negr = 7;
 
-            if (player.corX < bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX < bolshoj.corX)
-                negr = 7;
-
-            if (player.corX > bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
-                negr = 3;
+                if (player.corX > bolshoj.corX && player.corY - 1 == bolshoj.corY || (player.corY + 1) == bolshoj.corY && player.corX > bolshoj.corX)
+                    negr = 3;
+            }
         }
 
         if (negr == 1)
@@ -2222,18 +2442,18 @@ public class movement_logic extends map_generator
             }
     }
 
-    public void mobWalk()
+    public void mobWalk(boolean task)
     {
         if (peshka.isHere)
         {
-            peshkaSukaMove();
+            peshkaSukaMove(task);
             riverwork(peshka, "peshka_tile");
         }
 
         if (slon.isHere)
         {
 
-            slonMove();
+            slonMove(task);
             riverwork(slon, "slon_tile");
         }
 
@@ -2251,7 +2471,7 @@ public class movement_logic extends map_generator
 
         if (bolshoj.isHere)
         {
-            bolshojMove();
+            bolshojMove(task);
             riverwork(bolshoj, "bolshoj_b_tile");
         }
 
@@ -2424,48 +2644,57 @@ public class movement_logic extends map_generator
 
         if (moveCheck == 1)
         {
-            mobWalk();
+            mobWalk(playerInBushes);
 
             portalsWork();
             abiWork();
             gameLifeCheck();
 
-            if (b.equals("easy"))
+            if (!playerInBushes)
             {
-                mapDrawScreen();
-                abi(ability);
-            }
-
-            else if (b.equals("hard") || a == 9)
-            {
-                if (flashlight == 1 && energy > 0)
+                if (b.equals("easy"))
                 {
                     mapDrawScreen();
-                    flashlight = 0;
-                    energy-=3;
+                    abi(ability);
+                }
+
+                else if (b.equals("hard") || a == 9)
+                {
+                    if (flashlight == 1 && energy > 0)
+                    {
+                        mapDrawScreen();
+                        flashlight = 0;
+                        energy-=3;
+                    }
+
+                    else
+                    {
+                        mapDrawDarkScreen();
+                        abi(ability);
+                    }
                 }
 
                 else
                 {
-                    mapDrawDarkScreen();
-                    abi(ability);
+                    if (flashlight == 1 && energy > 0)
+                    {
+                        mapDrawScreen();
+                        flashlight = 0;
+                        energy -= 6;
+                    }
+
+                    else
+                    {
+                        mapDrawDarkScreen();
+                        abi(ability);
+                    }
                 }
             }
 
             else
             {
-                if (flashlight == 1 && energy > 0)
-                {
-                    mapDrawScreen();
-                    flashlight = 0;
-                    energy -= 6;
-                }
-
-                else
-                {
-                    mapDrawDarkScreen();
-                    abi(ability);
-                }
+                mapDrawBushesScreen();
+                abi(ability);
             }
 
             if (energy < 0)

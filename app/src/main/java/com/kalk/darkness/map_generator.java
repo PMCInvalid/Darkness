@@ -30,6 +30,7 @@ public class map_generator extends mob
     static mob battery = new mob();
     static mob[] portals;
     static mob[][] rivers = new mob[3][15];
+    static mob[][] bushes = new mob[3][50];
 
     public static String[][] mapThrower(double points, String hard)
     {
@@ -552,6 +553,183 @@ public class map_generator extends mob
             batteryGen();
     }
 
+    public static void bushesGen(int amount)
+    {
+        int x = -1;
+        int y = -1;
+
+        for (int i = 0; i < amount; i++)
+        {
+            int helper = 1;
+            int counter = 1;
+
+            while (helper == 1)
+            {
+                x = rand.nextInt(27) + 2;
+                y = rand.nextInt(27) + 2;
+
+                if (map[y][x].equals("empty_tile"))
+                    helper--;
+            }
+
+            bushes[i][0].corX = x;
+            bushes[i][0].corY = y;
+
+            for (int j = bushes[i][0].corY - 2; j <= bushes[i][0].corY + 2; j++)
+            {
+                for (int k = bushes[i][0].corX - 2; k <= bushes[i][0].corX + 2; k++)
+                {
+                    if (map[j][k].equals("empty_tile"))
+                    {
+                        bushes[i][counter].corY = j;
+                        bushes[i][counter].corX = k;
+                        map[j][k] = "bushes_tile";
+                        counter++;
+                    }
+
+                }
+            }
+
+            for (int j = bushes[i][0].corY - 4; j <= bushes[i][0].corY + 4; j++)
+            {
+                for (int k = bushes[i][0].corX - 4; k <= bushes[i][0].corX + 4; k++)
+                {
+                    if (bushes[i][0].corY - 4 < 2) {
+                        j++;
+                        continue;
+                    }
+                    if (bushes[i][0].corY - 3 < 2) {
+                        j++;
+                        continue;
+                    }
+
+                    if (bushes[i][0].corY + 4 > 30) {
+                        continue;
+                    }
+                    if (bushes[i][0].corY + 3 > 30) {
+                        continue;
+                    }
+
+                    if (bushes[i][0].corX - 4 < 2) {
+                        k++;
+                        continue;
+                    }
+                    if (bushes[i][0].corX - 3 < 2) {
+                        k++;
+                        continue;
+                    }
+
+                    if (bushes[i][0].corX + 4 > 30) {
+                        continue;
+                    }
+                    if (bushes[i][0].corX + 3 > 30) {
+                        continue;
+                    }
+
+                    if (j == bushes[i][0].corY - 4)
+                        if (rand.nextInt(101) % 2 == 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (k == bushes[i][0].corX - 4)
+                        if (rand.nextInt(101) % 2 == 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (j == bushes[i][0].corY + 4)
+                        if (rand.nextInt(101) % 2 == 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (k == bushes[i][0].corX + 4)
+                        if (rand.nextInt(101) % 2 == 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (j == bushes[i][0].corY - 3)
+                        if (rand.nextInt(101) % 3 != 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (k == bushes[i][0].corX - 3)
+                        if (rand.nextInt(101) % 3 != 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (j == bushes[i][0].corY + 3)
+                        if (rand.nextInt(101) % 3 != 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (k == bushes[i][0].corX + 3)
+                        if (rand.nextInt(101) % 3 != 0)
+                        {
+                            if (map[j][k].equals("empty_tile"))
+                            {
+                                bushes[i][counter].corY = j;
+                                bushes[i][counter].corX = k;
+                                map[j][k] = "bushes_tile";
+                                counter++;
+                            }
+                        }
+
+                    if (j == bushes[i][0].corY - 2)
+                        j = bushes[i][0].corY + 2;
+                }
+            }
+        }
+
+    }
+
     public static void objectsGen(double points, @NonNull String level)
     {
         Random rar = new Random();
@@ -586,6 +764,13 @@ public class map_generator extends mob
                 rivers[i][j] = new mob();
 
         riverGen(s);
+
+        s = rar.nextInt(3) + 1;
+        for (int i = 0; i < bushes.length; i++)
+            for (int j = 0; j < 50; j++)
+                bushes[i][j] = new mob();
+
+        bushesGen(s);
 
         batteryGen();
     }
