@@ -318,9 +318,14 @@ public class movement_logic extends map_generator
                 ability = 2;
             }
 
-            else
+            else if (settings.getString("difficulty", "").equals("hard"))
             {
                 ability = rar.nextInt(2) + 1;
+            }
+
+            else
+            {
+                ability = rar.nextInt(3) + 1;
             }
         }
     }
@@ -2428,12 +2433,17 @@ public class movement_logic extends map_generator
             switch(anum)
             {
                 case 1:
+                    energy = 100;
+
+                case 2:
                     sonar();
                     energy -= 2;
                     break;
 
-                case 2:
-                    energy = 100;
+                case 3:
+                    enemySence();
+                    energy -= 2;
+                    break;
             }
     }
 
