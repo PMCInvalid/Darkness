@@ -1075,7 +1075,7 @@ public class map_generator extends mob
             }
         }
 
-        else
+        else if (event == 1)
             furyKingSpawn();
     }
 }

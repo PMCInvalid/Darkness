@@ -43,7 +43,7 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            int iv = rand.nextInt(5) + 50;
+            int iv = rand.nextInt(100) ;
 
             if (iv == 52)
                 event = 1;
@@ -51,7 +51,10 @@ public class movement_logic extends map_generator
             if (iv == 77)
                 event = 2;
 
-            if (event == 1 || hard.equals("insane"))
+            if (hard.equals("insane"))
+                event = 1;
+
+            if (event == 1)
                 if (sound != null)
                     sound.start();
 
