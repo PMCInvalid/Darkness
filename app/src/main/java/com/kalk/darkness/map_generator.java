@@ -28,16 +28,17 @@ public class map_generator extends mob
     static int gonchajaBaseX = -1;
     static int gonchajaBaseY = -1;
     static mob battery = new mob();
+    static mob fKing = new mob();
     static mob[] portals;
     static mob[][] rivers = new mob[3][15];
     static mob[][] bushes = new mob[3][50];
 
-    public static String[][] mapThrower(double points, String hard)
+    public static String[][] mapThrower(double points, String hard, int event)
     {
         emptySetter();
         wallGen();
         objectsGen(points, hard);
-        mobGen(points, hard);
+        mobGen(points, hard, event);
 
         return map;
     }
@@ -983,7 +984,30 @@ public class map_generator extends mob
             gonchajaSpawn();
     }
 
-    public static void mobGen(double points, String level)
+    public static void furyKingSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX, 3);
+
+        if (solution)
+        {
+            fKing.corY = y;
+            fKing.corX = x;
+
+            fKing.helper2 = map[fKing.corY][fKing.corX];
+
+            map[fKing.corY][fKing.corX] = "sking_tile";
+
+            fKing.isHere = true;
+        }
+
+        else
+            furyKingSpawn();
+    }
+
+    public static void mobGen(double points, String level, int event)
     {
         int helper = 1;
         int spawnChance = 0;
@@ -1001,51 +1025,57 @@ public class map_generator extends mob
 
         playerSpawn();
 
-        if (level.equals("easy"))
+        if (event == 0 && !level.equals("insane"))
         {
-            if (points >= 1)
+            if (level.equals("easy"))
+            {
+                if (points >= 1)
+                    peshkaSpawn();
+
+                if (points >= 1.5)
+                    slonSpawn();
+
+                if (points >= 2.25)
+                    sKorolSpawn();
+
+                if (points >= 3)
+                    medvedSpawn();
+
+                if (points >= 3.5)
+                    if (spawnChance % 2 == 0)
+                        krotSpawn();
+
+                if (points >= 4)
+                    if (spawnChance % 2 == 0)
+                        gonchajaSpawn();
+
+                if (points >= 4.5)
+                    if (spawnChance % 3 == 0)
+                        bolshojSpawn();
+            }
+
+            else
+            {
                 peshkaSpawn();
 
-            if (points >= 1.5)
                 slonSpawn();
 
-            if (points >= 2.25)
                 sKorolSpawn();
 
-            if (points >= 3)
                 medvedSpawn();
 
-            if (points >= 3.5)
+                if (spawnChance % 3 == 0)
+                    bolshojSpawn();
+
                 if (spawnChance % 2 == 0)
                     krotSpawn();
 
-            if (points >= 4)
                 if (spawnChance % 2 == 0)
                     gonchajaSpawn();
-
-            if (points >= 4.5)
-                if (spawnChance % 3 == 0)
-                    bolshojSpawn();
+            }
         }
 
         else
-        {
-            peshkaSpawn();
-
-            slonSpawn();
-
-            sKorolSpawn();
-
-            medvedSpawn();
-
-            if (spawnChance % 3 == 0)
-                bolshojSpawn();
-
-            if (spawnChance % 2 == 0)
-                krotSpawn();
-
-            if (spawnChance % 2 == 0)
-                gonchajaSpawn();
-        }
+            furyKingSpawn();
     }
 }

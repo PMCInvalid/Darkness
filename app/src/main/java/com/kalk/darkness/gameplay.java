@@ -64,13 +64,13 @@ public class gameplay extends movement_logic
     public void midButtonAction(View v)
     {
         playerMove(9);
-        //test();
+        test();
     }
 
     public void test()
     {
         System.out.println(player.corY + " " + player.corX);
         System.out.println("-------");
-        System.out.println(bushes[0][0].corY + " " + bushes[0][0].corX);
+        System.out.println(fKing.corY + " " + fKing.corX);
     }
 }

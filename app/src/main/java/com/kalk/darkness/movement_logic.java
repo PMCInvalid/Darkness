@@ -25,6 +25,7 @@ public class movement_logic extends map_generator
     int ability = 0;
     int gameIn = 0;
     int energy = 100;
+    int event = 0;
     boolean playerInBushes = false;
 
     public void gameplayInit()
@@ -41,7 +42,10 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            map = map_generator.mapThrower(score, hard);
+            if (rand.nextInt(101) == 52)
+                event = 1;
+
+            map = map_generator.mapThrower(score, hard, event);
 
             scores.setText("Score: " + score);
             ener.setText("Battery: " + energy + "%");
@@ -117,7 +121,12 @@ public class movement_logic extends map_generator
 
         if (slon.corX == player.corX && slon.corY == player.corY)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -129,7 +138,12 @@ public class movement_logic extends map_generator
 
         if (sKorol.corX == player.corX && sKorol.corY == player.corY)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -141,7 +155,12 @@ public class movement_logic extends map_generator
 
         if (bolshoj.corX == player.corX && bolshoj.corY == player.corY)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -153,7 +172,12 @@ public class movement_logic extends map_generator
 
         if (krot.corX == player.corX && krot.corY == player.corY)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -165,7 +189,29 @@ public class movement_logic extends map_generator
 
         if (gonchaja.corY == player.corY && gonchaja.corX == player.corX)
         {
-            editor.putString("score", String.valueOf(score));
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
+            editor.apply();
+
+            gameIn = 0;
+            score = 0;
+            ability = 0;
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
+        }
+
+        if (fKing.corY == player.corY && fKing.corX == player.corX)
+        {
+            if (b.equals("easy"))
+                editor.putString("easyScore", String.valueOf(score));
+            else if (b.equals("hard"))
+                editor.putString("hardScore", String.valueOf(score));
+            else if (b.equals("insane"))
+                editor.putString("insaneScore", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -2463,7 +2509,6 @@ public class movement_logic extends map_generator
 
         if (slon.isHere)
         {
-
             slonMove(task);
             riverwork(slon, "slon_tile");
         }
@@ -2496,6 +2541,105 @@ public class movement_logic extends map_generator
         {
             gonchajaMove();
             riverwork(gonchaja, "gonchaja_tile");
+        }
+
+        if (fKing.isHere)
+        {
+            fKingMove(task);
+            riverwork(fKing, "sking_tile");
+        }
+    }
+
+    public void fKingMove(boolean task)
+    {
+        int negr = 9;
+
+        if (!task)
+        {
+            computeFlowField(map, player.corX, player.corY, 3);
+
+            negr = getDirection(fKing.corX, fKing.corY);
+        }
+
+        System.out.println("Negr is:" + negr);
+
+        if (negr == 9)
+            negr = rand.nextInt(8) + 1;
+
+        if (negr == 1)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY - 1][fKing.corX];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY -= 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 2)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY - 1][fKing.corX + 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY -= 1;
+            fKing.corX += 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 3)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY][fKing.corX + 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corX += 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 4)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY + 1][fKing.corX + 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY += 1;
+            fKing.corX += 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 5)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY + 1][fKing.corX];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY += 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 6)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY + 1][fKing.corX - 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY += 1;
+            fKing.corX -= 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 7)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY][fKing.corX - 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corX -= 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
+        }
+
+        else if (negr == 8)
+        {
+            fKing.helper1 = fKing.helper2;
+            fKing.helper2 = map[fKing.corY - 1][fKing.corX - 1];
+            map[fKing.corY][fKing.corX] = fKing.helper1;
+            fKing.corY -= 1;
+            fKing.corX -= 1;
+            map[fKing.corY][fKing.corX] = "sking_tile";
         }
     }
 
@@ -2698,7 +2842,7 @@ public class movement_logic extends map_generator
 
                     else
                     {
-                        mapDrawDarkScreen();
+                        mapDrawScreen();
                         energy -= 2;
                         abi(ability);
                     }
