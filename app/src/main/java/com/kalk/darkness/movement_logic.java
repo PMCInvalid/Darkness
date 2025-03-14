@@ -1,5 +1,6 @@
 package com.kalk.darkness;
 
+import android.media.MediaPlayer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -8,10 +9,8 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-
 import java.util.Random;
 
 public class movement_logic extends map_generator
@@ -34,6 +33,8 @@ public class movement_logic extends map_generator
 
         String hard = settings.getString("difficulty", "");
 
+        MediaPlayer sound = MediaPlayer.create(this, R.raw.bad_event_sound);
+
         if (gameIn == 0)
         {
             TextView scores = (TextView) findViewById(R.id.scoreText);
@@ -42,8 +43,17 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            if (rand.nextInt(101) == 52)
+            int iv = rand.nextInt(5) + 50;
+
+            if (iv == 52)
                 event = 1;
+
+            if (iv == 77)
+                event = 2;
+
+            if (event == 1 || hard.equals("insane"))
+                if (sound != null)
+                    sound.start();
 
             map = map_generator.mapThrower(score, hard, event);
 
@@ -104,12 +114,7 @@ public class movement_logic extends map_generator
 
         if (peshka.corX == player.corX && peshka.corY == player.corY)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -121,12 +126,7 @@ public class movement_logic extends map_generator
 
         if (slon.corX == player.corX && slon.corY == player.corY)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -138,12 +138,7 @@ public class movement_logic extends map_generator
 
         if (sKorol.corX == player.corX && sKorol.corY == player.corY)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -155,12 +150,7 @@ public class movement_logic extends map_generator
 
         if (bolshoj.corX == player.corX && bolshoj.corY == player.corY)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -172,12 +162,7 @@ public class movement_logic extends map_generator
 
         if (krot.corX == player.corX && krot.corY == player.corY)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -189,12 +174,7 @@ public class movement_logic extends map_generator
 
         if (gonchaja.corY == player.corY && gonchaja.corX == player.corX)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -206,12 +186,7 @@ public class movement_logic extends map_generator
 
         if (fKing.corY == player.corY && fKing.corX == player.corX)
         {
-            if (b.equals("easy"))
-                editor.putString("easyScore", String.valueOf(score));
-            else if (b.equals("hard"))
-                editor.putString("hardScore", String.valueOf(score));
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", String.valueOf(score));
+            editor.putString("score", String.valueOf(score));
             editor.apply();
 
             gameIn = 0;
@@ -1431,7 +1406,7 @@ public class movement_logic extends map_generator
         Random rar = new Random();
         dr.setColorFilter(colorFilter);
 
-        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot};
+        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot, fKing};
 
         boolean isNearEnemy = false;
         for (mob m : mobs)
@@ -2842,7 +2817,7 @@ public class movement_logic extends map_generator
 
                     else
                     {
-                        mapDrawScreen();
+                        mapDrawDarkScreen();
                         energy -= 2;
                         abi(ability);
                     }
