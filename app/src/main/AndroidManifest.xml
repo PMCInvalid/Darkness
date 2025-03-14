@@ -42,5 +42,11 @@
             android:theme="@style/Theme.Darkness">
         </activity>
 
+        <activity
+            android:name=".authors"
+            android:exported="true"
+            android:theme="@style/Theme.Darkness">
+        </activity>
+
     </application>
 </manifest>

@@ -18,5 +18,16 @@ import java.io.InputStream;
 
 public class authors extends AppCompatActivity
 {
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_authros);
+    }
 
+    public void menuButton(View v)
+    {
+        Intent pip = new Intent(this, main_menu.class);
+        startActivity(pip);
+    }
 }

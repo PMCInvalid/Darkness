@@ -39,17 +39,13 @@ public class main_menu extends AppCompatActivity
 
     public void authors(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, authors.class);
         startActivity(pip);
     }
 
-    public void onDestroy()
+    public void exit(View v)
     {
-        moveTaskToBack(true);
-
-        super.onDestroy();
-
-        System.runFinalizersOnExit(true);
+        finish();
         System.exit(0);
     }
 }
