@@ -51,10 +51,13 @@ public class movement_logic extends map_generator
             if (iv == 77)
                 event = 2;
 
+            if (iv == 33)
+                event = 3;
+
             if (hard.equals("insane"))
                 event = 1;
 
-            if (event == 1)
+            if (event == 1 || event == 3)
                 if (sound != null)
                     sound.start();
 

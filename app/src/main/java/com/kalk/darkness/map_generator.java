@@ -31,13 +31,13 @@ public class map_generator extends mob
     static mob fKing = new mob();
     static mob[] portals;
     static mob[][] rivers = new mob[3][15];
-    static mob[][] bushes = new mob[3][50];
+    static mob[][] bushes = new mob[4][900];
 
     public static String[][] mapThrower(double points, String hard, int event)
     {
         emptySetter();
         wallGen();
-        objectsGen(points, hard);
+        objectsGen(points, hard, event);
         mobGen(points, hard, event);
 
         return map;
@@ -729,7 +729,21 @@ public class map_generator extends mob
 
     }
 
-    public static void objectsGen(double points, @NonNull String level)
+    public static void bushesEvent()
+    {
+        int counter = 0;
+        for (int i = 0; i < 32; i++)
+            for (int j = 0; j < 32; j++)
+                if (map[i][j].equals("empty_tile"))
+                {
+                    map[i][j] = "bushes_tile";
+                    bushes[3][counter].corY = i;
+                    bushes[3][counter].corX = j;
+                    counter++;
+                }
+    }
+
+    public static void objectsGen(double points, @NonNull String level, int event)
     {
         Random rar = new Random();
         int s;
@@ -766,12 +780,15 @@ public class map_generator extends mob
 
         s = rar.nextInt(3) + 1;
         for (int i = 0; i < bushes.length; i++)
-            for (int j = 0; j < 50; j++)
+            for (int j = 0; j < bushes[0].length; j++)
                 bushes[i][j] = new mob();
 
         bushesGen(s);
 
         batteryGen();
+
+        if (event == 3)
+            bushesEvent();
     }
 
     public static void playerSpawn()

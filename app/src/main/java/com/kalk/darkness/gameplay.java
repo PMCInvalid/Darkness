@@ -71,6 +71,6 @@ public class gameplay extends movement_logic
     {
         System.out.println(player.corY + " " + player.corX);
         System.out.println("-------");
-        System.out.println(fKing.corY + " " + fKing.corX);
+        System.out.println(bushes[3][0].corY + " " + bushes[3][0].corX);
     }
 }
