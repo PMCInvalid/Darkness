@@ -17,6 +17,7 @@ public class map_generator extends mob
     static mob lever = new mob();
     static mob door = new mob();
     static mob peshka = new mob();
+    static mob peshkaB = new mob();
     static mob slon = new mob();
     static mob sKorol = new mob();
     static mob medved = new mob();
@@ -839,6 +840,31 @@ public class map_generator extends mob
             peshkaSpawn();
     }
 
+    public static void peshkaBSpawn()
+    {
+        int y = (rand.nextInt(28) + 2);
+        int x = (rand.nextInt(28) + 2);
+
+        boolean solution = check(y, x, player.corY, player.corX, 1);
+
+        if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
+            solution = false;
+
+        if (solution)
+        {
+            peshkaB.corY = y;
+            peshkaB.corX = x;
+
+            peshkaB.helper2 = map[peshkaB.corY][peshkaB.corX];
+
+            map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+
+            peshkaB.isHere = true;
+        }
+        else
+            peshkaBSpawn();
+    }
+
     public static void slonSpawn()
     {
         int y = (rand.nextInt(28) + 2);
@@ -1071,11 +1097,16 @@ public class map_generator extends mob
                 if (points >= 4.5)
                     if (spawnChance % 3 == 0)
                         bolshojSpawn();
+
+                if (points >= 6)
+                    peshkaBSpawn();
             }
 
             else
             {
                 peshkaSpawn();
+
+                peshkaBSpawn();
 
                 slonSpawn();
 

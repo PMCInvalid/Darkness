@@ -133,6 +133,18 @@ public class movement_logic extends map_generator
             startActivity(pip);
         }
 
+        if (peshkaB.corX == player.corX && peshkaB.corY == player.corY)
+        {
+            editor.putString("score", String.valueOf(score));
+            editor.apply();
+
+            gameIn = 0;
+            score = 0;
+            ability = 0;
+            Intent pip = new Intent(this, death_screen.class);
+            startActivity(pip);
+        }
+
         if (slon.corX == player.corX && slon.corY == player.corY)
         {
             editor.putString("score", String.valueOf(score));
@@ -1578,7 +1590,7 @@ public class movement_logic extends map_generator
         }
     }
 
-    public void peshkaSukaMove(boolean task)
+    public void peshkaMove(boolean task)
     {
         int negr = 9;
 
@@ -1663,6 +1675,96 @@ public class movement_logic extends map_generator
                 map[peshka.corY][peshka.corX] = peshka.helper1;
                 peshka.corX -= 1;
                 map[peshka.corY][peshka.corX] = "peshka_tile";
+            }
+
+        }
+    }
+
+    public void peshkaBratMove(boolean task)
+    {
+        int negr = 9;
+
+        if (!task)
+        {
+            computeFlowField(map, player.corX, player.corY, 1);
+
+            negr = getDirection(peshkaB.corX, peshkaB.corY);
+        }
+
+        if (negr == 1)
+        {
+            peshkaB.helper1 = peshkaB.helper2;
+            peshkaB.helper2 = map[peshkaB.corY - 1][peshkaB.corX];
+            map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+            peshkaB.corY -= 1;
+            map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+        }
+
+        else if (negr == 3)
+        {
+            peshkaB.helper1 = peshkaB.helper2;
+            peshkaB.helper2 = map[peshkaB.corY][peshkaB.corX + 1];
+            map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+            peshkaB.corX += 1;
+            map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+        }
+
+        else if (negr == 5)
+        {
+            peshkaB.helper1 = peshkaB.helper2;
+            peshkaB.helper2 = map[peshkaB.corY + 1][peshkaB.corX];
+            map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+            peshkaB.corY += 1;
+            map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+        }
+
+        else if (negr == 7)
+        {
+            peshkaB.helper1 = peshkaB.helper2;
+            peshkaB.helper2 = map[peshkaB.corY][peshkaB.corX - 1];
+            map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+            peshkaB.corX -= 1;
+            map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+        }
+
+        else if (negr == 9)
+        {
+            int negrM = rand.nextInt(4) + 1;
+
+            if (negrM == 1 && map[peshkaB.corY - 1][peshkaB.corX].equals("empty_tile"))
+            {
+                peshkaB.helper1 = peshkaB.helper2;
+                peshkaB.helper2 = map[peshkaB.corY - 1][peshkaB.corX];
+                map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+                peshkaB.corY -= 1;
+                map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+            }
+
+            else if (negrM == 2 && map[peshkaB.corY][peshkaB.corX + 1].equals("empty_tile"))
+            {
+                peshkaB.helper1 = peshkaB.helper2;
+                peshkaB.helper2 = map[peshkaB.corY][peshkaB.corX + 1];
+                map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+                peshkaB.corX += 1;
+                map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+            }
+
+            else if (negrM == 3 && map[peshkaB.corY + 1][peshkaB.corX].equals("empty_tile"))
+            {
+                peshkaB.helper1 = peshkaB.helper2;
+                peshkaB.helper2 = map[peshkaB.corY + 1][peshkaB.corX];
+                map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+                peshkaB.corY += 1;
+                map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
+            }
+
+            else if (negrM == 4 && map[peshkaB.corY][peshkaB.corX - 1].equals("empty_tile"))
+            {
+                peshkaB.helper1 = peshkaB.helper2;
+                peshkaB.helper2 = map[peshkaB.corY][peshkaB.corX - 1];
+                map[peshkaB.corY][peshkaB.corX] = peshkaB.helper1;
+                peshkaB.corX -= 1;
+                map[peshkaB.corY][peshkaB.corX] = "peshka_tile";
             }
 
         }
@@ -2489,8 +2591,14 @@ public class movement_logic extends map_generator
     {
         if (peshka.isHere)
         {
-            peshkaSukaMove(task);
+            peshkaMove(task);
             riverwork(peshka, "peshka_tile");
+        }
+
+        if (peshkaB.isHere)
+        {
+            peshkaBratMove(task);
+            riverwork(peshkaB, "peshka_tile");
         }
 
         if (slon.isHere)

@@ -23,7 +23,6 @@ public class death_screen extends AppCompatActivity
         TextView sco = (TextView) findViewById(R.id.textViewScore);
 
         String b = settings.getString("difficulty", "");
-        String h = settings.getString("highscore", "0");
         String s = settings.getString("score", "0");
 
         if (b.equals("easy"))
