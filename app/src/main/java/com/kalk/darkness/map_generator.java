@@ -849,7 +849,8 @@ public class map_generator extends mob
         if (abs(y - player.corY) < 3 && abs(x - player.corX) < 3)
             solution = false;
 
-        if (solution) {
+        if (solution)
+        {
             slon.corY = y;
             slon.corX = x;
 
@@ -859,6 +860,7 @@ public class map_generator extends mob
 
             slon.isHere = true;
         }
+
         else
             slonSpawn();
     }

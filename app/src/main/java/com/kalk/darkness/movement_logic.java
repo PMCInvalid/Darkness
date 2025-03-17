@@ -1674,10 +1674,12 @@ public class movement_logic extends map_generator
 
         if (!task)
         {
-            computeFlowField(map, player.corX, player.corY, 1);
+            computeFlowField(map, player.corX, player.corY, 2);
 
-            negr = getDirection(peshka.corX, peshka.corY);
+            negr = getDirection(slon.corX, slon.corY);
         }
+
+        System.out.println("Slon negr is:" + negr);
 
         if (negr == 2)
         {
