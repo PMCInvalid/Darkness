@@ -26,18 +26,38 @@ public class death_screen extends AppCompatActivity
         String h = settings.getString("highscore", "0");
         String s = settings.getString("score", "0");
 
-        if (Double.parseDouble(h) < Double.parseDouble(s))
+        if (b.equals("easy"))
         {
-            if (b.equals("easy"))
+            String highScore = settings.getString("easyScore", "0");
+
+            sco.setText("Your score is:" + s);
+            highS.setText("Highscore is:" + highScore);
+
+            if (Double.parseDouble(highScore) < Double.parseDouble(s))
                 editor.putString("easyScore", s);
-            else if (b.equals("hard"))
-                editor.putString("hardScore", s);
-            else if (b.equals("insane"))
-                editor.putString("insaneScore", s);
         }
 
-        highS.setText("Highscore is:" + h);
-        sco.setText("Your score is:" + s);
+        if (b.equals("hard"))
+        {
+            String highScore = settings.getString("hardScore", "0");
+
+            sco.setText("Your score is:" + s);
+            highS.setText("Highscore is:" + highScore);
+
+            if (Double.parseDouble(highScore) < Double.parseDouble(s))
+                editor.putString("hardScore", s);
+        }
+
+        if (b.equals("insane"))
+        {
+            String highScore = settings.getString("insaneScore", "0");
+
+            sco.setText("Your score is:" + s);
+            highS.setText("Highscore is:" + highScore);
+
+            if (Double.parseDouble(highScore) < Double.parseDouble(s))
+                editor.putString("hardScore", s);
+        }
 
         editor.remove("score");
         editor.remove("difficulty");
