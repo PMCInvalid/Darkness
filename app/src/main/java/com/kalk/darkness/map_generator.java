@@ -1052,6 +1052,14 @@ public class map_generator extends mob
             furyKingSpawn();
     }
 
+    public static void killKing()
+    {
+        map[fKing.corY][fKing.corX] = "empty_tile";
+        fKing.corX = -1;
+        fKing.corY = -1;
+        fKing.isHere = false;
+    }
+
     public static void mobGen(double points, String level, int event)
     {
         int helper = 1;
@@ -1091,8 +1099,19 @@ public class map_generator extends mob
                         krotSpawn();
 
                 if (points >= 4)
+                {
                     if (spawnChance % 2 == 0)
                         gonchajaSpawn();
+
+                    else
+                        if (gonchaja.isHere)
+                        {
+                            map[gonchaja.corY][gonchaja.corX] = "empty_tile";
+                            gonchaja.corY = -1;
+                            gonchaja.corX = -1;
+                            gonchaja.isHere = false;
+                        }
+                }
 
                 if (points >= 4.5)
                     if (spawnChance % 3 == 0)
@@ -1122,7 +1141,19 @@ public class map_generator extends mob
 
                 if (spawnChance % 2 == 0)
                     gonchajaSpawn();
+
+                else
+                    if (gonchaja.isHere)
+                    {
+                        map[gonchaja.corY][gonchaja.corX] = "empty_tile";
+                        gonchaja.corY = -1;
+                        gonchaja.corX = -1;
+                        gonchaja.isHere = false;
+                    }
             }
+
+            if (fKing.isHere)
+                killKing();
         }
 
         else if (event == 1)

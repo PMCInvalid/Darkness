@@ -43,7 +43,7 @@ public class movement_logic extends map_generator
             gameIn = 1;
             opengate = 0;
 
-            int iv = rand.nextInt(100) ;
+            int iv = rand.nextInt(101) ;
 
             if (iv == 52)
                 event = 1;
@@ -60,9 +60,15 @@ public class movement_logic extends map_generator
             else
                 event = 0;
 
-            if (event == 1 || event == 3)
+            System.out.println(iv);
+            System.out.println(event);
+
+            if (event == 1 || event == 3) {
                 if (sound != null)
                     sound.start();
+
+                System.out.println("Event is active");
+            }
 
             map = map_generator.mapThrower(score, hard, event);
 
@@ -667,16 +673,24 @@ public class movement_logic extends map_generator
             im3_2.setImageResource(resId);
         }
 
-        resId = getResources().getIdentifier(map[player.corY - 2][player.corX - 2], "drawable", getPackageName());
-        im3_3.setImageResource(resId);
+        if(player.corY - 2 < 0 || player.corX - 2 < 0)
+            im3_3.setImageResource(R.drawable.empty_tile);
+        else {
+            resId = getResources().getIdentifier(map[player.corY - 2][player.corX - 2], "drawable", getPackageName());
+            im3_3.setImageResource(resId);
+        }
         resId = getResources().getIdentifier(map[player.corY - 2][player.corX - 1], "drawable", getPackageName());
         im3_4.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY - 2][player.corX], "drawable", getPackageName());
         im3_5.setImageResource(resId);
         resId = getResources().getIdentifier(map[player.corY - 2][player.corX + 1], "drawable", getPackageName());
         im3_6.setImageResource(resId);
-        resId = getResources().getIdentifier(map[player.corY - 2][player.corX + 2], "drawable", getPackageName());
-        im3_7.setImageResource(resId);
+        if(player.corY - 2 < 0 || player.corX + 2 < 0)
+            im3_7.setImageResource(R.drawable.empty_tile);
+        else {
+            resId = getResources().getIdentifier(map[player.corY - 2][player.corX + 2], "drawable", getPackageName());
+            im3_7.setImageResource(resId);
+        }
 
         if(player.corY - 2 < 0 || player.corX + 3 > 31)
             im3_8.setImageResource(R.drawable.empty_tile);
@@ -1781,8 +1795,6 @@ public class movement_logic extends map_generator
             negr = getDirection(slon.corX, slon.corY);
         }
 
-        System.out.println("Slon negr is:" + negr);
-
         if (negr == 2)
         {
             slon.helper1 = slon.helper2;
@@ -2654,8 +2666,6 @@ public class movement_logic extends map_generator
 
             negr = getDirection(fKing.corX, fKing.corY);
         }
-
-        System.out.println("Negr is:" + negr);
 
         if (negr == 9)
             negr = rand.nextInt(8) + 1;
