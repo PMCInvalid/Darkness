@@ -222,8 +222,6 @@ public class movement_logic extends map_generator
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
-
-        System.out.println("Brat Peshka: " + peshkaB.corY + " " + peshkaB.corX);
     }
 
     public void portalsWork()
@@ -390,6 +388,9 @@ public class movement_logic extends map_generator
                     switch(rivers[i][j].riverDir)
                     {
                         case 1:
+                            if (map[entity.corY - 1][entity.corX].equals("wall_tile"))
+                                break;
+
                             entity.helper1 = entity.helper2;
                             entity.helper2 = map[entity.corY - 1][entity.corX];
                             map[entity.corY][entity.corX] = entity.helper1;
@@ -398,6 +399,9 @@ public class movement_logic extends map_generator
                             break;
 
                         case 2:
+                            if (map[entity.corY][entity.corX + 1].equals("wall_tile"))
+                                break;
+
                             entity.helper1 = entity.helper2;
                             entity.helper2 = map[entity.corY][entity.corX + 1];
                             map[entity.corY][entity.corX] = entity.helper1;
@@ -406,6 +410,9 @@ public class movement_logic extends map_generator
                             break;
 
                         case 3:
+                            if (map[entity.corY + 1][entity.corX].equals("wall_tile"))
+                                break;
+
                             entity.helper1 = entity.helper2;
                             entity.helper2 = map[entity.corY + 1][entity.corX];
                             map[entity.corY][entity.corX] = entity.helper1;
@@ -414,6 +421,9 @@ public class movement_logic extends map_generator
                             break;
 
                         case 4:
+                            if (map[entity.corY][entity.corX - 1].equals("wall_tile"))
+                                break;
+
                             entity.helper1 = entity.helper2;
                             entity.helper2 = map[entity.corY][entity.corX - 1];
                             map[entity.corY][entity.corX] = entity.helper1;
@@ -2905,8 +2915,8 @@ public class movement_logic extends map_generator
 
         if (moveCheck == 1)
         {
+            gameLifeCheck();
             mobWalk(playerInBushes);
-
             portalsWork();
             abiWork();
             gameLifeCheck();
