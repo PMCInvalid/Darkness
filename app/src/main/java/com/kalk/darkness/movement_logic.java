@@ -60,9 +60,6 @@ public class movement_logic extends map_generator
             else
                 event = 0;
 
-            System.out.println(iv);
-            System.out.println(event);
-
             if (event == 1 || event == 3) {
                 if (sound != null)
                     sound.start();
@@ -222,6 +219,8 @@ public class movement_logic extends map_generator
             Intent pip = new Intent(this, death_screen.class);
             startActivity(pip);
         }
+
+        System.out.println("Brat Peshka: " + peshkaB.corY + " " + peshkaB.corX);
     }
 
     public void portalsWork()

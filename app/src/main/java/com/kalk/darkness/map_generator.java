@@ -36,6 +36,7 @@ public class map_generator extends mob
 
     public static String[][] mapThrower(double points, String hard, int event)
     {
+        mapCleaner();
         emptySetter();
         wallGen();
         objectsGen(points, hard, event);
@@ -1052,12 +1053,31 @@ public class map_generator extends mob
             furyKingSpawn();
     }
 
-    public static void killKing()
+    public static void killMob(@NonNull mob Mob)
     {
-        map[fKing.corY][fKing.corX] = "empty_tile";
-        fKing.corX = -1;
-        fKing.corY = -1;
-        fKing.isHere = false;
+        Mob.corX = -1;
+        Mob.corY = -1;
+        Mob.isHere = false;
+        Mob.helper1 = "empty_tile";
+        Mob.helper2 = "empty_tile";
+    }
+
+    public static void mapCleaner()
+    {
+        killMob(peshka);
+        killMob(peshkaB);
+        killMob(slon);
+        killMob(sKorol);
+        killMob(krot);
+        killMob(bolshoj);
+        killMob(fKing);
+        killMob(medved);
+        killMob(gonchaja);
+        killMob(player);
+        killMob(extr);
+        killMob(lever);
+        killMob(battery);
+        killMob(power);
     }
 
     public static void mobGen(double points, String level, int event)
@@ -1082,6 +1102,8 @@ public class map_generator extends mob
         {
             if (level.equals("easy"))
             {
+                System.out.println("Brat Peshka: " + peshkaB.corY + " " + peshkaB.corX);
+
                 if (points >= 1)
                     peshkaSpawn();
 
@@ -1151,9 +1173,6 @@ public class map_generator extends mob
                         gonchaja.isHere = false;
                     }
             }
-
-            if (fKing.isHere)
-                killKing();
         }
 
         else if (event == 1)
