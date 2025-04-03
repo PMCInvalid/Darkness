@@ -38,7 +38,7 @@ public class map_generator extends mob
     {
         mapCleaner();
         emptySetter();
-        wallGen();
+        wallGen(event);
         objectsGen(points, hard, event);
         mobGen(points, hard, event);
 
@@ -68,7 +68,7 @@ public class map_generator extends mob
         }
     }
 
-    public static void wallGen()
+    public static void wallGen(int event)
     {
         for (int i = 0; i <= 25;)
         {
@@ -235,6 +235,14 @@ public class map_generator extends mob
                 map[yCor + 3][xCor + 6] = "wall_tile";
                 map[yCor + 3][xCor + 7] = "wall_tile";
             }
+        }
+
+        if (event == 4)
+        {
+            for (int i = 0; i < 28; i++)
+                for (int j = 0; j < 28; j++)
+                    if (map[i + 2][j+ 2].equals("wall_tile"))
+                        map[i + 2][j+ 2] = "empty_tile";
         }
     }
 
@@ -778,7 +786,8 @@ public class map_generator extends mob
             for (int j = 0; j < 15; j++)
                 rivers[i][j] = new mob();
 
-        riverGen(s);
+        if (event != 4)
+            riverGen(s);
 
         s = rar.nextInt(3) + 1;
         for (int i = 0; i < bushes.length; i++)
@@ -1086,19 +1095,9 @@ public class map_generator extends mob
         int spawnChance = 0;
         spawnChance = rand.nextInt(101);
 
-        mob[] mobs = {peshka, slon, sKorol, medved, bolshoj, krot};
-
-        boolean isNearEnemy = false;
-        for (mob m : mobs)
-        {
-            m.corX = -1;
-            m.corY = -1;
-            m.isHere = false;
-        }
-
         playerSpawn();
 
-        if (event == 0 && !level.equals("insane"))
+        if (event != 1 && !level.equals("insane"))
         {
             if (level.equals("easy"))
             {
@@ -1106,6 +1105,8 @@ public class map_generator extends mob
 
                 if (points >= 1)
                     peshkaSpawn();
+
+                System.out.println(peshka.corY + " " + peshka.corX);
 
                 if (points >= 1.5)
                     slonSpawn();
