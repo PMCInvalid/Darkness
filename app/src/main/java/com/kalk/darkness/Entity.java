@@ -1,28 +1,49 @@
 package com.kalk.darkness;
 
-import androidx.appcompat.app.AppCompatActivity;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class mob extends AppCompatActivity
+public class Entity
 {
-    public int corX = -1;
-    public int corY = -1;
-    public String helper1 = "empty_tile";
-    public String helper2 = "empty_tile";
-    public int riverDir = 4;
+    protected Game game;
+    public String tile;
+    public GameVec position;
     public boolean isHere = false;
+
+    public GameVec getPosition() {
+        return position;
+    }
+
+    public void setPosition(GameVec position) {
+        this.position = position;
+    }
+    
+    public Game getGame()
+    {
+        return game;
+    }
+
+    public void setGame(Game game)
+    {
+        this.game = game;
+    }
+
+    public Entity(Game _game, String _tile)
+    {
+        this.game = _game;
+        this.tile = _tile;
+    }
 
     private static final int[][] DIRECTIONS =
             {
                     {0, -1},  // 1: Вверх
-                    {1, -1},  // 2: Вверх и вправо (диагональ)
+                    {1, -1},  // 2: Вверх и вправо
                     {1, 0},   // 3: Вправо
-                    {1, 1},   // 4: Вправо и вниз (диагональ)
+                    {1, 1},   // 4: Вправо и вниз
                     {0, 1},   // 5: Вниз
-                    {-1, 1},  // 6: Вниз и влево (диагональ)
+                    {-1, 1},  // 6: Вниз и влево
                     {-1, 0},  // 7: Влево
-                    {-1, -1}, // 8: Влево и вверх (диагональ)
+                    {-1, -1}, // 8: Влево и вверх
             };
 
     private static int[][] distanceMap;
@@ -91,13 +112,18 @@ public class mob extends AppCompatActivity
         }
     }
 
-    public static int getDirection(int x, int y)
+    public int calcDirection(GameVec vec)
     {
-        if (x < 0 || y < 0 || x >= directionMap.length || y >= directionMap[0].length)
+        if (vec.getX() < 0 || vec.getY() < 0 || vec.getX() >= game.maxX || vec.getY() >= game.maxY)
         {
             return 9; // Если клетка за пределами карты, возвращаем случайное направление
         }
-        return directionMap[x][y];
+        return directionMap[vec.getX()][vec.getY()];
+    }
+
+    public int getDirection()
+    {
+        return calcDirection(position);
     }
 
     private static boolean isWalkable(String[][] map, int x, int y)
@@ -137,7 +163,7 @@ public class mob extends AppCompatActivity
                 {
                     if (distanceMap[newX][newY] < minDistance) {
                         minDistance = distanceMap[newX][newY];
-                        bestDirection = i + 1; // Направление от 1 до 12
+                        bestDirection = i + 1;
                     }
                 }
             }
@@ -169,5 +195,63 @@ public class mob extends AppCompatActivity
             this.x = x;
             this.y = y;
         }
+    }
+
+    public void movement(int direction, String[][] map)
+    {
+        if (direction == 1)
+        {
+            this.position = position.offSet(this.position, Direction.up, 1);
+        }
+
+        else if (direction == 2)
+        {
+            this.position = position.offSet(this.position, Direction.upright, 1);
+        }
+
+        else if (direction == 3)
+        {
+            this.position = position.offSet(this.position, Direction.right, 1);
+        }
+
+        else if (direction == 4)
+        {
+            this.position = position.offSet(this.position, Direction.downright, 1);
+        }
+
+        else if (direction == 5)
+        {
+            this.position = position.offSet(this.position, Direction.down, 1);
+        }
+
+        else if (direction == 6)
+        {
+            this.position = position.offSet(this.position, Direction.downleft, 1);
+        }
+
+        else if (direction == 7)
+        {
+            this.position = position.offSet(this.position, Direction.left, 1);
+        }
+
+        else if (direction == 8)
+        {
+            this.position = position.offSet(this.position, Direction.upleft, 1);
+        }
+    }
+
+    public void onPlayerCollision()
+    {
+        game.endGame();
+    }
+
+    public boolean playerCanExit()
+    {
+        return true;
+    }
+    
+    public void tick()
+    {
+        
     }
 }

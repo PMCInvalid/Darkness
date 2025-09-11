@@ -65,7 +65,7 @@ public class death_screen extends AppCompatActivity
 
     public void goToMainMenuFromDeathScreen(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, MainMenu.class);
         startActivity(pip);
     }
 

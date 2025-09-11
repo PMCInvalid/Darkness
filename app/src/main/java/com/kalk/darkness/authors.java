@@ -1,20 +1,11 @@
 package com.kalk.darkness;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class authors extends AppCompatActivity
 {
@@ -27,7 +18,7 @@ public class authors extends AppCompatActivity
 
     public void menuButton(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, MainMenu.class);
         startActivity(pip);
     }
 }

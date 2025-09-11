@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class rules extends AppCompatActivity
+public class rules
 {
 
 }

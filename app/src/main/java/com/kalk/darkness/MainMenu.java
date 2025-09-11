@@ -2,27 +2,23 @@ package com.kalk.darkness;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import java.io.IOException;
-import java.io.InputStream;
-
-public class main_menu extends AppCompatActivity
+public class MainMenu extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_activity);
+        SharedPreferences settingsSharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
+        SharedPreferences statisticsSharedPreferences = getSharedPreferences("AppStatistics", MODE_PRIVATE);
+        Globals.settings = new Settings(settingsSharedPreferences);
+        Globals.statistics = new Statistics(statisticsSharedPreferences, Globals.settings);
     }
 
     public void dive(View v)
@@ -33,7 +29,7 @@ public class main_menu extends AppCompatActivity
 
     public void rules(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, MainMenu.class);
         startActivity(pip);
     }
 
@@ -45,6 +41,9 @@ public class main_menu extends AppCompatActivity
 
     public void exit(View v)
     {
+        Globals.settings.save();
+        Globals.statistics.save();
+
         finish();
         System.exit(0);
     }

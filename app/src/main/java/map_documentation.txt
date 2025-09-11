@@ -1,18 +1,3 @@
-map values:
-0 - 10: empty tile
-11 - 20: wall tile
-21 - player
-22 - peshka
-23 - slonenok
-24 - S.korol
-25 - B.brat
-26 - Krot
-27 - Medved
-29 - F.korol
-31 - extraction
-32 - lever
-33 - door
-
 move patterns:
 1 - up
 2 - up + right

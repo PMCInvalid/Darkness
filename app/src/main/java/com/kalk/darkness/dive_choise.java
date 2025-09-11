@@ -2,23 +2,18 @@ package com.kalk.darkness;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class dive_choise extends AppCompatActivity
 {
+    public dive_choise()
+    {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -29,56 +24,46 @@ public class dive_choise extends AppCompatActivity
         TextView dDive = (TextView) findViewById(R.id.textViewRecordDeepDIve);
         TextView bOut = (TextView) findViewById(R.id.textViewRecordBlackout);
 
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        String a = settings.getString("easyScore", "0");
-        String b = settings.getString("hardScore", "0");
-        String c = settings.getString("insaneScore", "0");
-
-        sWalk.setText("Highscore: " + a);
-        dDive.setText("Highscore: " + b);
-        bOut.setText("Highscore: " + c);
+        if (Globals.statistics != null)
+        {
+            sWalk.setText("Highscore: " + Globals.statistics.getScore(Constants.difficulty_easy));
+            dDive.setText("Highscore: " + Globals.statistics.getScore(Constants.difficulty_hard));
+            bOut.setText("Highscore: " + Globals.statistics.getScore(Constants.difficulty_insane));
+        }
+        else {
+            sWalk.setText("Highscore: 0");
+            dDive.setText("Highscore: 0");
+            bOut.setText("Highscore: 0");
+        }
     }
 
     public void surfaceWalk(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
+        Globals.settings.setDifficulty(Constants.difficulty_easy);
 
-        editor.putString("difficulty","easy");
-        editor.apply();
-
-        Intent pip = new Intent(this, gameplay.class);
+        Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);
     }
 
     public void deepDive(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
+        Globals.settings.setDifficulty(Constants.difficulty_hard);
 
-        editor.putString("difficulty","hard");
-        editor.apply();
-
-        Intent pip = new Intent(this, gameplay.class);
+        Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);
     }
 
     public void blackout(View v)
     {
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
+        Globals.settings.setDifficulty(Constants.difficulty_insane);
 
-        editor.putString("difficulty","insane");
-        editor.apply();
-
-        Intent pip = new Intent(this, gameplay.class);
+        Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);
     }
 
     public void gotoMainMenu(View v)
     {
-        Intent pip = new Intent(this, main_menu.class);
+        Intent pip = new Intent(this, MainMenu.class);
         startActivity(pip);
     }
 }
