@@ -1,6 +1,8 @@
 package com.kalk.darkness;
 
-public class Globals
+import android.app.Application;
+
+public class Globals extends Application
 {
     public static Statistics statistics;
     public static Settings settings;

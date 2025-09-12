@@ -266,6 +266,9 @@ public class Gameplay extends AppCompatActivity
 
                 case "player_tile":
                     return R.drawable.player_tile;
+
+                case "black_tile":
+                    return R.drawable.black_tile;
             }
         }
 
@@ -295,8 +298,9 @@ public class Gameplay extends AppCompatActivity
     public void drawMap()
     {
         int drawMode = Constants.draw_mode_normal;
+        Globals globals = (Globals) getApplicationContext();
 
-        if (!game.settings.getDifficulty().equals(Constants.difficulty_easy))
+        if (!globals.settings.getDifficulty().equals(Constants.difficulty_easy))
             drawMode = Constants.draw_mode_dark;
 
         if (game.player.hidden)
@@ -315,7 +319,7 @@ public class Gameplay extends AppCompatActivity
         }
     }
 
-    public void mapDrawScreen()
+/*    public void mapDrawScreen()
     {
         drawMap();
     }
@@ -721,5 +725,5 @@ public class Gameplay extends AppCompatActivity
             else
                 imageView.setImageResource(R.drawable.empty_tile);
         }
-    }
+    }*/
 }

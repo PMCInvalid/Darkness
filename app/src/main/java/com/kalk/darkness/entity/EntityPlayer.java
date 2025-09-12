@@ -61,7 +61,7 @@ public class EntityPlayer extends Entity
 
         if (a == 1)
         {
-            if (!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX()].equals("wall_tile"))
+            if (!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX()].equals("wall_tile"))
             {
                 movement(1, game.getMap());
                 moveCheck = 1;

@@ -9,11 +9,6 @@ import android.widget.TextView;
 
 public class dive_choise extends AppCompatActivity
 {
-    public dive_choise()
-    {
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,7 +34,8 @@ public class dive_choise extends AppCompatActivity
 
     public void surfaceWalk(View v)
     {
-        Globals.settings.setDifficulty(Constants.difficulty_easy);
+        Globals globals = (Globals) getApplicationContext();
+        globals.settings.setDifficulty(Constants.difficulty_easy);
 
         Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);
@@ -47,7 +43,8 @@ public class dive_choise extends AppCompatActivity
 
     public void deepDive(View v)
     {
-        Globals.settings.setDifficulty(Constants.difficulty_hard);
+        Globals globals = (Globals) getApplicationContext();
+        globals.settings.setDifficulty(Constants.difficulty_hard);
 
         Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);
@@ -55,7 +52,8 @@ public class dive_choise extends AppCompatActivity
 
     public void blackout(View v)
     {
-        Globals.settings.setDifficulty(Constants.difficulty_insane);
+        Globals globals = (Globals) getApplicationContext();
+        globals.settings.setDifficulty(Constants.difficulty_insane);
 
         Intent pip = new Intent(this, Gameplay.class);
         startActivity(pip);

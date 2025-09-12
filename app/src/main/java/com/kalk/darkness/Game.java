@@ -143,8 +143,8 @@ public class Game extends AppCompatActivity
 
     public String getMapTile(int x, int y)
     {
-        if (x < 0 || y < 0 || x > maxX || y > maxY)
-            return "empty_tile";
+        if (x < 0 || y < 0 || x >= maxX || y >= maxY)
+            return "black_tile";
 
         for (Entity entity:entitites)
         {
