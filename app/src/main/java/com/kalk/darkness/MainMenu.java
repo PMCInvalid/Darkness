@@ -42,7 +42,6 @@ public class MainMenu extends AppCompatActivity
     {
         Globals.statistics.save();
 
-        finish();
-        System.exit(0);
+        finishAffinity();
     }
 }

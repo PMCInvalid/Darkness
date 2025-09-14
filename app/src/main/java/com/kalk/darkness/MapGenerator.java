@@ -32,7 +32,7 @@ public class MapGenerator
     protected String[][] gamemap;
     protected Gameplay gameplayActivity;
 
-    public static Random rand = new Random(141325463);
+    public static Random rand = new Random();
 
     public MapGenerator(Game game, Gameplay _gameplayActivity)
     {
