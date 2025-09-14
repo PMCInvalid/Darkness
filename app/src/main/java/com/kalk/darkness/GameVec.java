@@ -78,6 +78,6 @@ public class GameVec
 
     public GameVec offSet(GameVec position, Direction dir, int steps)
     {
-        return sumVec(position, dir.d.mul(steps));
+        return sumVec(position, Direction.DirToGV(dir).mul(steps));
     }
 }

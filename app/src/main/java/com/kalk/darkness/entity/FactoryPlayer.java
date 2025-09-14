@@ -14,8 +14,6 @@ public class FactoryPlayer extends FactoryMobs
 
         GameVec pos = MapGenerator.getRandomCords();
 
-        boolean solution = true;
-
         player.setPosition(pos);
         player.getPosition().setY(pos.getY());
         player.getPosition().setX(pos.getX());

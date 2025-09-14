@@ -33,18 +33,6 @@ public class Entity
         this.tile = _tile;
     }
 
-    private static final int[][] DIRECTIONS =
-            {
-                    {0, -1},  // 1: Вверх
-                    {1, -1},  // 2: Вверх и вправо
-                    {1, 0},   // 3: Вправо
-                    {1, 1},   // 4: Вправо и вниз
-                    {0, 1},   // 5: Вниз
-                    {-1, 1},  // 6: Вниз и влево
-                    {-1, 0},  // 7: Влево
-                    {-1, -1}, // 8: Влево и вверх
-            };
-
     private static int[][] distanceMap;
     private static int[][] directionMap;
 
@@ -79,12 +67,13 @@ public class Entity
         {
             Node current = queue.poll();
 
-            for (int i = 0; i < DIRECTIONS.length; i++)
+            for (Direction dir : Direction.values())
             {
+                int i = dir.ordinal() + 1;
                 if (canMove(i + 1, mobType))
                 {
-                    int newX = current.x + DIRECTIONS[i][0];
-                    int newY = current.y + DIRECTIONS[i][1];
+                    int newX = current.x + dir.dx();
+                    int newY = current.y + dir.dy();
 
                     // Проверяем, можно ли идти в эту клетку
                     if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, newX, newY))
@@ -150,12 +139,13 @@ public class Entity
         int bestDirection = 9; // По умолчанию — случайное направление
 
         // Перебираем все возможные направления
-        for (int i = 0; i < DIRECTIONS.length; i++)
+        for (Direction dir : Direction.values())
         {
+            int i = dir.ordinal() + 1;
             if (canMove(i + 1, mobType))
             { // Проверяем, может ли моб двигаться в этом направлении
-                int newX = x + DIRECTIONS[i][0];
-                int newY = y + DIRECTIONS[i][1];
+                int newX = x + dir.dx();
+                int newY = y + dir.dy();
 
                 // Проверяем, что клетка в пределах карты
                 if (newX >= 0 && newY >= 0 && newX < distanceMap.length && newY < distanceMap[0].length)
@@ -198,45 +188,8 @@ public class Entity
 
     public void movement(int direction, String[][] map)
     {
-        if (direction == 1)
-        {
-            this.position = position.offSet(this.position, Direction.up, 1);
-        }
-
-        else if (direction == 2)
-        {
-            this.position = position.offSet(this.position, Direction.upright, 1);
-        }
-
-        else if (direction == 3)
-        {
-            this.position = position.offSet(this.position, Direction.right, 1);
-        }
-
-        else if (direction == 4)
-        {
-            this.position = position.offSet(this.position, Direction.downright, 1);
-        }
-
-        else if (direction == 5)
-        {
-            this.position = position.offSet(this.position, Direction.down, 1);
-        }
-
-        else if (direction == 6)
-        {
-            this.position = position.offSet(this.position, Direction.downleft, 1);
-        }
-
-        else if (direction == 7)
-        {
-            this.position = position.offSet(this.position, Direction.left, 1);
-        }
-
-        else if (direction == 8)
-        {
-            this.position = position.offSet(this.position, Direction.upleft, 1);
-        }
+        Direction dir = Direction.fromInt(direction);
+        this.position = position.offSet(this.position, dir, 1);
     }
 
     public void onPlayerCollision(String difficulty)
