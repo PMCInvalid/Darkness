@@ -9,11 +9,20 @@ import com.kalk.darkness.MapGenerator;
 public class FactoryExit extends FactoryMobs
 {
     @Override
-    public EntityExit spawn(Game game, Gameplay activity)
+    public EntityExit spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityExit exit = new EntityExit(game);
 
-        exit.setPosition(MapGenerator.getRandomCords());
+        boolean check = false;
+
+        while (!check)
+        {
+            exit.setPosition(MapGenerator.getRandomCords());
+
+            if (game.isWalkable(exit.position))
+                if (haveWay(exit.position, game.player.position))
+                    check = true;
+        }
 
         game.addEntitty(exit);
 

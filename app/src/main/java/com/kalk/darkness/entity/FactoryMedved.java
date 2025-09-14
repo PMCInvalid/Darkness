@@ -7,7 +7,7 @@ import com.kalk.darkness.Gameplay;
 public class FactoryMedved extends FactoryMobs
 {
     @Override
-    public Entity spawn(Game game, Gameplay activity)
+    public Entity spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityMedved medved = new EntityMedved(game);
 

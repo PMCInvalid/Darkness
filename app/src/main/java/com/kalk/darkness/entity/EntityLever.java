@@ -22,7 +22,6 @@ public class EntityLever extends Entity
     public void onPlayerCollision(String difficulty)
     {
         triggered = true;
-        System.out.println("Triggered");
     }
 
     @Override

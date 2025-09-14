@@ -7,7 +7,7 @@ import com.kalk.darkness.Gameplay;
 public class FactoryRivers extends FactoryMobs
 {
     @Override
-    public Entity spawn(Game game, Gameplay activity)
+    public Entity spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityRivers rivers = new EntityRivers(game);
 

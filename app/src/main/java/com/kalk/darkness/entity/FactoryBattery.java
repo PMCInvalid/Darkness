@@ -7,7 +7,7 @@ import com.kalk.darkness.Gameplay;
 public class FactoryBattery extends FactoryMobs
 {
     @Override
-    public Entity spawn(Game game, Gameplay activity)
+    public Entity spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityBattery battery = new EntityBattery(game);
 

@@ -8,7 +8,7 @@ import com.kalk.darkness.MapGenerator;
 public class FactoryPlayer extends FactoryMobs
 {
     @Override
-    public EntityPlayer spawn(Game game, Gameplay activity)
+    public EntityPlayer spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityPlayer player = new EntityPlayer(game, activity);
 

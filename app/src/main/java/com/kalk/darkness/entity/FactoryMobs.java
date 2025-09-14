@@ -25,7 +25,7 @@ public class FactoryMobs
 
         if (start.getX() == end.getX() && start.getY() == end.getY())
         {
-            return false;
+            return true;
         }
 
         int[][] directions =
@@ -41,7 +41,8 @@ public class FactoryMobs
         queue.add(new int[]{start.getX(), start.getY()});
         visited[start.getX()][start.getY()] = true;
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty())
+        {
             int[] current = queue.poll();
             int x = current[0];
             int y = current[1];
@@ -51,21 +52,24 @@ public class FactoryMobs
                 int newX = x + dir[0];
                 int newY = y + dir[1];
 
-                if (newX == end.getX() && newY == end.getY()) {
+                if (newX == end.getX() && newY == end.getY())
+                {
                     return true;
                 }
 
-                if (game.isWalkable(start) && !visited[newX][newY]) {
-                    visited[newX][newY] = true;
-                    queue.add(new int[]{newX, newY});
-                }
+                if (newX > 0 && newY > 0 && newX < game.maxX && newY < game.maxY)
+                    if (game.isWalkable(start) && !visited[newX][newY])
+                    {
+                        visited[newX][newY] = true;
+                        queue.add(new int[]{newX, newY});
+                    }
             }
         }
 
         return false;
     }
 
-    public Entity spawn(Game game, Gameplay activity)
+    public Entity spawn(Game game, Gameplay activity, String[][] map)
     {
         return null;
     }

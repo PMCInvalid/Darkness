@@ -545,19 +545,21 @@ public class Game extends AppCompatActivity
         int ev = forsedEv == 0 ? MapGenerator.rand.nextInt(101): forsedEv;
         entitites = new HashSet<Entity>();
 
-        if (ev <= 4)
+        /*if (ev <= 4)
             event = ev;
 
-        /*else if (settings.getDifficulty().equals(Constants.difficulty_insane))
-            event = 1;*/
+        else if (settings.getDifficulty().equals(Constants.difficulty_insane))
+            event = 1;
 
         else
             event = 0;
 
-        /*if (event == 1 || event == 3 || event == 4) {
+        if (event == 1 || event == 3 || event == 4) {
             if (sound != null)
                 sound.start();
         }*/
+
+        event = 0;
 
         map = genchik.mapThrower(Gameplay.score, difficulty, event);
         player = genchik.playerSpawn();

@@ -138,6 +138,8 @@ public class Gameplay extends AppCompatActivity
                 };
 
         imageViews = imageViews0;
+
+        drawMap();
     }
 
     public void busheWork()
@@ -258,7 +260,7 @@ public class Gameplay extends AppCompatActivity
     {
         System.out.println(game.player.position.getX() + " " + game.player.position.getY());
         System.out.println("-------");
-        System.out.println(game.lever.position.getX() + " " + game.lever.position.getY());
+        System.out.println(game.extr.position.getX() + " " + game.extr.position.getY());
     }
 
     public int tileToResId(String tile, int drawMode, int range)

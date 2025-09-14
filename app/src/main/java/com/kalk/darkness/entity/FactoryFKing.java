@@ -7,7 +7,7 @@ import com.kalk.darkness.Gameplay;
 public class FactoryFKing extends FactoryMobs
 {
     @Override
-    public Entity spawn(Game game, Gameplay activity)
+    public Entity spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityFKing Fking = new EntityFKing(game);
 

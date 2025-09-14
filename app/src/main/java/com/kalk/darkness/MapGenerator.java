@@ -317,14 +317,14 @@ public class MapGenerator
 
     public EntityExit extractionGen()
     {
-        extr = factoryExit.spawn(game, gameplayActivity);
+        extr = factoryExit.spawn(game, gameplayActivity, gamemap);
 
         return extr;
     }
 
     public EntityLever leverGen()
     {
-        lever = factoryLever.spawn(game, gameplayActivity);
+        lever = factoryLever.spawn(game, gameplayActivity, gamemap);
 
         return lever;
     }
@@ -822,7 +822,7 @@ public class MapGenerator
 
     public EntityPlayer playerSpawn()
     {
-        player = factoryPlayer.spawn(game, gameplayActivity);
+        player = factoryPlayer.spawn(game, gameplayActivity, gamemap);
 
         return player;
     }

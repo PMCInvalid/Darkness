@@ -9,7 +9,7 @@ import com.kalk.darkness.MapGenerator;
 public class FactoryLever extends FactoryMobs
 {
     @Override
-    public EntityLever spawn(Game game, Gameplay activity)
+    public EntityLever spawn(Game game, Gameplay activity, String[][] map)
     {
         EntityLever lever = new EntityLever(game);
 
