@@ -16,11 +16,11 @@ public class EntityDoor extends Entity
     }
 
     @Override
-    public void onPlayerCollision()
+    public void onPlayerCollision(String difficulty)
     {
         game.score += 0.25;
         statistics.setScore(game.score);
         statistics.save();
-        //game.init(0);
+        game.init(0, difficulty);
     }
 }

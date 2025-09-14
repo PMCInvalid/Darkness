@@ -22,10 +22,6 @@ public class FactoryPlayer extends FactoryMobs
 
         game.addEntitty(player);
 
-        //game.player.helper2 = game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX()];
-
-        //game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX()] = "player_tile";
-
         //game.player.isHere = true;
 
         return player;

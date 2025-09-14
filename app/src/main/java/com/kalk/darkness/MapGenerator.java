@@ -7,21 +7,38 @@ import java.util.Queue;
 import androidx.annotation.NonNull;
 
 import com.kalk.darkness.entity.EntityBushes;
+import com.kalk.darkness.entity.EntityExit;
+import com.kalk.darkness.entity.EntityLever;
+import com.kalk.darkness.entity.EntityPlayer;
 import com.kalk.darkness.entity.EntityPortals;
 import com.kalk.darkness.entity.EntityRivers;
+import com.kalk.darkness.entity.FactoryExit;
+import com.kalk.darkness.entity.FactoryLever;
 import com.kalk.darkness.entity.FactoryMobs;
+import com.kalk.darkness.entity.FactoryPlayer;
 
 import java.util.Random;
 
 public class MapGenerator
 {
-    public static Random rand = new Random(141325463);
+    FactoryPlayer factoryPlayer = new FactoryPlayer();
+    FactoryLever factoryLever = new FactoryLever();
+    FactoryExit factoryExit = new FactoryExit();
 
-    public MapGenerator(Game game) {
-        this.gamemap = game.getMap();
-    }
+    public EntityPlayer player;
+    public EntityLever lever;
+    public EntityExit extr;
 
     protected String[][] gamemap;
+    protected Gameplay gameplayActivity;
+
+    public static Random rand = new Random(141325463);
+
+    public MapGenerator(Game game, Gameplay _gameplayActivity)
+    {
+        this.gamemap = game.getMap();
+        this.gameplayActivity = _gameplayActivity;
+    }
 
     public static GameVec getRandomCords()
     {
@@ -296,53 +313,23 @@ public class MapGenerator
         boolean sol = true;
 
         return sol;
-    }
+    }*/
 
-    public static void extractionGen()
+    public EntityExit extractionGen()
     {
-        int helper = 1;
+        extr = factoryExit.spawn(game, gameplayActivity);
 
-        while (helper == 1) // Extraction
-        {
-            int a = (rand.nextInt(27) + 2);
-            int b = (rand.nextInt(27) + 2);
-
-            boolean solution = check(a, b, a + 2, b + 2);
-
-            if (solution)
-            {
-                game.extr.corY = a;
-                game.extr.corX = b;
-
-                map[game.extr.corY][game.extr.corX] = "extraction_tile";
-
-                helper = 0;
-            }
-        }
+        return extr;
     }
 
-    public static void leverGen()
+    public EntityLever leverGen()
     {
-        int a = (rand.nextInt(28) + 2);
-        int b = (rand.nextInt(28) + 2);
+        lever = factoryLever.spawn(game, gameplayActivity);
 
-        boolean solution = check(a, b, game.extr.corY, game.extr.corX);
-
-        if (solution)
-        {
-            game.lever.corY = a;
-            game.lever.corX = b;
-
-            map[game.lever.corY][game.lever.corX] = "lever_tile";
-        }
-
-        else
-        {
-            leverGen();
-        }
+        return lever;
     }
 
-    public static void doorGen()
+/*    public static void doorGen()
     {
         int a  = rand.nextInt(4) + 1;
 
@@ -831,32 +818,16 @@ public class MapGenerator
 
         if (event == 3)
             bushesEvent();
-    }
+    }*/
 
-    public static void playerSpawn()
+    public EntityPlayer playerSpawn()
     {
-        int y = (rand.nextInt(28) + 2);
-        int x = (rand.nextInt(28) + 2);
+        player = factoryPlayer.spawn(game, gameplayActivity);
 
-        boolean solution = check(y, x, game.extr.corY, game.extr.corY);
-
-        if (solution)
-        {
-            game.player.corX = x;
-            game.player.corY = y;
-
-            game.player.helper2 = map[game.player.corY][game.player.corX];
-
-            map[game.player.corY][game.player.corX] = "player_tile";
-
-            game.player.isHere = true;
-        }
-
-        else
-            playerSpawn();
+        return player;
     }
 
-    public static void peshkaSpawn()
+/*    public static void peshkaSpawn()
     {
 
     }

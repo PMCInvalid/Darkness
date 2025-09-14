@@ -1,5 +1,7 @@
 package com.kalk.darkness;
 
+import android.app.Application;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +10,6 @@ public class Entity
     protected Game game;
     public String tile;
     public GameVec position;
-    public boolean isHere = false;
 
     public GameVec getPosition() {
         return position;
@@ -240,7 +241,7 @@ public class Entity
         }
     }
 
-    public void onPlayerCollision()
+    public void onPlayerCollision(String difficulty)
     {
         game.endGame();
     }

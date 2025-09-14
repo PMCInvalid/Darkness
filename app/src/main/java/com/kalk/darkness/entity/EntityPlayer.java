@@ -1,9 +1,12 @@
 package com.kalk.darkness.entity;
 
+import android.app.Application;
+
 import com.kalk.darkness.Constants;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.Gameplay;
+import com.kalk.darkness.Globals;
 
 public class EntityPlayer extends Entity
 {
@@ -53,112 +56,102 @@ public class EntityPlayer extends Entity
     public boolean hidden = false;
     int flashlight = 0;
 
-    public void tick(int a)
+    public void tick(int direction, String difficulty)
     {
         int moveCheck = 0;
 
-        game.settings.load();
-
-        if (a == 1)
+        switch (direction)
         {
-            if (!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX()].equals("wall_tile"))
-            {
-                movement(1, game.getMap());
+            case 1:
+                if (!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX()].equals("wall_tile"))
+                {
+                    movement(1, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 1;
+                }
+                break;
+
+            case 2:
+                if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                {
+                    movement(2, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 2;
+                }
+                break;
+
+            case 3:
+                if(!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                {
+                    movement(3, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 3;
+                }
+                break;
+
+            case 4:
+                if(!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                {
+                    movement(4, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 4;
+                }
+                break;
+
+            case 5:
+                if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX()].equals("wall_tile"))
+                {
+                    movement(5, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 5;
+                };
+                break;
+
+            case 6:
+                if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                {
+                    movement(6, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 6;
+                }
+                break;
+
+            case 7:
+                if (!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                {
+                    movement(7, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 7;
+                }
+                break;
+
+            case 8:
+                if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                {
+                    movement(8, game.getMap());
+                    moveCheck = 1;
+                    playerMoveRem = 8;
+                }
+                break;
+
+            case 9:
                 moveCheck = 1;
-                playerMoveRem = 1;
-            }
-        }
-
-        else if (a == 2)
-        {
-            if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
-            {
-                movement(2, game.getMap());
-
-                moveCheck = 1;
-
-                playerMoveRem = 2;
-            }
-        }
-
-        else if (a == 3)
-        {
-            if(!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() + 1].equals("wall_tile"))
-            {
-                movement(3, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 3;
-            }
-        }
-
-        else if (a == 4)
-        {
-            if(!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
-            {
-                movement(4, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 4;
-            }
-        }
-
-        else if (a == 5)
-        {
-            if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX()].equals("wall_tile"))
-            {
-                movement(5, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 5;
-            }
-        }
-
-        else if (a == 6)
-        {
-            if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
-            {
-                movement(6, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 6;
-            }
-        }
-
-        else if (a == 7)
-        {
-            if (!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() - 1].equals("wall_tile"))
-            {
-                movement(7, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 7;
-            }
-        }
-
-        else if (a == 8)
-        {
-            if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
-            {
-                movement(8, game.getMap());
-                moveCheck = 1;
-                playerMoveRem = 8;
-            }
-        }
-
-        else if (a == 9)
-        {
-            moveCheck = 1;
-            flashlight = 1;
-            playerMoveRem = 9;
+                flashlight = 1;
+                playerMoveRem = 9;
+                break;
         }
 
         if (moveCheck == 1)
         {
             if (!playerInBushes)
             {
-                if (game.settings.getDifficulty().equals(Constants.difficulty_easy))
+                if (difficulty.equals(Constants.difficulty_easy))
                 {
                     gameplayActivity.drawMap();
                     game.abi(ability);
                 }
 
-                else if (game.settings.getDifficulty().equals(Constants.difficulty_hard) || a == 9)
+                else if (difficulty.equals(Constants.difficulty_hard) || direction == 9)
                 {
                     if (flashlight == 1 && energy > 0)
                     {

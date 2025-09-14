@@ -23,13 +23,12 @@ public class Gameplay extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gameplay);
 
-        SharedPreferences settingsSharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        settings = new Settings(settingsSharedPreferences);
+        Globals globals = (Globals) getApplicationContext();
 
         if (game == null)
         {
             game = new Game(settings, 0, this);
-            game.init(0, settingsSharedPreferences);
+            game.init(0, globals.settings.getDifficulty());
         }
 
         TextView scores = findViewById(R.id.scoreText);
@@ -184,64 +183,74 @@ public class Gameplay extends AppCompatActivity
 
     public void buttonUpAction(View v)
     {
-        game.player.tick(1);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(1, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonUpRightAction(View v)
     {
-        game.player.tick(2);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(2, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonRightAction(View v)
     {
-        game.player.tick(3);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(3, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonDownRightAction(View v)
     {
-        game.player.tick(4);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(4, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonDownAction(View v)
     {
-        game.player.tick(5);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(5, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonDownLeftAction(View v)
     {
-        game.player.tick(6);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(6, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonLeftAction(View v)
     {
-        game.player.tick(7);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(7, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void buttonUpLeftAction(View v)
     {
-        game.player.tick(8);
-        game.tick();
-        test();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(8, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
     }
 
     public void midButtonAction(View v)
     {
-        game.player.tick(9);
-        game.tick();
+        Globals globals = (Globals) getApplicationContext();
+
+        game.player.tick(9, globals.settings.getDifficulty());
+        game.tick(globals.settings.getDifficulty());
         test();
     }
 
@@ -249,7 +258,7 @@ public class Gameplay extends AppCompatActivity
     {
         System.out.println(game.player.position.getX() + " " + game.player.position.getY());
         System.out.println("-------");
-//        System.out.println(game.peshka.corY + " " + game.peshka.corX);
+        System.out.println(game.lever.position.getX() + " " + game.lever.position.getY());
     }
 
     public int tileToResId(String tile, int drawMode, int range)
@@ -269,6 +278,12 @@ public class Gameplay extends AppCompatActivity
 
                 case "black_tile":
                     return R.drawable.black_tile;
+
+                case "lever_tile":
+                    return R.drawable.lever_tile;
+
+                case "extraction_tile":
+                    return R.drawable.extraction_tile;
             }
         }
 
@@ -317,5 +332,7 @@ public class Gameplay extends AppCompatActivity
                 imageViews[y + Constants.FOVSize][x + Constants.FOVSize].setImageResource(resId);
             }
         }
+
+        imageViews[4][4].setImageResource(R.drawable.player_tile);
     }
 }

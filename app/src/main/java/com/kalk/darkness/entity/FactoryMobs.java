@@ -16,35 +16,6 @@ public class FactoryMobs
         return GameVec.distance(a, game.player.getPosition()) < 3;
     }
 
-    public Entity setMob(Game game, Gameplay activity)
-    {
-        Entity baby = this.spawn(game, activity);
-
-        GameVec cords;
-
-        String[][] mobMap = game.getMobMap();
-
-        int attempts = 100;
-
-        while (attempts-- > 0)
-        {
-            cords = game.randVec();
-
-            boolean solution = haveWay(cords, game.player.getPosition());
-
-            if (!isCloseToPlayer(cords))
-                solution = false;
-
-            if (solution)
-            {
-                baby.setPosition(cords);
-                break;
-            }
-        }
-
-        return baby;
-    }
-
     public boolean haveWay(GameVec start, GameVec end)
     {
         if (!game.isWalkable(start) || !game.isWalkable(end))

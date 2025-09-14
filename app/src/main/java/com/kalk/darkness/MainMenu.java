@@ -15,9 +15,8 @@ public class MainMenu extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_activity);
-        SharedPreferences settingsSharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE);
         SharedPreferences statisticsSharedPreferences = getSharedPreferences("AppStatistics", MODE_PRIVATE);
-        Globals.settings = new Settings(settingsSharedPreferences);
+        Globals.settings = new Settings();
         Globals.statistics = new Statistics(statisticsSharedPreferences, Globals.settings);
     }
 
@@ -41,7 +40,6 @@ public class MainMenu extends AppCompatActivity
 
     public void exit(View v)
     {
-        Globals.settings.save();
         Globals.statistics.save();
 
         finish();

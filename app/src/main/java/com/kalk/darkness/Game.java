@@ -58,8 +58,6 @@ public class Game extends AppCompatActivity
     private String[][] mobMap;
     private MapGenerator genchik;
 
-    FactoryPlayer factoryPlayer = new FactoryPlayer();
-
     public EntityPlayer player;
 
     public EntityExit extr;
@@ -71,31 +69,6 @@ public class Game extends AppCompatActivity
     public EntityBushes[][] bushes = new EntityBushes[4][900];
     public EntityPortals[] portals = new EntityPortals[6];
     public EntityRivers[][] rivers = new EntityRivers[3][15];
-
-    public EntityPlayer getPlayer()
-    {
-        return player;
-    }
-
-    public EntityRivers[][] getRivers() {
-        return rivers;
-    }
-    public EntityBushes[][] getBushes() {
-        return bushes;
-    }
-    public EntityExit getExtr() {
-        return extr;
-    }
-
-    public void setRivers(EntityRivers[][] rivers) {
-        this.rivers = rivers;
-    }
-    public void setBushes(EntityBushes[][] bushes) {
-        this.bushes = bushes;
-    }
-    public void setExtr(EntityExit extr) {
-        this.extr = extr;
-    }
 
     public String[][] getMap() {
         return map;
@@ -133,12 +106,12 @@ public class Game extends AppCompatActivity
         if (seed == 0)
             seed = (new Random()).nextInt(10000);
 
-        genchik = new MapGenerator(this);
+        genchik = new MapGenerator(this, gameplayActivity);
     }
 
-    public void addEntitty(Entity a)
+    public void addEntitty(Entity entity)
     {
-        this.entitites.add(a);
+        this.entitites.add(entity);
     }
 
     public String getMapTile(int x, int y)
@@ -567,12 +540,10 @@ public class Game extends AppCompatActivity
             }
     }
 
-    public void init(int forsedEv, SharedPreferences sharedPreferences)
+    public void init(int forsedEv, String difficulty)
     {
         int ev = forsedEv == 0 ? MapGenerator.rand.nextInt(101): forsedEv;
         entitites = new HashSet<Entity>();
-        settings = new Settings(sharedPreferences);
-        settings.load();
 
         if (ev <= 4)
             event = ev;
@@ -588,9 +559,10 @@ public class Game extends AppCompatActivity
                 sound.start();
         }*/
 
-        map = genchik.mapThrower(Gameplay.score, settings.getDifficulty(), event);
-
-        player = factoryPlayer.spawn(game, gameplayActivity);
+        map = genchik.mapThrower(Gameplay.score, difficulty, event);
+        player = genchik.playerSpawn();
+        lever = genchik.leverGen();
+        extr = genchik.extractionGen();
 
         gameIn = true;
     }
@@ -663,19 +635,19 @@ public class Game extends AppCompatActivity
         startActivity(pip);
     }
 
-    public void tick()
+    public void tick(String difficulty)
     {
         for (Entity entity:entitites)
         {
-            entity.tick();
-            riverwork(entity);
-
             if (entity == player)
                 continue;
 
-            if (entity.getPosition() == player.getPosition())
+            entity.tick();
+            riverwork(entity);
+
+            if (GameVec.equals(entity.position, player.position))
             {
-                entity.onPlayerCollision();
+                entity.onPlayerCollision(difficulty);
             }
         }
     }
