@@ -76,7 +76,7 @@ public class Entity
                     int newY = current.y + dir.dy();
 
                     // Проверяем, можно ли идти в эту клетку
-                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, newX, newY))
+                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, newX, newY, 0))
                     {
                         int newDistance = distanceMap[current.x][current.y] + 1;
 
@@ -114,20 +114,26 @@ public class Entity
         return calcDirection(position);
     }
 
-    private static boolean isWalkable(String[][] map, int x, int y)
+    public static boolean isWalkable(String[][] map, int y, int x, int type)
     {
-        if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
-        {
-            return false;
-        }
-
+        boolean helperCell = false;
         String cell = map[y][x];
 
-        boolean helperCell = false;
-
-        if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile") || cell.equals("bushes_tile"))
+        if (type == 0)
         {
-            helperCell = true;
+            if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
+                helperCell = false;
+
+            if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile") || cell.equals("bushes_tile"))
+                helperCell = true;
+        }
+        else if (type == 1)
+        {
+            if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
+                helperCell = false;
+
+            if (!cell.equals("wall_tile"))
+                helperCell = true;
         }
 
         return helperCell;
@@ -186,10 +192,9 @@ public class Entity
         }
     }
 
-    public void movement(int direction, String[][] map)
+    public void movement(Direction direction, String[][] map)
     {
-        Direction dir = Direction.fromInt(direction);
-        this.position = position.offSet(this.position, dir, 1);
+        this.position = position.offSet(this.position, direction, 1);
     }
 
     public void onPlayerCollision(String difficulty)

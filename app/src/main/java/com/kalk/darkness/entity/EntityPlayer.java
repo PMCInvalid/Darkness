@@ -3,6 +3,7 @@ package com.kalk.darkness.entity;
 import android.app.Application;
 
 import com.kalk.darkness.Constants;
+import com.kalk.darkness.Direction;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.Gameplay;
@@ -63,72 +64,72 @@ public class EntityPlayer extends Entity
         switch (direction)
         {
             case 1:
-                if (!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX()].equals("wall_tile"))
+                if (Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX(), 1))
                 {
-                    movement(1, game.getMap());
+                    movement(Direction.UP, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 1;
                 }
                 break;
 
             case 2:
-                if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                if(Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX() + 1, 1))
                 {
-                    movement(2, game.getMap());
+                    movement(Direction.UPRIGHT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 2;
                 }
                 break;
 
             case 3:
-                if(!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                if(Entity.isWalkable(game.getMap(), game.player.position.getY(), game.player.position.getX() + 1, 1))
                 {
-                    movement(3, game.getMap());
+                    movement(Direction.RIGHT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 3;
                 }
                 break;
 
             case 4:
-                if(!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() + 1].equals("wall_tile"))
+                if(Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX() + 1, 1))
                 {
-                    movement(4, game.getMap());
+                    movement(Direction.DOWNRIGHT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 4;
                 }
                 break;
 
             case 5:
-                if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX()].equals("wall_tile"))
+                if (Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX(), 1))
                 {
-                    movement(5, game.getMap());
+                    movement(Direction.DOWN, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 5;
                 };
                 break;
 
             case 6:
-                if (!game.getMap()[game.player.getPosition().getY() + 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                if (Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX() - 1, 1))
                 {
-                    movement(6, game.getMap());
+                    movement(Direction.DOWNLEFT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 6;
                 }
                 break;
 
             case 7:
-                if (!game.getMap()[game.player.getPosition().getY()][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                if (Entity.isWalkable(game.getMap(), game.player.position.getY(), game.player.position.getX() - 1, 1))
                 {
-                    movement(7, game.getMap());
+                    movement(Direction.LEFT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 7;
                 }
                 break;
 
             case 8:
-                if(!game.getMap()[game.player.getPosition().getY() - 1][game.player.getPosition().getX() - 1].equals("wall_tile"))
+                if(Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX() - 1, 1))
                 {
-                    movement(8, game.getMap());
+                    movement(Direction.UPLEFT, game.getMap());
                     moveCheck = 1;
                     playerMoveRem = 8;
                 }

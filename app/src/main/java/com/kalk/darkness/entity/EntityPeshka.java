@@ -2,6 +2,7 @@ package com.kalk.darkness.entity;
 
 import android.content.Context;
 
+import com.kalk.darkness.Direction;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.MapGenerator;
@@ -28,6 +29,7 @@ public class EntityPeshka extends Entity
         else
             direction = (MapGenerator.rand.nextInt(4) + 1) * 2 - 1;
 
-        movement(direction, game.getMap());
+        Direction dir = Direction.fromInt(direction);
+        movement(dir, game.getMap());
     }
 }
