@@ -2,6 +2,7 @@ package com.kalk.darkness;
 
 public enum Direction
 {
+    NONE(0, 0),
     UP(0, -1),
     UPRIGHT(1, -1),
     RIGHT(1, 0),
@@ -30,7 +31,8 @@ public enum Direction
 
     public static Direction fromInt(int i)
     {
-        switch (i) {
+        switch (i)
+        {
             case 1: return UP;
             case 2: return UPRIGHT;
             case 3: return RIGHT;
@@ -40,6 +42,22 @@ public enum Direction
             case 7: return LEFT;
             case 8: return UPLEFT;
             default: throw new IllegalArgumentException("Invalid direction: " + i);
+        }
+    }
+
+    public static int toInt(Direction dir)
+    {
+        switch (dir)
+        {
+            case UP: return 1;
+            case UPRIGHT: return 2;
+            case RIGHT: return 3;
+            case DOWNRIGHT: return 4;
+            case DOWN: return 5;
+            case DOWNLEFT: return 6;
+            case LEFT: return 7;
+            case UPLEFT: return 8;
+            default: return 9;
         }
     }
 }

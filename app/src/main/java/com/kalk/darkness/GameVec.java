@@ -50,7 +50,7 @@ public class GameVec
         return new GameVec(getX()+v, getY()+v);
     }
 
-    public GameVec sumVec(GameVec a, GameVec b)
+    public static GameVec sum(GameVec a, GameVec b)
     {
         return new GameVec((a.getX() + b.getX()), (a.getY() + b.getY()));
     }
@@ -78,6 +78,6 @@ public class GameVec
 
     public GameVec offSet(GameVec position, Direction dir, int steps)
     {
-        return sumVec(position, Direction.DirToGV(dir).mul(steps));
+        return sum(position, Direction.DirToGV(dir).mul(steps));
     }
 }

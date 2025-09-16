@@ -1,13 +1,11 @@
 package com.kalk.darkness.entity;
 
-import android.app.Application;
-
 import com.kalk.darkness.Constants;
 import com.kalk.darkness.Direction;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
+import com.kalk.darkness.GameVec;
 import com.kalk.darkness.Gameplay;
-import com.kalk.darkness.Globals;
 
 public class EntityPlayer extends Entity
 {
@@ -57,92 +55,30 @@ public class EntityPlayer extends Entity
     public boolean hidden = false;
     int flashlight = 0;
 
-    public void tick(int direction, String difficulty)
+    public void tick(Direction direction, String difficulty)
     {
-        int moveCheck = 0;
+        boolean moveCheck = false;
 
-        switch (direction)
+        if (direction != Direction.NONE)
         {
-            case 1:
-                if (Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX(), 1))
-                {
-                    movement(Direction.UP, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 1;
-                }
-                break;
+            GameVec newPosition = GameVec.sum(position, Direction.DirToGV(direction));
 
-            case 2:
-                if(Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX() + 1, 1))
-                {
-                    movement(Direction.UPRIGHT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 2;
-                }
-                break;
-
-            case 3:
-                if(Entity.isWalkable(game.getMap(), game.player.position.getY(), game.player.position.getX() + 1, 1))
-                {
-                    movement(Direction.RIGHT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 3;
-                }
-                break;
-
-            case 4:
-                if(Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX() + 1, 1))
-                {
-                    movement(Direction.DOWNRIGHT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 4;
-                }
-                break;
-
-            case 5:
-                if (Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX(), 1))
-                {
-                    movement(Direction.DOWN, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 5;
-                };
-                break;
-
-            case 6:
-                if (Entity.isWalkable(game.getMap(), game.player.position.getY() + 1, game.player.position.getX() - 1, 1))
-                {
-                    movement(Direction.DOWNLEFT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 6;
-                }
-                break;
-
-            case 7:
-                if (Entity.isWalkable(game.getMap(), game.player.position.getY(), game.player.position.getX() - 1, 1))
-                {
-                    movement(Direction.LEFT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 7;
-                }
-                break;
-
-            case 8:
-                if(Entity.isWalkable(game.getMap(), game.player.position.getY() - 1, game.player.position.getX() - 1, 1))
-                {
-                    movement(Direction.UPLEFT, game.getMap());
-                    moveCheck = 1;
-                    playerMoveRem = 8;
-                }
-                break;
-
-            case 9:
-                moveCheck = 1;
-                flashlight = 1;
-                playerMoveRem = 9;
-                break;
+            if (Entity.isWalkable(game.getMap(), newPosition.getY(), newPosition.getX(), 1))
+            {
+                movement(direction, game.getMap());
+                playerMoveRem = Direction.toInt(direction);
+                moveCheck = true;
+            }
         }
 
-        if (moveCheck == 1)
+        else
+        {
+            moveCheck = true;
+            flashlight = 1;
+            playerMoveRem = 9;
+        }
+
+        if (moveCheck)
         {
             if (!playerInBushes)
             {
@@ -152,7 +88,7 @@ public class EntityPlayer extends Entity
                     game.abi(ability);
                 }
 
-                else if (difficulty.equals(Constants.difficulty_hard) || direction == 9)
+                else if (difficulty.equals(Constants.difficulty_hard) || direction == Direction.NONE)
                 {
                     if (flashlight == 1 && energy > 0)
                     {

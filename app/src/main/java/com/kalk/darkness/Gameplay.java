@@ -187,7 +187,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(1, globals.settings.getDifficulty());
+        game.player.tick(Direction.UP, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -195,7 +195,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(2, globals.settings.getDifficulty());
+        game.player.tick(Direction.UPRIGHT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -203,7 +203,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(3, globals.settings.getDifficulty());
+        game.player.tick(Direction.RIGHT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -211,7 +211,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(4, globals.settings.getDifficulty());
+        game.player.tick(Direction.DOWNRIGHT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -219,7 +219,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(5, globals.settings.getDifficulty());
+        game.player.tick(Direction.DOWN, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -227,7 +227,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(6, globals.settings.getDifficulty());
+        game.player.tick(Direction.DOWNLEFT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -235,7 +235,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(7, globals.settings.getDifficulty());
+        game.player.tick(Direction.LEFT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -243,7 +243,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(8, globals.settings.getDifficulty());
+        game.player.tick(Direction.UPLEFT, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
     }
 
@@ -251,7 +251,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        game.player.tick(9, globals.settings.getDifficulty());
+        game.player.tick(Direction.NONE, globals.settings.getDifficulty());
         game.tick(globals.settings.getDifficulty());
         test();
     }
