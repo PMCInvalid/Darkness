@@ -560,11 +560,10 @@ public class Game extends AppCompatActivity
         }*/
 
         event = 0;
-
         map = genchik.mapThrower(Gameplay.score, difficulty, event);
         player = genchik.playerSpawn();
-        lever = genchik.leverGen();
         extr = genchik.extractionGen();
+        lever = genchik.leverGen();
 
         gameIn = true;
     }

@@ -1,5 +1,6 @@
 package com.kalk.darkness.entity;
 
+import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.GameVec;
 import com.kalk.darkness.Gameplay;
@@ -12,15 +13,17 @@ public class FactoryPlayer extends FactoryMobs
     {
         EntityPlayer player = new EntityPlayer(game, activity);
 
-        GameVec pos = MapGenerator.getRandomCords();
+        boolean check = true;
 
-        player.setPosition(pos);
-        player.getPosition().setY(pos.getY());
-        player.getPosition().setX(pos.getX());
+        while (check)
+        {
+            player.setPosition(MapGenerator.getRandomCords());
+
+            if (Entity.isWalkable(game.getMap(), player.position.getY(), player.position.getX(), 0))
+                check = false;
+        }
 
         game.addEntitty(player);
-
-        //game.player.isHere = true;
 
         return player;
     }

@@ -16,13 +16,14 @@ public class FactoryExit extends FactoryMobs
 
         boolean check = false;
 
-        while (!check)
+        exit.setPosition(MapGenerator.getRandomCords());
+
+        while (check)
         {
             exit.setPosition(MapGenerator.getRandomCords());
 
-            if (game.isWalkable(exit.position))
-                if (haveWay(exit.position, game.player.position))
-                    check = true;
+            if (Entity.isWalkable(game.getMap(), exit.position.getY(), exit.position.getX(), 0))
+                check = false;
         }
 
         game.addEntitty(exit);

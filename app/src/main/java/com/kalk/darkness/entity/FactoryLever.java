@@ -13,7 +13,15 @@ public class FactoryLever extends FactoryMobs
     {
         EntityLever lever = new EntityLever(game);
 
-        lever.setPosition(MapGenerator.getRandomCords());
+        boolean check = true;
+
+        while (check)
+        {
+            lever.setPosition(MapGenerator.getRandomCords());
+
+            if (Entity.isWalkable(game.getMap(), lever.position.getY(), lever.position.getX(), 0))
+                check = false;
+        }
 
         game.addEntitty(lever);
 
