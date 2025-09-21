@@ -17,6 +17,7 @@ public class MainMenu extends AppCompatActivity
         setContentView(R.layout.main_menu_activity);
         SharedPreferences statisticsSharedPreferences = getSharedPreferences("AppStatistics", MODE_PRIVATE);
         Globals.settings = new Settings();
+        Globals.playerPosition = new GameVec();
         Globals.statistics = new Statistics(statisticsSharedPreferences, Globals.settings);
     }
 

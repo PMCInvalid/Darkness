@@ -70,12 +70,6 @@ public class GameVec
         return (a.getX() == x) && (a.getY() == y);
     }
 
-    public void testCall()
-    {
-//        GameVec pip = new GameVec(1, 1);
-//        pip.offSet(Direction.up, 2);
-    }
-
     public GameVec offSet(GameVec position, Direction dir, int steps)
     {
         return sum(position, Direction.DirToGV(dir).mul(steps));

@@ -4,6 +4,7 @@ import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.GameVec;
 import com.kalk.darkness.Gameplay;
+import com.kalk.darkness.Globals;
 import com.kalk.darkness.MapGenerator;
 import com.kalk.darkness.Statistics;
 
@@ -23,7 +24,8 @@ public class FactoryExit extends FactoryMobs
             exit.setPosition(MapGenerator.getRandomCords());
 
             if (Entity.isWalkable(game.getMap(), exit.position, 0))
-                check = false;
+                if (haveWay(exit.position, Globals.playerPosition))
+                    check = false;
         }
 
         game.addEntitty(exit);

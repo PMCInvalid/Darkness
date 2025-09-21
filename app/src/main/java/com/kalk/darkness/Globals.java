@@ -6,4 +6,5 @@ public class Globals extends Application
 {
     public static Statistics statistics;
     public static Settings settings;
+    public static GameVec playerPosition;
 }

@@ -4,6 +4,7 @@ import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.GameVec;
 import com.kalk.darkness.Gameplay;
+import com.kalk.darkness.Globals;
 import com.kalk.darkness.MapGenerator;
 
 public class FactoryLever extends FactoryMobs
@@ -20,7 +21,8 @@ public class FactoryLever extends FactoryMobs
             lever.setPosition(MapGenerator.getRandomCords());
 
             if (Entity.isWalkable(game.getMap(), lever.position, 0))
-                check = false;
+                if (haveWay(lever.position, Globals.playerPosition))
+                    check = false;
         }
 
         game.addEntitty(lever);
