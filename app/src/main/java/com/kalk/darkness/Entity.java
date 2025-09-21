@@ -76,7 +76,7 @@ public class Entity
                     int newY = current.y + dir.dy();
 
                     // Проверяем, можно ли идти в эту клетку
-                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, newX, newY, 0))
+                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, new GameVec(newX, newY), 0))
                     {
                         int newDistance = distanceMap[current.x][current.y] + 1;
 
@@ -114,14 +114,14 @@ public class Entity
         return calcDirection(position);
     }
 
-    public static boolean isWalkable(String[][] map, int y, int x, int type)
+    public static boolean isWalkable(String[][] map, GameVec position, int type)
     {
         boolean helperCell = false;
-        String cell = map[y][x];
+        String cell = map[position.getY()][position.getX()];
 
         if (type == 0)
         {
-            if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
+            if (position.getY() < 0 || position.getX() < 0 || position.getY() >= map.length || position.getX() >= map[0].length)
                 helperCell = false;
 
             if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile") || cell.equals("bushes_tile"))
@@ -129,7 +129,7 @@ public class Entity
         }
         else if (type == 1)
         {
-            if (y < 0 || x < 0 || y >= map.length || x >= map[0].length)
+            if (position.getY() < 0 || position.getX() < 0 || position.getY() >= map.length || position.getX() >= map[0].length)
                 helperCell = false;
 
             if (!cell.equals("wall_tile"))

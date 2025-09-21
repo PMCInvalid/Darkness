@@ -1,20 +1,12 @@
 package com.kalk.darkness;
 
 import static com.kalk.darkness.Gameplay.game;
-import static java.lang.Math.*;
-import java.util.LinkedList;
-import java.util.Queue;
-import androidx.annotation.NonNull;
 
-import com.kalk.darkness.entity.EntityBushes;
 import com.kalk.darkness.entity.EntityExit;
 import com.kalk.darkness.entity.EntityLever;
 import com.kalk.darkness.entity.EntityPlayer;
-import com.kalk.darkness.entity.EntityPortals;
-import com.kalk.darkness.entity.EntityRivers;
 import com.kalk.darkness.entity.FactoryExit;
 import com.kalk.darkness.entity.FactoryLever;
-import com.kalk.darkness.entity.FactoryMobs;
 import com.kalk.darkness.entity.FactoryPlayer;
 
 import java.util.Random;
@@ -260,60 +252,6 @@ public class MapGenerator
                         gamemap[i + 2][j + 2] = "empty_tile";
         }
     }
-    /*
-    public static boolean check(int startX, int startY, int endX, int endY)
-    {
-        if (!isValid(map, startX, startY) || !isValid(map, endX, endY)) {
-            return false;
-        }
-
-        if (startX == endX && startY == endY) {
-            return false;
-        }
-
-        int[][] directions =
-                {
-                {-1, -1}, {-1, 0}, {-1, 1},  // Влево-вверх, Влево, Влево-вниз
-                {0, -1},          {0, 1},    // Вверх,       Вниз
-                {1, -1},  {1, 0}, {1, 1}     // Вправо-вверх, Вправо, Вправо-вниз
-                };
-
-        // Массив для посещенных клеток
-        boolean[][] visited = new boolean[map.length][map[0].length];
-        Queue<int[]> queue = new LinkedList<>();
-
-        queue.add(new int[]{startX, startY});
-        visited[startX][startY] = true;
-
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int x = current[0];
-            int y = current[1];
-
-            for (int[] dir : directions) {
-                int newX = x + dir[0];
-                int newY = y + dir[1];
-
-                if (newX == endX && newY == endY) {
-                    return true;
-                }
-
-                if (isValid(map, newX, newY) && !visited[newX][newY]) {
-                    visited[newX][newY] = true;
-                    queue.add(new int[]{newX, newY});
-                }
-            }
-        }
-
-        return false; // Путь не найден
-    }
-
-    public boolean find(int y, int x, String target)
-    {
-        boolean sol = true;
-
-        return sol;
-    }*/
 
     public EntityExit extractionGen()
     {
@@ -329,7 +267,7 @@ public class MapGenerator
         return lever;
     }
 
-/*    public static void doorGen()
+/*  public static void doorGen()
     {
         int a  = rand.nextInt(4) + 1;
 

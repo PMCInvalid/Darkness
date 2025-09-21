@@ -63,7 +63,7 @@ public class EntityPlayer extends Entity
         {
             GameVec newPosition = GameVec.sum(position, Direction.DirToGV(direction));
 
-            if (Entity.isWalkable(game.getMap(), newPosition.getY(), newPosition.getX(), 1))
+            if (Entity.isWalkable(game.getMap(), newPosition, 1))
             {
                 movement(direction, game.getMap());
                 playerMoveRem = Direction.toInt(direction);

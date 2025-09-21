@@ -19,7 +19,7 @@ public class FactoryLever extends FactoryMobs
         {
             lever.setPosition(MapGenerator.getRandomCords());
 
-            if (Entity.isWalkable(game.getMap(), lever.position.getY(), lever.position.getX(), 0))
+            if (Entity.isWalkable(game.getMap(), lever.position, 0))
                 check = false;
         }
 

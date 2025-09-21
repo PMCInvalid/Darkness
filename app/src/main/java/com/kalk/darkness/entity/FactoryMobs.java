@@ -11,9 +11,9 @@ import java.util.Queue;
 
 public class FactoryMobs
 {
-    private boolean isCloseToPlayer(GameVec a)
+    private boolean isCloseToPlayer(GameVec position)
     {
-        return GameVec.distance(a, game.player.getPosition()) < 3;
+        return GameVec.distance(position, game.player.getPosition()) < 3;
     }
 
     public boolean haveWay(GameVec start, GameVec end)

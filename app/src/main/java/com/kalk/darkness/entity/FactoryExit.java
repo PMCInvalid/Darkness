@@ -22,7 +22,7 @@ public class FactoryExit extends FactoryMobs
         {
             exit.setPosition(MapGenerator.getRandomCords());
 
-            if (Entity.isWalkable(game.getMap(), exit.position.getY(), exit.position.getX(), 0))
+            if (Entity.isWalkable(game.getMap(), exit.position, 0))
                 check = false;
         }
 
