@@ -76,7 +76,7 @@ public class Entity
                     int newY = current.y + dir.dy();
 
                     // Проверяем, можно ли идти в эту клетку
-                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, new GameVec(newX, newY), 0))
+                    if (newX >= 0 && newY >= 0 && newX < width && newY < height && isWalkable(map, new GameVec(newY, newX), 0))
                     {
                         int newDistance = distanceMap[current.x][current.y] + 1;
 

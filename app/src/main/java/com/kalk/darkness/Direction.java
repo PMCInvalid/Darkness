@@ -41,6 +41,7 @@ public enum Direction
             case 6: return DOWNLEFT;
             case 7: return LEFT;
             case 8: return UPLEFT;
+            case 9: return NONE;
             default: throw new IllegalArgumentException("Invalid direction: " + i);
         }
     }

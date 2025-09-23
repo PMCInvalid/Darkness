@@ -32,7 +32,7 @@ public class Gameplay extends AppCompatActivity
         }
 
         TextView scores = findViewById(R.id.scoreText);
-        scores.setText("Score: " + Gameplay.score);
+        scores.setText("Score: " + score);
 
         ImageView[][] imageViews0 =
                 {
@@ -260,7 +260,7 @@ public class Gameplay extends AppCompatActivity
     {
         System.out.println(game.player.position.getX() + " " + game.player.position.getY());
         System.out.println("-------");
-        System.out.println(game.extr.position.getX() + " " + game.extr.position.getY());
+        System.out.println(game.peshka.position.getX() + " " + game.peshka.position.getY());
     }
 
     public int tileToResId(String tile, int drawMode, int range)
@@ -269,23 +269,19 @@ public class Gameplay extends AppCompatActivity
         {
             switch (tile)
             {
-                case "empty_tile":
-                    return R.drawable.empty_tile;
+                case "empty_tile": return R.drawable.empty_tile;
 
-                case "wall_tile":
-                    return R.drawable.wall_tile;
+                case "wall_tile": return R.drawable.wall_tile;
 
-                case "player_tile":
-                    return R.drawable.player_tile;
+                case "player_tile": return R.drawable.player_tile;
 
-                case "black_tile":
-                    return R.drawable.black_tile;
+                case "black_tile": return R.drawable.black_tile;
 
-                case "lever_tile":
-                    return R.drawable.lever_tile;
+                case "lever_tile": return R.drawable.lever_tile;
 
-                case "extraction_tile":
-                    return R.drawable.extraction_tile;
+                case "extraction_tile": return R.drawable.extraction_tile;
+
+                case "peshka_tile": return R.drawable.peshka_tile;
             }
         }
 

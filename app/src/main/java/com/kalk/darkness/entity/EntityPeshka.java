@@ -21,7 +21,7 @@ public class EntityPeshka extends Entity
 
         if (!game.player.hidden)
         {
-            computeFlowField(game.getMap(), game.player.getPosition().getY(), game.player.getPosition().getX(), 1);
+            computeFlowField(game.getMap(), game.player.getPosition().getX(), game.player.getPosition().getY(), 1);
 
             direction = getDirection();
         }

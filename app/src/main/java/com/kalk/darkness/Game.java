@@ -59,6 +59,7 @@ public class Game extends AppCompatActivity
     private MapGenerator genchik;
 
     public EntityPlayer player;
+    public EntityPeshka peshka;
 
     public EntityExit extr;
     public EntityLever lever;
@@ -561,11 +562,18 @@ public class Game extends AppCompatActivity
 
         event = 0;
         map = genchik.mapThrower(Gameplay.score, difficulty, event);
+
+        entitySpawn();
+
+        gameIn = true;
+    }
+
+    public void entitySpawn()
+    {
         player = genchik.playerSpawn();
         extr = genchik.extractionGen();
         lever = genchik.leverGen();
-
-        gameIn = true;
+        peshka = genchik.peshkaSpawn();
     }
 
     public void riverwork(Entity entity)
@@ -631,7 +639,7 @@ public class Game extends AppCompatActivity
     {
         game.gameIn = false;
         game.score = 0;
-        game.power.ability = 0;
+//        game.power.ability = 0;
         Intent pip = new Intent(this, death_screen.class);
         startActivity(pip);
     }

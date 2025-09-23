@@ -4,9 +4,11 @@ import static com.kalk.darkness.Gameplay.game;
 
 import com.kalk.darkness.entity.EntityExit;
 import com.kalk.darkness.entity.EntityLever;
+import com.kalk.darkness.entity.EntityPeshka;
 import com.kalk.darkness.entity.EntityPlayer;
 import com.kalk.darkness.entity.FactoryExit;
 import com.kalk.darkness.entity.FactoryLever;
+import com.kalk.darkness.entity.FactoryPeshka;
 import com.kalk.darkness.entity.FactoryPlayer;
 
 import java.util.Random;
@@ -16,10 +18,7 @@ public class MapGenerator
     FactoryPlayer factoryPlayer = new FactoryPlayer();
     FactoryLever factoryLever = new FactoryLever();
     FactoryExit factoryExit = new FactoryExit();
-
-    public EntityPlayer player;
-    public EntityLever lever;
-    public EntityExit extr;
+    FactoryPeshka factoryPeshka = new FactoryPeshka();
 
     protected String[][] gamemap;
     protected Gameplay gameplayActivity;
@@ -46,8 +45,6 @@ public class MapGenerator
     {
         emptySetter();
         wallGen(event);
-        //objectsGen(points, hard, event);
-        //mobGen(points, hard, event);
 
         return gamemap;
     }
@@ -255,16 +252,12 @@ public class MapGenerator
 
     public EntityExit extractionGen()
     {
-        extr = factoryExit.spawn(game, gameplayActivity, gamemap);
-
-        return extr;
+        return factoryExit.spawn(game, gameplayActivity, gamemap);
     }
 
     public EntityLever leverGen()
     {
-        lever = factoryLever.spawn(game, gameplayActivity, gamemap);
-
-        return lever;
+        return factoryLever.spawn(game, gameplayActivity, gamemap);
     }
 
 /*  public static void doorGen()
@@ -760,17 +753,15 @@ public class MapGenerator
 
     public EntityPlayer playerSpawn()
     {
-        player = factoryPlayer.spawn(game, gameplayActivity, gamemap);
-
-        return player;
+        return factoryPlayer.spawn(game, gameplayActivity, gamemap);
     }
 
-/*    public static void peshkaSpawn()
+    public EntityPeshka peshkaSpawn()
     {
-
+        return factoryPeshka.spawn(game, gameplayActivity, gamemap);
     }
 
-    public static void peshkaBSpawn()
+    /*public static void peshkaBSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);
