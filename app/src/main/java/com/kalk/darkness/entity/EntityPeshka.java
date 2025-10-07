@@ -1,11 +1,10 @@
 package com.kalk.darkness.entity;
 
-import android.content.Context;
-
 import com.kalk.darkness.Direction;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.MapGenerator;
+import com.kalk.darkness.Pathfinding;
 
 public class EntityPeshka extends Entity
 {
@@ -17,19 +16,15 @@ public class EntityPeshka extends Entity
     @Override
     public void tick()
     {
-        int direction = 9;
+        Direction dir = Direction.NONE;
 
         if (!game.player.hidden)
-        {
-            computeFlowField(game.getMap(), game.player.getPosition().getX(), game.player.getPosition().getY(), 1);
+            dir = Pathfinding.findNextStep(game.getMap(), position.getX(), position.getY(), game.player.getPosition().getX(), game.player.getPosition().getY(), 1, 0);
 
-            direction = getDirection();
-        }
+        //else
+            //dir = pickRandomValidCardinal();
 
-        else
-            direction = (MapGenerator.rand.nextInt(4) + 1) * 2 - 1;
-
-        Direction dir = Direction.fromInt(direction);
         movement(dir, game.getMap());
+        System.out.println(dir);
     }
 }
