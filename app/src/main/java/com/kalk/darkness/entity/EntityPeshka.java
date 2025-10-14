@@ -16,13 +16,15 @@ public class EntityPeshka extends Entity
     @Override
     public void tick()
     {
-        Direction dir = Direction.NONE;
+        Direction dir;
 
         if (!game.player.hidden)
             dir = Pathfinding.findNextStep(game.getMap(), position.getX(), position.getY(), game.player.getPosition().getX(), game.player.getPosition().getY(), 1, 0);
 
-        //else
-            //dir = pickRandomValidCardinal();
+        else
+        {
+            dir = Direction.fromInt(MapGenerator.rand.nextInt(9) + 1);
+        }
 
         movement(dir, game.getMap());
         System.out.println(dir);

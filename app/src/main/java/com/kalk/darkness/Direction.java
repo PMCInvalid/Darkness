@@ -29,9 +29,9 @@ public enum Direction
         return new GameVec(dir.dx(), dir.dy());
     }
 
-    public static Direction fromInt(int i)
+    public static Direction fromInt(int num)
     {
-        switch (i)
+        switch (num)
         {
             case 1: return UP;
             case 2: return UPRIGHT;
@@ -42,7 +42,7 @@ public enum Direction
             case 7: return LEFT;
             case 8: return UPLEFT;
             case 9: return NONE;
-            default: throw new IllegalArgumentException("Invalid direction: " + i);
+            default: throw new IllegalArgumentException("Invalid direction: " + num);
         }
     }
 
