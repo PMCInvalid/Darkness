@@ -676,12 +676,4 @@ public class Game extends AppCompatActivity
     {
         return a.getX() >= 0 && a.getY() >= 0 && a.getX() < map.length && a.getY() < map[0].length && !map[a.getX()][a.getY()].equals("wall_tile");
     }
-
-    public GameVec randVec()
-    {
-        int y = (game.random.nextInt(maxY - 4) + 2);
-        int x = (game.random.nextInt(maxX - 4) + 2);
-
-        return new GameVec(x, y);
-    }
 }

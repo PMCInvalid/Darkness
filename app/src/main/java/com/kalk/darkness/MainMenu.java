@@ -3,9 +3,7 @@ package com.kalk.darkness;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 
 public class MainMenu extends AppCompatActivity
@@ -15,10 +13,6 @@ public class MainMenu extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_activity);
-        SharedPreferences statisticsSharedPreferences = getSharedPreferences("AppStatistics", MODE_PRIVATE);
-        Globals.settings = new Settings();
-        Globals.playerPosition = new GameVec();
-        Globals.statistics = new Statistics(statisticsSharedPreferences, Globals.settings);
     }
 
     public void dive(View v)

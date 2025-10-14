@@ -1,16 +1,16 @@
 package com.kalk.darkness;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 
-public class Settings extends Application
+public class Settings
 {
-    SharedPreferences sharedPreferences;
-    String difficulty = "easy";
+    SharedPreferences prefs;
+    String difficulty = Constants.difficulty_easy;
 
-    public Settings()
+    public Settings(SharedPreferences prefs)
     {
-
+        this.prefs = prefs;
+        this.difficulty = prefs.getString("difficulty", Constants.difficulty_easy);
     }
 
     public String getDifficulty()
@@ -25,7 +25,7 @@ public class Settings extends Application
 
     public void save()
     {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor = prefs.edit();
         editor.putString("difficulty", difficulty);
         editor.apply();
     }
