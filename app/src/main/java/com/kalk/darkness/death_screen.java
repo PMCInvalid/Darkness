@@ -25,7 +25,7 @@ public class death_screen extends AppCompatActivity
             highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_easy));
 
             if (Globals.statistics.getScore(Constants.difficulty_easy) < Globals.activeScore)
-                Globals.statistics.setScore(Globals.activeScore);
+                Globals.statistics.setScore();
         }
 
         if (Globals.settings.getDifficulty().equals(Constants.difficulty_hard))
@@ -34,7 +34,7 @@ public class death_screen extends AppCompatActivity
             highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_hard));
 
             if (Globals.statistics.getScore(Constants.difficulty_hard) < Globals.activeScore)
-                Globals.statistics.setScore(Globals.activeScore);
+                Globals.statistics.setScore();
         }
 
         if (Globals.settings.getDifficulty().equals(Constants.difficulty_insane))
@@ -43,7 +43,7 @@ public class death_screen extends AppCompatActivity
             highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_insane));
 
             if (Globals.statistics.getScore(Constants.difficulty_insane) < Globals.activeScore)
-                Globals.statistics.setScore(Globals.activeScore);
+                Globals.statistics.setScore();
         }
     }
 

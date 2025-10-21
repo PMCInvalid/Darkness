@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
+import com.kalk.darkness.Globals;
 import com.kalk.darkness.Statistics;
 
 public class EntityDoor extends Entity
@@ -18,8 +19,8 @@ public class EntityDoor extends Entity
     @Override
     public void onPlayerCollision(String difficulty)
     {
-        game.score += 0.25;
-        statistics.setScore(game.score);
+        Globals.addScore(0.25f);
+        statistics.setScore();
         statistics.save();
         game.init(0, difficulty);
     }

@@ -32,7 +32,7 @@ public class Gameplay extends AppCompatActivity
         }
 
         TextView scores = findViewById(R.id.scoreText);
-        scores.setText("Score: " + score);
+        scores.setText("Score: " + Globals.activeScore);
 
         ImageView[][] imageViews0 =
                 {

@@ -21,9 +21,9 @@ public class Statistics
         return scores.getOrDefault(difficulty, 0.0f);
     }
 
-    public void setScore(float score)
+    public void setScore()
     {
-        scores.put(settings.difficulty, score);;
+        scores.put(Globals.settings.getDifficulty(), Globals.activeScore);
     }
 
     public void save()

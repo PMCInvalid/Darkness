@@ -49,7 +49,6 @@ public class Game extends AppCompatActivity
     //MediaPlayer sound = MediaPlayer.create(this, R.raw.bad_event_sound);
     private final Gameplay gameplayActivity;
     int event = 0;
-    public float score = 1;
     boolean gameIn = false;
     public Settings settings;
     Set<Entity> entitites;
@@ -568,8 +567,7 @@ public class Game extends AppCompatActivity
         }*/
 
         event = 0;
-        Globals.activeScore = 0;
-        map = genchik.mapThrower(Gameplay.score, difficulty, event);
+        map = genchik.mapThrower(Globals.activeScore, difficulty, event);
 
         entitySpawn();
 
@@ -645,10 +643,9 @@ public class Game extends AppCompatActivity
 
     public void endGame()
     {
-//        if (!ended.compareAndSet(false, true)) return;
+        if (!ended.compareAndSet(false, true)) return;
 
         game.gameIn = false;
-        game.score = 0;
 //        game.power.ability = 0;
 
         Activity a = hostRef.get();

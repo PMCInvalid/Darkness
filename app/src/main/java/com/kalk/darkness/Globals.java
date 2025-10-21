@@ -31,4 +31,9 @@ public class Globals extends Application
     {
         return instance;
     }
+
+    public static void addScore(float num)
+    {
+        activeScore += num;
+    }
 }

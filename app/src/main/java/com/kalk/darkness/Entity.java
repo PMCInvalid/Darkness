@@ -32,27 +32,27 @@ public class Entity
 
     public static boolean isWalkable(String[][] map, GameVec position, int type)
     {
-        boolean helperCell = false;
         String cell = map[position.getY()][position.getX()];
 
         if (type == 0)
         {
             if (position.getY() < 0 || position.getX() < 0 || position.getY() >= map.length || position.getX() >= map[0].length)
-                helperCell = false;
+                return false;
 
             if (cell.equals("empty_tile") || cell.equals("gonchaja_territory_tile") || cell.equals("river_tile") || cell.equals("bushes_tile"))
-                helperCell = true;
+                return true;
         }
+
         else if (type == 1)
         {
             if (position.getY() < 0 || position.getX() < 0 || position.getY() >= map.length || position.getX() >= map[0].length)
-                helperCell = false;
+                return false;
 
             if (!cell.equals("wall_tile"))
-                helperCell = true;
+                return true;
         }
 
-        return helperCell;
+        return false;
     }
 
     public void movement(Direction direction, String[][] map)

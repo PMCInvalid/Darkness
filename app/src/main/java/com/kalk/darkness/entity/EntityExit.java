@@ -16,9 +16,9 @@ public class EntityExit extends Entity
     {
         if (game.playerCanExit())
         {
-            game.score++;
-//            Globals.statistics.setScore(game.score);
-//            Globals.statistics.save();
+            Globals.addScore(1);
+            Globals.statistics.setScore();
+            Globals.statistics.save();
             game.init(0, difficulty);
         }
     }
