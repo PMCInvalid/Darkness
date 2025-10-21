@@ -1,6 +1,7 @@
 package com.kalk.darkness;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Globals extends Application
@@ -9,6 +10,7 @@ public class Globals extends Application
     public static Settings settings;
     public static GameVec playerPosition;
     public static float activeScore;
+    private static Globals instance;
 
     public void onCreate()
     {
@@ -21,6 +23,12 @@ public class Globals extends Application
         settings = new Settings(settingsSharedPreferences);
         playerPosition = new GameVec();
         activeScore = 0;
+        instance = this;
         statistics.load();
+    }
+
+    public static Context app()
+    {
+        return instance;
     }
 }

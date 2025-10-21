@@ -1,6 +1,8 @@
 package com.kalk.darkness;
 
 import static com.kalk.darkness.Gameplay.game;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,9 +38,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.lang.ref.WeakReference;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Game extends AppCompatActivity
 {
+    private final WeakReference<Activity> hostRef;
+    private final AtomicBoolean ended = new AtomicBoolean(false);
+
     //MediaPlayer sound = MediaPlayer.create(this, R.raw.bad_event_sound);
     private final Gameplay gameplayActivity;
     int event = 0;
@@ -92,6 +99,8 @@ public class Game extends AppCompatActivity
 
     Game(Settings _settings, int _seed, Gameplay _gameplayActivity)
     {
+        this.hostRef = new WeakReference<>(_gameplayActivity);
+
         maxX = 32;
         maxY = 32;
 
@@ -636,13 +645,30 @@ public class Game extends AppCompatActivity
 
     public void endGame()
     {
-        Context appCtx = getApplicationContext();
+//        if (!ended.compareAndSet(false, true)) return;
+
         game.gameIn = false;
         game.score = 0;
 //        game.power.ability = 0;
-        Intent pip = new Intent(appCtx, death_screen.class);
-        pip.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        appCtx.startActivity(pip);
+
+        Activity a = hostRef.get();
+        if (a == null || a.isFinishing() || a.isDestroyed())
+        {
+            Context ctx = Globals.app();
+            Intent pip = new Intent(ctx, death_screen.class);
+            pip.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            ctx.startActivity(pip);
+            return;
+        }
+
+        a.runOnUiThread(() ->
+        {
+            Intent pip = new Intent(a, death_screen.class);
+            pip.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            a.startActivity(pip);
+            a.finish();
+        });
+
     }
 
     public void tick(String difficulty)
