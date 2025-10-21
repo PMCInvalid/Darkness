@@ -16,51 +16,35 @@ public class death_screen extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.death_screen);
 
-        SharedPreferences settings = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-
         TextView highS = (TextView) findViewById(R.id.textViewHighScore);
         TextView sco = (TextView) findViewById(R.id.textViewScore);
 
-        String b = settings.getString("difficulty", "");
-        String s = settings.getString("score", "0");
-
-        if (b.equals("easy"))
+        if (Globals.settings.getDifficulty().equals(Constants.difficulty_easy))
         {
-            String highScore = settings.getString("easyScore", "0");
+            sco.setText("Your score is:" + Globals.activeScore);
+            highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_easy));
 
-            sco.setText("Your score is:" + s);
-            highS.setText("Highscore is:" + highScore);
-
-            if (Double.parseDouble(highScore) < Double.parseDouble(s))
-                editor.putString("easyScore", s);
+            if (Globals.statistics.getScore(Constants.difficulty_easy) < Globals.activeScore)
+                Globals.statistics.setScore(Globals.activeScore);
         }
 
-        if (b.equals("hard"))
+        if (Globals.settings.getDifficulty().equals(Constants.difficulty_hard))
         {
-            String highScore = settings.getString("hardScore", "0");
+            sco.setText("Your score is:" + Globals.activeScore);
+            highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_hard));
 
-            sco.setText("Your score is:" + s);
-            highS.setText("Highscore is:" + highScore);
-
-            if (Double.parseDouble(highScore) < Double.parseDouble(s))
-                editor.putString("hardScore", s);
+            if (Globals.statistics.getScore(Constants.difficulty_hard) < Globals.activeScore)
+                Globals.statistics.setScore(Globals.activeScore);
         }
 
-        if (b.equals("insane"))
+        if (Globals.settings.getDifficulty().equals(Constants.difficulty_insane))
         {
-            String highScore = settings.getString("insaneScore", "0");
+            sco.setText("Your score is:" + Globals.activeScore);
+            highS.setText("Highscore is:" + Globals.statistics.getScore(Constants.difficulty_insane));
 
-            sco.setText("Your score is:" + s);
-            highS.setText("Highscore is:" + highScore);
-
-            if (Double.parseDouble(highScore) < Double.parseDouble(s))
-                editor.putString("hardScore", s);
+            if (Globals.statistics.getScore(Constants.difficulty_insane) < Globals.activeScore)
+                Globals.statistics.setScore(Globals.activeScore);
         }
-
-        editor.remove("score");
-        editor.remove("difficulty");
-        editor.apply();
     }
 
     public void goToMainMenuFromDeathScreen(View v)

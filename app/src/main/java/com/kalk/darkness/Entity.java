@@ -1,8 +1,5 @@
 package com.kalk.darkness;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Entity
 {
     protected Game game;

@@ -70,6 +70,11 @@ public class GameVec
         return (a.getX() == x) && (a.getY() == y);
     }
 
+    public static boolean equals(int aX, int aY, int bX, int bY)
+    {
+        return (aX == bX) && (aY == bY);
+    }
+
     public GameVec offSet(GameVec position, Direction dir, int steps)
     {
         return sum(position, Direction.DirToGV(dir).mul(steps));

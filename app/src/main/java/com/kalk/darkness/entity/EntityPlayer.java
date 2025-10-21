@@ -6,6 +6,7 @@ import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.GameVec;
 import com.kalk.darkness.Gameplay;
+import com.kalk.darkness.Globals;
 
 public class EntityPlayer extends Entity
 {
@@ -13,6 +14,9 @@ public class EntityPlayer extends Entity
     int energy = 100;
     boolean playerInBushes = false;
     int ability = 0;
+    public boolean hidden = false;
+
+    int flashlight = 0;
     Gameplay gameplayActivity;
 
     public int getEnergy() {
@@ -31,7 +35,7 @@ public class EntityPlayer extends Entity
         this.ability = ability;
     }
 
-    public static int getPlayerMoveRem()
+    public int getPlayerMoveRem()
     {
         return playerMoveRem;
     }
@@ -46,18 +50,22 @@ public class EntityPlayer extends Entity
         this.playerInBushes = playerInBushes;
     }
 
+    public int getFlashlight() {
+        return flashlight;
+    }
+
+    public void setFlashlight(int flashlight) {
+        this.flashlight = flashlight;
+    }
+
     public EntityPlayer(Game _game, Gameplay activity)
     {
         super(_game, "player_tile");
         this.gameplayActivity = activity;
     }
 
-    public boolean hidden = false;
-    int flashlight = 0;
-
-    public void tick(Direction direction, String difficulty)
+    public void tick(Direction direction)
     {
-        boolean moveCheck = false;
 
         if (direction != Direction.NONE)
         {
@@ -67,68 +75,13 @@ public class EntityPlayer extends Entity
             {
                 movement(direction, game.getMap());
                 playerMoveRem = Direction.toInt(direction);
-                moveCheck = true;
             }
         }
 
         else
         {
-            moveCheck = true;
             flashlight = 1;
             playerMoveRem = 9;
-        }
-
-        if (moveCheck)
-        {
-            if (!playerInBushes)
-            {
-                if (difficulty.equals(Constants.difficulty_easy))
-                {
-                    gameplayActivity.drawMap();
-                    game.abi(ability);
-                }
-
-                else if (difficulty.equals(Constants.difficulty_hard) || direction == Direction.NONE)
-                {
-                    if (flashlight == 1 && energy > 0)
-                    {
-                        gameplayActivity.drawMap();
-                        flashlight = 0;
-                        energy-=3;
-                    }
-
-                    else
-                    {
-                        gameplayActivity.drawMap();
-                        game.enemySence();
-                        energy--;
-                        game.abi(ability);
-                    }
-                }
-
-                else
-                {
-                    if (flashlight == 1 && energy > 0)
-                    {
-                        gameplayActivity.drawMap();
-                        flashlight = 0;
-                        energy -= 6;
-                    }
-
-                    else
-                    {
-                        gameplayActivity.drawMap();
-                        energy -= 2;
-                        game.abi(ability);
-                    }
-                }
-            }
-
-            else
-            {
-                gameplayActivity.drawMap();
-                game.abi(ability);
-            }
         }
     }
 }

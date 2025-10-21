@@ -27,6 +27,5 @@ public class EntityPeshka extends Entity
         }
 
         movement(dir, game.getMap());
-        System.out.println(dir);
     }
 }

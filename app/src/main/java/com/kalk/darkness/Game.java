@@ -1,7 +1,7 @@
 package com.kalk.darkness;
 
 import static com.kalk.darkness.Gameplay.game;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -10,7 +10,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +31,6 @@ import com.kalk.darkness.entity.EntityRivers;
 import com.kalk.darkness.entity.EntitySKorol;
 import com.kalk.darkness.entity.EntitySlon;
 import com.kalk.darkness.entity.FactoryPlayer;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -95,7 +93,7 @@ public class Game extends AppCompatActivity
     Game(Settings _settings, int _seed, Gameplay _gameplayActivity)
     {
         maxX = 32;
-        maxY = maxX;
+        maxY = 32;
 
         this.settings = _settings;
         this.seed = _seed;
@@ -561,6 +559,7 @@ public class Game extends AppCompatActivity
         }*/
 
         event = 0;
+        Globals.activeScore = 0;
         map = genchik.mapThrower(Gameplay.score, difficulty, event);
 
         entitySpawn();
@@ -637,11 +636,13 @@ public class Game extends AppCompatActivity
 
     public void endGame()
     {
+        Context appCtx = getApplicationContext();
         game.gameIn = false;
         game.score = 0;
 //        game.power.ability = 0;
-        Intent pip = new Intent(this, death_screen.class);
-        startActivity(pip);
+        Intent pip = new Intent(appCtx, death_screen.class);
+        pip.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        appCtx.startActivity(pip);
     }
 
     public void tick(String difficulty)
@@ -658,6 +659,56 @@ public class Game extends AppCompatActivity
             {
                 entity.onPlayerCollision(difficulty);
             }
+        }
+
+        if (!player.isPlayerInBushes())
+        {
+            if (Globals.settings.getDifficulty().equals(Constants.difficulty_easy))
+            {
+                gameplayActivity.drawMap();
+                game.abi(player.getAbility());
+            }
+
+            else if (Globals.settings.getDifficulty().equals(Constants.difficulty_hard) || player.getPlayerMoveRem() == 9)
+            {
+                if (player.getFlashlight() == 1 && player.getEnergy() > 0)
+                {
+                    gameplayActivity.drawMap();
+                    player.setFlashlight(0);
+                    player.setEnergy(player.getEnergy() - 3);
+                }
+
+                else
+                {
+                    gameplayActivity.drawMap();
+                    game.enemySence();
+                    player.setEnergy(player.getEnergy() - 1);
+                    game.abi(player.getAbility());
+                }
+            }
+
+            else
+            {
+                if (player.getFlashlight() == 1 && player.getEnergy() > 0)
+                {
+                    gameplayActivity.drawMap();
+                    player.setFlashlight(0);
+                    player.setEnergy(player.getEnergy() - 6);
+                }
+
+                else
+                {
+                    gameplayActivity.drawMap();
+                    player.setEnergy(player.getEnergy() - 2);
+                    game.abi(player.getAbility());
+                }
+            }
+        }
+
+        else
+        {
+            gameplayActivity.drawMap();
+            game.abi(player.getAbility());
         }
     }
 

@@ -8,6 +8,7 @@ public class Globals extends Application
     public static Statistics statistics;
     public static Settings settings;
     public static GameVec playerPosition;
+    public static float activeScore;
 
     public void onCreate()
     {
@@ -19,6 +20,7 @@ public class Globals extends Application
         statistics = new Statistics(statisticsSharedPreferences, settings);
         settings = new Settings(settingsSharedPreferences);
         playerPosition = new GameVec();
+        activeScore = 0;
         statistics.load();
     }
 }
