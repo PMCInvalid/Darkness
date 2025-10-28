@@ -251,9 +251,10 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
+        //test();
+
         game.player.tick(Direction.NONE);
         game.tick(globals.settings.getDifficulty());
-        test();
     }
 
     public void test()

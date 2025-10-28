@@ -643,9 +643,7 @@ public class Game extends AppCompatActivity
 
     public void endGame()
     {
-        if (!ended.compareAndSet(false, true)) return;
 
-        game.gameIn = false;
 //        game.power.ability = 0;
 
         Activity a = hostRef.get();
@@ -655,6 +653,7 @@ public class Game extends AppCompatActivity
             Intent pip = new Intent(ctx, death_screen.class);
             pip.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             ctx.startActivity(pip);
+            game = null;
             return;
         }
 
@@ -663,9 +662,9 @@ public class Game extends AppCompatActivity
             Intent pip = new Intent(a, death_screen.class);
             pip.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             a.startActivity(pip);
+            game = null;
             a.finish();
         });
-
     }
 
     public void tick(String difficulty)
@@ -683,55 +682,55 @@ public class Game extends AppCompatActivity
                 entity.onPlayerCollision(difficulty);
             }
         }
-
-        if (!player.isPlayerInBushes())
+        if (game != null)
         {
-            if (Globals.settings.getDifficulty().equals(Constants.difficulty_easy))
+            if (!player.isPlayerInBushes())
             {
-                gameplayActivity.drawMap();
-                game.abi(player.getAbility());
-            }
-
-            else if (Globals.settings.getDifficulty().equals(Constants.difficulty_hard) || player.getPlayerMoveRem() == 9)
-            {
-                if (player.getFlashlight() == 1 && player.getEnergy() > 0)
+                if (Globals.settings.getDifficulty().equals(Constants.difficulty_easy))
                 {
                     gameplayActivity.drawMap();
-                    player.setFlashlight(0);
-                    player.setEnergy(player.getEnergy() - 3);
+                    game.abi(player.getAbility());
+                }
+                else if (Globals.settings.getDifficulty().equals(Constants.difficulty_hard) || player.getPlayerMoveRem() == 9)
+                {
+                    if (player.getFlashlight() == 1 && player.getEnergy() > 0)
+                    {
+                        gameplayActivity.drawMap();
+                        player.setFlashlight(0);
+                        player.setEnergy(player.getEnergy() - 3);
+                    }
+                    else
+                    {
+                        gameplayActivity.drawMap();
+                        game.enemySence();
+                        player.setEnergy(player.getEnergy() - 1);
+                        game.abi(player.getAbility());
+                    }
                 }
 
                 else
                 {
-                    gameplayActivity.drawMap();
-                    game.enemySence();
-                    player.setEnergy(player.getEnergy() - 1);
-                    game.abi(player.getAbility());
+                    if (player.getFlashlight() == 1 && player.getEnergy() > 0)
+                    {
+                        gameplayActivity.drawMap();
+                        player.setFlashlight(0);
+                        player.setEnergy(player.getEnergy() - 6);
+                    }
+
+                    else
+                    {
+                        gameplayActivity.drawMap();
+                        player.setEnergy(player.getEnergy() - 2);
+                        game.abi(player.getAbility());
+                    }
                 }
             }
 
             else
             {
-                if (player.getFlashlight() == 1 && player.getEnergy() > 0)
-                {
-                    gameplayActivity.drawMap();
-                    player.setFlashlight(0);
-                    player.setEnergy(player.getEnergy() - 6);
-                }
-
-                else
-                {
-                    gameplayActivity.drawMap();
-                    player.setEnergy(player.getEnergy() - 2);
-                    game.abi(player.getAbility());
-                }
+                gameplayActivity.drawMap();
+                game.abi(player.getAbility());
             }
-        }
-
-        else
-        {
-            gameplayActivity.drawMap();
-            game.abi(player.getAbility());
         }
     }
 
