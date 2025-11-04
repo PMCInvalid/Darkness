@@ -314,6 +314,9 @@ public class Gameplay extends AppCompatActivity
         int drawMode = Constants.draw_mode_normal;
         Globals globals = (Globals) getApplicationContext();
 
+        TextView scores = findViewById(R.id.scoreText);
+        scores.setText("Score: " + Globals.activeScore);
+
         if (!globals.settings.getDifficulty().equals(Constants.difficulty_easy))
             drawMode = Constants.draw_mode_dark;
 
