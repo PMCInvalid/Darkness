@@ -744,7 +744,7 @@ public class Game extends AppCompatActivity
                 return false;
         }
 
-        return true;
+        return game.lever.playerCanExit();
     }
 
     public boolean isWalkable(GameVec a)

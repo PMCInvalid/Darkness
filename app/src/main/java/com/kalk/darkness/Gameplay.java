@@ -31,9 +31,6 @@ public class Gameplay extends AppCompatActivity
             game.init(0, globals.settings.getDifficulty());
         }
 
-        TextView scores = findViewById(R.id.scoreText);
-        scores.setText("Score: " + Globals.activeScore);
-
         ImageView[][] imageViews0 =
                 {
                         {
@@ -315,7 +312,10 @@ public class Gameplay extends AppCompatActivity
         Globals globals = (Globals) getApplicationContext();
 
         TextView scores = findViewById(R.id.scoreText);
+        TextView power = findViewById(R.id.powerText);
+
         scores.setText("Score: " + Globals.activeScore);
+        power.setText("Energy: ");
 
         if (!globals.settings.getDifficulty().equals(Constants.difficulty_easy))
             drawMode = Constants.draw_mode_dark;
