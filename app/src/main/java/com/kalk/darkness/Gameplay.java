@@ -248,7 +248,7 @@ public class Gameplay extends AppCompatActivity
     {
         Globals globals = (Globals) getApplicationContext();
 
-        //test();
+        test();
 
         game.player.tick(Direction.NONE);
         game.tick(globals.settings.getDifficulty());
@@ -258,7 +258,9 @@ public class Gameplay extends AppCompatActivity
     {
         System.out.println(game.player.position.getX() + " " + game.player.position.getY());
         System.out.println("-------");
-        System.out.println(game.peshka.position.getX() + " " + game.peshka.position.getY());
+        System.out.println(game.door.position.getX() + " " + game.door.position.getY());
+        System.out.println("-------");
+        System.out.println(game.getMapTile(game.door.position.getX(), game.door.position.getY()));
     }
 
     public int tileToResId(String tile, int drawMode, int range)
@@ -280,6 +282,8 @@ public class Gameplay extends AppCompatActivity
                 case "extraction_tile": return R.drawable.extraction_tile;
 
                 case "peshka_tile": return R.drawable.peshka_tile;
+
+                case "door_tile": return R.drawable.door_tile;
             }
         }
 

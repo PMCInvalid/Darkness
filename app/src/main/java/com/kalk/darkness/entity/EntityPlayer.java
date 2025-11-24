@@ -12,7 +12,6 @@ public class EntityPlayer extends Entity
 {
     static int playerMoveRem;
     int energy = 100;
-    boolean playerInBushes = false;
     int ability = 0;
     public boolean hidden = false;
 
@@ -38,16 +37,6 @@ public class EntityPlayer extends Entity
     public int getPlayerMoveRem()
     {
         return playerMoveRem;
-    }
-
-    public boolean isPlayerInBushes()
-    {
-        return playerInBushes;
-    }
-
-    public void setPlayerInBushes(boolean playerInBushes)
-    {
-        this.playerInBushes = playerInBushes;
     }
 
     public int getFlashlight() {

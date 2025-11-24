@@ -61,7 +61,6 @@ public class Game extends AppCompatActivity
     public Random random = new Random(seed);
 
     private String[][] map;
-    private String[][] mobMap;
     private MapGenerator genchik;
 
     public EntityPlayer player;
@@ -82,12 +81,6 @@ public class Game extends AppCompatActivity
     }
     public void setMap(String[][] map) {
         this.map = map;
-    }
-    public String[][] getMobMap() {
-        return mobMap;
-    }
-    public void setMobMap(String[][] mobMap) {
-        this.mobMap = mobMap;
     }
     public void setSeed(int newSeed)
     {
@@ -110,7 +103,6 @@ public class Game extends AppCompatActivity
         this.gameplayActivity = _gameplayActivity;
 
         map = new String[maxY][maxX];
-        mobMap = new String[maxY][maxX];
 
         if (seed == 0)
             seed = (new Random()).nextInt(10000);
@@ -581,6 +573,7 @@ public class Game extends AppCompatActivity
         player = genchik.playerSpawn();
         extr = genchik.extractionGen();
         lever = genchik.leverGen();
+        door = genchik.doorGen();
         peshka = genchik.peshkaSpawn();
     }
 
@@ -671,6 +664,8 @@ public class Game extends AppCompatActivity
 
     public void tick(String difficulty)
     {
+        player.hidden = false;
+
         for (Entity entity:entitites)
         {
             if (entity == player)
@@ -684,9 +679,10 @@ public class Game extends AppCompatActivity
                 entity.onPlayerCollision(difficulty);
             }
         }
+
         if (game != null)
         {
-            if (!player.isPlayerInBushes())
+            if (!player.hidden)
             {
                 if (Globals.settings.getDifficulty().equals(Constants.difficulty_easy))
                 {

@@ -2,10 +2,12 @@ package com.kalk.darkness;
 
 import static com.kalk.darkness.Gameplay.game;
 
+import com.kalk.darkness.entity.EntityDoor;
 import com.kalk.darkness.entity.EntityExit;
 import com.kalk.darkness.entity.EntityLever;
 import com.kalk.darkness.entity.EntityPeshka;
 import com.kalk.darkness.entity.EntityPlayer;
+import com.kalk.darkness.entity.FactoryDoor;
 import com.kalk.darkness.entity.FactoryExit;
 import com.kalk.darkness.entity.FactoryLever;
 import com.kalk.darkness.entity.FactoryPeshka;
@@ -19,6 +21,7 @@ public class MapGenerator
     FactoryLever factoryLever = new FactoryLever();
     FactoryExit factoryExit = new FactoryExit();
     FactoryPeshka factoryPeshka = new FactoryPeshka();
+    FactoryDoor factoryDoor = new FactoryDoor();
 
     protected String[][] gamemap;
     protected Gameplay gameplayActivity;
@@ -258,6 +261,11 @@ public class MapGenerator
     public EntityLever leverGen()
     {
         return factoryLever.spawn(game, gameplayActivity, gamemap);
+    }
+
+    public EntityDoor doorGen()
+    {
+        return factoryDoor.spawn(game, gameplayActivity, gamemap);
     }
 
 /*  public static void doorGen()

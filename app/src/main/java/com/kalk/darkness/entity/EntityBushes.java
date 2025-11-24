@@ -9,4 +9,10 @@ public class EntityBushes extends Entity
     {
         super(_game, "bushes_tile");
     }
+
+    @Override
+    public void onPlayerCollision(String difficulty)
+    {
+        game.player.hidden = true;
+    }
 }
