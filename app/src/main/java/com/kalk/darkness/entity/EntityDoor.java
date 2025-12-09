@@ -7,8 +7,6 @@ import com.kalk.darkness.Statistics;
 
 public class EntityDoor extends Entity
 {
-    Statistics statistics;
-
     public EntityDoor(Game _game)
     {
         super(_game, "door_tile");

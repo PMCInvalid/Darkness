@@ -7,11 +7,13 @@ import com.kalk.darkness.entity.EntityExit;
 import com.kalk.darkness.entity.EntityLever;
 import com.kalk.darkness.entity.EntityPeshka;
 import com.kalk.darkness.entity.EntityPlayer;
+import com.kalk.darkness.entity.EntitySlon;
 import com.kalk.darkness.entity.FactoryDoor;
 import com.kalk.darkness.entity.FactoryExit;
 import com.kalk.darkness.entity.FactoryLever;
 import com.kalk.darkness.entity.FactoryPeshka;
 import com.kalk.darkness.entity.FactoryPlayer;
+import com.kalk.darkness.entity.FactorySlon;
 
 import java.util.Random;
 
@@ -21,6 +23,7 @@ public class MapGenerator
     FactoryLever factoryLever = new FactoryLever();
     FactoryExit factoryExit = new FactoryExit();
     FactoryPeshka factoryPeshka = new FactoryPeshka();
+    FactorySlon factorySlon = new FactorySlon();
     FactoryDoor factoryDoor = new FactoryDoor();
 
     protected String[][] gamemap;
@@ -268,62 +271,24 @@ public class MapGenerator
         return factoryDoor.spawn(game, gameplayActivity, gamemap);
     }
 
-/*  public static void doorGen()
+    public EntityPlayer playerSpawn()
     {
-        int a  = rand.nextInt(4) + 1;
-
-        if (a == 1)
-        {
-            a = rand.nextInt(17) + 2;
-
-            if (map[2][a].equals("empty_tile"))
-            {
-                game.door.corY = 1;
-                game.door.corX = a;
-                map[game.door.corY][game.door.corX] = "door_tile";
-            }
-        }
-
-        else if (a == 2)
-        {
-            a = rand.nextInt(17) + 2;
-
-            if (map[a][2].equals("empty_tile"))
-            {
-                game.door.corY = a;
-                game.door.corX = 1;
-
-                map[game.door.corY][game.door.corX] = "door_tile";
-            }
-        }
-
-        else if (a == 3)
-        {
-            a = rand.nextInt(17) + 2;
-
-            if (map[29][a].equals("empty_tile"))
-            {
-                game.door.corY = 30;
-                game.door.corX = a;
-
-                map[game.door.corY][game.door.corX] = "door_tile";
-            }
-        }
-
-        if (a == 4)
-        {
-            a = rand.nextInt(17) + 2;
-
-            if (map[a][29].equals("empty_tile"))
-            {
-                game.door.corY = a;
-                game.door.corX = 30;
-
-                map[game.door.corY][game.door.corX] = "door_tile";
-            }
-        }
+        return factoryPlayer.spawn(game, gameplayActivity, gamemap);
     }
 
+    public EntityPeshka peshkaSpawn()
+    {
+        return factoryPeshka.spawn(game, gameplayActivity, gamemap);
+    }
+
+    public EntitySlon slonSpawn()
+    {
+        if (Globals.activeScore > 1.5)
+            return factorySlon.spawn(game, gameplayActivity, gamemap);
+        else return null;
+    }
+
+/*
     public static void portalsGen(int amount)
     {
         int s = amount;
@@ -757,19 +722,9 @@ public class MapGenerator
 
         if (event == 3)
             bushesEvent();
-    }*/
-
-    public EntityPlayer playerSpawn()
-    {
-        return factoryPlayer.spawn(game, gameplayActivity, gamemap);
     }
 
-    public EntityPeshka peshkaSpawn()
-    {
-        return factoryPeshka.spawn(game, gameplayActivity, gamemap);
-    }
-
-    /*public static void peshkaBSpawn()
+    public static void peshkaBSpawn()
     {
         int y = (rand.nextInt(28) + 2);
         int x = (rand.nextInt(28) + 2);

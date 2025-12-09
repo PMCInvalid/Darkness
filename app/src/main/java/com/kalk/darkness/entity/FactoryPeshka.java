@@ -18,7 +18,7 @@ public class FactoryPeshka extends FactoryMobs
         {
             peshka.setPosition(MapGenerator.getRandomCords());
 
-            if (game.isWalkable(peshka.position))
+            if (Entity.isWalkable(map, peshka.position, 1))
                 check = false;
         }
 

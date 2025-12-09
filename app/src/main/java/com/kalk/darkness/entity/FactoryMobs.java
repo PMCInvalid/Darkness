@@ -18,7 +18,7 @@ public class FactoryMobs
 
     public boolean haveWay(GameVec start, GameVec end)
     {
-        if (!game.isWalkable(start) || !game.isWalkable(end))
+        if (!Entity.isWalkable(game.getMap(), start, 1) || !Entity.isWalkable(game.getMap(), end, 1))
         {
             return false;
         }
@@ -58,7 +58,7 @@ public class FactoryMobs
                 }
 
                 if (newX > 0 && newY > 0 && newX < game.maxX && newY < game.maxY)
-                    if (game.isWalkable(start) && !visited[newX][newY])
+                    if (Entity.isWalkable(game.getMap(), start, 1) && !visited[newX][newY])
                     {
                         visited[newX][newY] = true;
                         queue.add(new int[]{newX, newY});

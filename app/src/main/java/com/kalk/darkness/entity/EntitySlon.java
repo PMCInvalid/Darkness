@@ -1,31 +1,30 @@
 package com.kalk.darkness.entity;
 
-
+import com.kalk.darkness.Direction;
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.MapGenerator;
+import com.kalk.darkness.Pathfinding;
 
 public class EntitySlon extends Entity
 {
     EntitySlon(Game _game)
     {
         super(_game, "slon_tile");
-    }/*
+    }
 
     public void tick()
     {
-        int direction = 9;
+        Direction dir = Direction.NONE;
 
         if (!game.player.hidden)
         {
-            computeFlowField(game.map, game.player.corX, game.player.corY, 2);
-
-            direction = getDirection();
+            dir = Pathfinding.findNextStep(game.getMap(), position.getX(), position.getY(), game.player.getPosition().getX(), game.player.getPosition().getY(), 2, 0);
         }
 
-        else
-            direction = (MapGenerator.rand.nextInt(4) + 1) * 2;
+        else if (dir == Direction.NONE)
+            dir = Direction.fromInt(MapGenerator.rand.nextInt(9) + 1);
 
-        movement(direction);
-    }*/
+        movement(dir, game.getMap());
+    }
 }

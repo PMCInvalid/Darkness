@@ -65,6 +65,7 @@ public class Game extends AppCompatActivity
 
     public EntityPlayer player;
     public EntityPeshka peshka;
+    public EntitySlon slon;
 
     public EntityExit extr;
     public EntityLever lever;
@@ -575,6 +576,7 @@ public class Game extends AppCompatActivity
         lever = genchik.leverGen();
         door = genchik.doorGen();
         peshka = genchik.peshkaSpawn();
+        slon = genchik.slonSpawn();
 
         map[game.door.getPosition().getX()][game.door.getPosition().getY()] = "empty_tile";
     }
@@ -743,10 +745,5 @@ public class Game extends AppCompatActivity
         }
 
         return game.lever.playerCanExit();
-    }
-
-    public boolean isWalkable(GameVec a)
-    {
-        return a.getX() >= 0 && a.getY() >= 0 && a.getX() < map.length && a.getY() < map[0].length && !map[a.getX()][a.getY()].equals("wall_tile");
     }
 }

@@ -260,8 +260,6 @@ public class Gameplay extends AppCompatActivity
         System.out.println("-------");
         System.out.println(game.door.position.getX() + " " + game.door.position.getY());
         System.out.println("-------");
-        System.out.println(game.getMapTile(game.door.position.getX(), game.door.position.getY()));
-        System.out.println("-------");
     }
 
     public int tileToResId(String tile, int drawMode, int range)
@@ -285,6 +283,8 @@ public class Gameplay extends AppCompatActivity
                 case "peshka_tile": return R.drawable.peshka_tile;
 
                 case "door_tile": return R.drawable.door_tile;
+
+                case "slon_tile": return R.drawable.slon_tile;
             }
         }
 
