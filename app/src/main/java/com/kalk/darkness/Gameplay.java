@@ -261,6 +261,7 @@ public class Gameplay extends AppCompatActivity
         System.out.println(game.door.position.getX() + " " + game.door.position.getY());
         System.out.println("-------");
         System.out.println(game.getMapTile(game.door.position.getX(), game.door.position.getY()));
+        System.out.println("-------");
     }
 
     public int tileToResId(String tile, int drawMode, int range)

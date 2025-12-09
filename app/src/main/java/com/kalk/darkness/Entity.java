@@ -45,9 +45,6 @@ public class Entity
 
         else if (type == 1)
         {
-            if (cell.equals("door_tile"))
-                return true;
-
             if (position.getY() < 0 || position.getX() < 0 || position.getY() >= map.length || position.getX() >= map[0].length)
                 return false;
 

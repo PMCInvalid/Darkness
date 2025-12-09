@@ -1,7 +1,5 @@
 package com.kalk.darkness.entity;
 
-import android.content.SharedPreferences;
-
 import com.kalk.darkness.Entity;
 import com.kalk.darkness.Game;
 import com.kalk.darkness.Globals;
@@ -20,8 +18,8 @@ public class EntityDoor extends Entity
     public void onPlayerCollision(String difficulty)
     {
         Globals.activeScore += 0.25f;
-        statistics.setScore();
-        statistics.save();
+        Globals.statistics.setScore();
+        Globals.statistics.save();
         game.init(0, difficulty);
     }
 }

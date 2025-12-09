@@ -575,6 +575,8 @@ public class Game extends AppCompatActivity
         lever = genchik.leverGen();
         door = genchik.doorGen();
         peshka = genchik.peshkaSpawn();
+
+        map[game.door.getPosition().getX()][game.door.getPosition().getY()] = "empty_tile";
     }
 
     public void riverwork(Entity entity)

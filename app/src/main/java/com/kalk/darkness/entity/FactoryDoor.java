@@ -15,18 +15,18 @@ public class FactoryDoor extends FactoryMobs
     {
         EntityDoor door = new EntityDoor(game);
 
-        door.setPosition(new GameVec(2, 1));
+        door.setPosition(new GameVec(3, 1));
 
         int newX = MapGenerator.getRandomCords().getX();
         int newY;
-        if (newX == 1 || newX == game.maxX - 2)
+        if (newX == 3 || newX == game.maxX - 3)
         {
             newY = MapGenerator.getRandomCords().getY();
         }
 
         else
         {
-            newY = new Random().nextBoolean() ? 1 : game.maxY - 2;
+            newY = new Random().nextBoolean() ? 2 : game.maxY - 3;
         }
 
         door.setPosition(new GameVec(newX, newY));
