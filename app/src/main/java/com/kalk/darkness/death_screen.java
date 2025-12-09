@@ -45,6 +45,8 @@ public class death_screen extends AppCompatActivity
             if (Globals.statistics.getScore(Constants.difficulty_insane) < Globals.activeScore)
                 Globals.statistics.setScore();
         }
+
+        Globals.activeScore = 1;
     }
 
     public void goToMainMenuFromDeathScreen(View v)
